@@ -1,5 +1,8 @@
 {
-  "platform": "macos-arm64",
+  "platforms": [
+    "macos-arm64",
+    "linux-x64"
+  ],
   "cores": [
     {
       "id": "gambatte",
@@ -7,6 +10,7 @@
       "subdir": ".",
       "makefile": "Makefile.libretro",
       "dylib_out": "gambatte_libretro.dylib",
+      "so_out": "gambatte_libretro.so",
       "switch_repo": "ticohq/tico-gambatte"
     },
     {
@@ -15,6 +19,7 @@
       "subdir": ".",
       "makefile": "Makefile.libretro",
       "dylib_out": "fceumm_libretro.dylib",
+      "so_out": "fceumm_libretro.so",
       "switch_repo": "ticohq/tico-fceumm"
     },
     {
@@ -23,6 +28,7 @@
       "subdir": "libretro",
       "makefile": "Makefile",
       "dylib_out": "snes9x_libretro.dylib",
+      "so_out": "snes9x_libretro.so",
       "switch_repo": "ticohq/tico-snes9x"
     }
   ]

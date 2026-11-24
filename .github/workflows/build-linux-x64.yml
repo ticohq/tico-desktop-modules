@@ -1,0 +1,32 @@
+name: Build Linux x64 Modules
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag (e.g. v3.0.2-linux-x64.1)'
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  build-linux-x64:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ensure build tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential binutils file curl python3
+      - name: Build and verify modules
+        run: |
+          chmod +x ./scripts/build-linux-x64.sh
+          ./scripts/build-linux-x64.sh
+      - name: Publish release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="${{ inputs.tag }}"
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --title "Linux x86_64 Modules (${TAG})" --notes "Initial Linux x86_64 libretro modules for tico: Gambatte (GB/GBC), FCEUmm (NES), and Snes9x (SNES)."
+          gh release upload "$TAG" build/out/*-linux-x64-module.zip build/out/release-summary.json --clobber
