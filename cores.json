@@ -1,0 +1,29 @@
+{
+  "platform": "macos-arm64",
+  "cores": [
+    {
+      "id": "gambatte",
+      "repo": "https://github.com/libretro/gambatte-libretro.git",
+      "subdir": ".",
+      "makefile": "Makefile.libretro",
+      "dylib_out": "gambatte_libretro.dylib",
+      "switch_repo": "ticohq/tico-gambatte"
+    },
+    {
+      "id": "fceumm",
+      "repo": "https://github.com/libretro/libretro-fceumm.git",
+      "subdir": ".",
+      "makefile": "Makefile.libretro",
+      "dylib_out": "fceumm_libretro.dylib",
+      "switch_repo": "ticohq/tico-fceumm"
+    },
+    {
+      "id": "snes9x",
+      "repo": "https://github.com/libretro/snes9x.git",
+      "subdir": "libretro",
+      "makefile": "Makefile",
+      "dylib_out": "snes9x_libretro.dylib",
+      "switch_repo": "ticohq/tico-snes9x"
+    }
+  ]
+}

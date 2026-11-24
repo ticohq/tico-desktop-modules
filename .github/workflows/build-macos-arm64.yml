@@ -1,0 +1,26 @@
+name: Build macOS arm64 Modules
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag (e.g. v3.0.2-macos.1)'
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  build-macos-arm64:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build and verify modules
+        run: ./scripts/build-macos-arm64.sh
+      - name: Publish release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="${{ inputs.tag }}"
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --title "$TAG" --notes "Desktop macOS arm64 libretro modules for tico."
+          gh release upload "$TAG" build/out/*-macos-arm64-module.zip build/out/release-summary.json --clobber
