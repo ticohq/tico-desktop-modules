@@ -7,7 +7,6 @@ OUT="$WORK/out"
 mkdir -p "$WORK/src" "$WORK/built" "$WORK/templates" "$OUT"
 
 g++ -std=c++17 -O2 "$ROOT/scripts/verify_core.cpp" -o "$WORK/verify_core" -ldl
-curl -fsSL https://content.ticoverse.com/api/manifest -o "$WORK/manifest.json"
 
 python3 - "$ROOT/cores.json" "$WORK" <<'PY'
 import hashlib, json, os, pathlib, re, shutil, subprocess, sys, urllib.request, zipfile
@@ -23,10 +22,27 @@ ALLOWED_LIBS = {
     "ld-linux-x86-64.so.2",
 }
 
+def gh_headers():
+    headers = {"User-Agent": "tico-desktop-modules/1.0", "Accept": "application/vnd.github+json"}
+    token = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    return headers
+
+def fetch_template_info(switch_repo):
+    url = f"https://api.github.com/repos/{switch_repo}/releases/latest"
+    req = urllib.request.Request(url, headers=gh_headers())
+    with urllib.request.urlopen(req, timeout=30) as r:
+        rel = json.loads(r.read().decode("utf-8"))
+    version = str(rel.get("tag_name", "")).lstrip("v")
+    for asset in rel.get("assets", []):
+        name = asset.get("name", "")
+        if name.endswith("-module.zip"):
+            return version, asset["browser_download_url"]
+    raise RuntimeError(f"No *-module.zip asset in latest release of {switch_repo}")
+
 cfg = json.loads(pathlib.Path(sys.argv[1]).read_text())
 work = pathlib.Path(sys.argv[2])
-manifest = json.loads((work / "manifest.json").read_text())
-by_id = {p["id"]: p for p in manifest.get("packages", [])}
 results = []
 
 for core in cfg["cores"]:
@@ -58,10 +74,11 @@ for core in cfg["cores"]:
 
     subprocess.run([str(work / "verify_core"), str(so_dst)], check=True)
 
-    # Fetch Switch module template for metadata/settings/gamelists/assets/lang
+    # Fetch Switch module template directly from GitHub Releases
+    version, template_url = fetch_template_info(core["switch_repo"])
     zpath = work / "templates" / f"{cid}.zip"
     if not zpath.exists():
-        req = urllib.request.Request(by_id[cid]["url"], headers={"User-Agent": "tico-desktop-modules/1.0"})
+        req = urllib.request.Request(template_url, headers={"User-Agent": "tico-desktop-modules/1.0"})
         with urllib.request.urlopen(req, timeout=60) as r, open(zpath, "wb") as f:
             f.write(r.read())
     ext_dir = work / "templates" / "extracted" / cid
@@ -80,7 +97,6 @@ for core in cfg["cores"]:
     shutil.copy2(so_dst, stage_dir / so_name)
     os.chmod(stage_dir / so_name, 0o755)
 
-    version = by_id[cid]["version"]
     mod_path = stage_dir / "module.json"
     mod = json.loads(mod_path.read_text())
     mod["version"] = version

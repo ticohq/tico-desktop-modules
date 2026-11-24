@@ -20,6 +20,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y build-essential binutils file curl python3
       - name: Build and verify modules
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           chmod +x ./scripts/build-linux-x64.sh
           ./scripts/build-linux-x64.sh
