@@ -41,33 +41,96 @@ def fetch_template_info(switch_repo):
             return version, asset["browser_download_url"]
     raise RuntimeError(f"No *-module.zip asset in latest release of {switch_repo}")
 
+def gcc_major(compiler):
+    try:
+        out = subprocess.check_output([compiler, "-dumpversion"], text=True).strip()
+        return int(out.split(".")[0])
+    except Exception:
+        return 0
+
+def select_cpp23_compilers():
+    if gcc_major("g++") >= 12:
+        return []
+    for ver in (14, 13, 12):
+        cxx = f"g++-{ver}"
+        cc = f"gcc-{ver}"
+        if shutil.which(cxx) and shutil.which(cc):
+            return [f"CXX={cxx}", f"CC={cc}"]
+    raise RuntimeError("A C++23-capable GCC (>= 12) is required to build this core")
+
 cfg = json.loads(pathlib.Path(sys.argv[1]).read_text())
 work = pathlib.Path(sys.argv[2])
+jobs = str(os.cpu_count() or 4)
+
+raw_filter = os.environ.get("CORE_FILTER", "").strip()
+core_filter = {c.strip() for c in raw_filter.split(",") if c.strip()} if raw_filter else None
+
 results = []
 
 for core in cfg["cores"]:
     cid = core["id"]
+    if core_filter is not None and cid not in core_filter:
+        continue
+
+    print(f"=== Building {cid} (linux-x64) ===", flush=True)
     src_dir = work / "src" / cid
+    use_submodules = bool(core.get("submodules", False))
     if not (src_dir / ".git").exists():
-        subprocess.run(["git", "clone", "--depth=1", core["repo"], str(src_dir)], check=True)
+        clone_cmd = ["git", "clone", "--depth=1"]
+        if use_submodules:
+            clone_cmd += ["--recurse-submodules", "--shallow-submodules"]
+        clone_cmd += [core["repo"], str(src_dir)]
+        subprocess.run(clone_cmd, check=True)
+    elif use_submodules:
+        subprocess.run(
+            ["git", "submodule", "update", "--init", "--recursive", "--depth=1"],
+            cwd=src_dir, check=True
+        )
+
     build_dir = src_dir / core["subdir"]
-    subprocess.run(
-        ["make", "-f", core["makefile"], "platform=unix", f"-j{os.cpu_count() or 4}"],
-        cwd=build_dir, check=True
-    )
+    build_system = core.get("build_system", "make")
+
+    if build_system == "cmake":
+        cmake_build_dir = work / "cmake" / cid
+        cmake_cmd = [
+            "cmake",
+            "-S", str(build_dir),
+            "-B", str(cmake_build_dir),
+            "-DCMAKE_BUILD_TYPE=Release",
+            *core.get("cmake_args", []),
+            *core.get("cmake_args_linux", []),
+        ]
+        subprocess.run(cmake_cmd, check=True)
+        build_cmd = ["cmake", "--build", str(cmake_build_dir), "-j", jobs]
+        if core.get("cmake_target"):
+            build_cmd += ["--target", core["cmake_target"]]
+        subprocess.run(build_cmd, check=True)
+        built_so = cmake_build_dir / core["so_out"]
+    else:
+        make_cmd = ["make", "-f", core["makefile"], "platform=unix", f"-j{jobs}"]
+        if core.get("cpp23"):
+            make_cmd += select_cpp23_compilers()
+        make_cmd += core.get("make_args", [])
+        make_cmd += core.get("make_args_linux", [])
+        subprocess.run(make_cmd, cwd=build_dir, check=True)
+        built_so = build_dir / core["so_out"]
+
+    if not built_so.is_file():
+        raise RuntimeError(f"Expected built core not found for {cid}: {built_so}")
+
     so_name = f"{cid}_libretro.so"
     so_dst = work / "built" / so_name
-    shutil.copy2(build_dir / core["so_out"], so_dst)
+    shutil.copy2(built_so, so_dst)
     subprocess.run(["strip", "--strip-unneeded", str(so_dst)], check=False)
 
     file_out = subprocess.check_output(["file", str(so_dst)], text=True)
-    print(f"[{cid}] {file_out.strip()}")
+    print(f"[{cid}] {file_out.strip()}", flush=True)
     if "ELF 64-bit" not in file_out or "x86-64" not in file_out:
         raise RuntimeError(f"Unexpected binary format for {cid}: {file_out}")
 
     readelf = subprocess.check_output(["readelf", "-d", str(so_dst)], text=True)
     needed = re.findall(r"\(NEEDED\)\s+Shared library:\s+\[([^\]]+)\]", readelf)
-    print(f"[{cid}] DT_NEEDED: {needed}")
+    print(f"[{cid}] DT_NEEDED: {needed}", flush=True)
     unexpected = [lib for lib in needed if lib not in ALLOWED_LIBS]
     if unexpected:
         raise RuntimeError(f"Non-system runtime dependency in {cid}: {unexpected}\n{readelf}")
@@ -87,11 +150,18 @@ for core in cfg["cores"]:
     with zipfile.ZipFile(zpath) as zf:
         zf.extractall(ext_dir)
 
+    src_template = ext_dir / cid
+    if not src_template.is_dir():
+        candidates = [p.parent for p in ext_dir.glob("*/module.json")]
+        if len(candidates) != 1:
+            raise RuntimeError(f"Could not locate module directory in {zpath} for {cid}")
+        src_template = candidates[0]
+
     stage_parent = work / "stage" / cid
     stage_dir = stage_parent / cid
     if stage_parent.exists():
         shutil.rmtree(stage_parent)
-    shutil.copytree(ext_dir / cid, stage_dir)
+    shutil.copytree(src_template, stage_dir)
     for nro in stage_dir.glob("*.nro"):
         nro.unlink()
     shutil.copy2(so_dst, stage_dir / so_name)

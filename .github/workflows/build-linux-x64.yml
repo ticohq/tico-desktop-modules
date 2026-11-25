@@ -4,8 +4,12 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Release tag (e.g. v3.0.2-linux-x64.1)'
+        description: 'Release tag (e.g. v3.0.2-linux-x64.2)'
         required: true
+      cores:
+        description: 'Optional comma-separated core IDs to build (empty = all)'
+        required: false
+        default: ''
 
 permissions:
   contents: write
@@ -18,10 +22,11 @@ jobs:
       - name: Ensure build tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential binutils file curl python3
+          sudo apt-get install -y build-essential binutils cmake file curl g++-12 python3
       - name: Build and verify modules
         env:
           GH_TOKEN: ${{ github.token }}
+          CORE_FILTER: ${{ inputs.cores }}
         run: |
           chmod +x ./scripts/build-linux-x64.sh
           ./scripts/build-linux-x64.sh
@@ -30,5 +35,15 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           TAG="${{ inputs.tag }}"
-          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --title "Linux x86_64 Modules (${TAG})" --notes "Initial Linux x86_64 libretro modules for tico: Gambatte (GB/GBC), FCEUmm (NES), and Snes9x (SNES)."
+          NOTES=$(python3 - <<'PY'
+          import json, pathlib
+          summary = json.loads(pathlib.Path("build/out/release-summary.json").read_text())
+          lines = ["Linux x86_64 libretro modules for tico (Ubuntu 22.04 / GLIBC 2.35+, system libraries only):", ""]
+          for item in summary:
+              mb = item["size"] / (1024 * 1024)
+              lines.append(f"- `{item['id']}` (`{item['version']}`) — `{item['filename']}` ({mb:.2f} MB)")
+          print("\n".join(lines))
+          PY
+          )
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --title "Linux x86_64 Modules (${TAG})" --notes "$NOTES"
           gh release upload "$TAG" build/out/*-linux-x64-module.zip build/out/release-summary.json --clobber

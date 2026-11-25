@@ -12,6 +12,14 @@ Prebuilt desktop libretro modules for [tico](https://github.com/ticohq/tico), pa
 - `gambatte` — Game Boy / Game Boy Color
 - `fceumm` — NES / Famicom
 - `snes9x` — Super Nintendo
+- `mgba` — Game Boy Advance
+- `genesis_plus_gx` — Sega Genesis / Mega Drive, Master System, Game Gear, SG-1000, Sega CD
+- `picodrive` — Sega 32X
+- `stella` — Atari 2600
+- `bluemsx` — MSX, MSX2, ColecoVision, Spectravideo, SC-3000
+- `beetle_cygne` — WonderSwan / WonderSwan Color
+- `beetle_vb` — Virtual Boy
+- `fbneo` — FinalBurn Neo (Arcade)
 
 ## Building Locally
 
@@ -19,3 +27,5 @@ Prebuilt desktop libretro modules for [tico](https://github.com/ticohq/tico), pa
 ./scripts/build-macos-arm64.sh
 ./scripts/build-linux-x64.sh
 ```
+
+Set `CORE_FILTER=mgba,stella` to build a subset of cores locally.

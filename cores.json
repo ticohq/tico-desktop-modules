@@ -30,6 +30,113 @@
       "dylib_out": "snes9x_libretro.dylib",
       "so_out": "snes9x_libretro.so",
       "switch_repo": "ticohq/tico-snes9x"
+    },
+    {
+      "id": "mgba",
+      "repo": "https://github.com/libretro/mgba.git",
+      "subdir": ".",
+      "build_system": "cmake",
+      "cmake_target": "mgba_libretro",
+      "cmake_args": [
+        "-DSKIP_LIBRARY=ON",
+        "-DBUILD_LIBRETRO=ON",
+        "-DBUILD_QT=OFF",
+        "-DBUILD_SDL=OFF",
+        "-DBUILD_GL=OFF",
+        "-DBUILD_GLES2=OFF",
+        "-DBUILD_GLES3=OFF",
+        "-DBUILD_PERF=OFF",
+        "-DBUILD_SUITE=OFF",
+        "-DBUILD_TEST=OFF",
+        "-DBUILD_EXAMPLE=OFF",
+        "-DBUILD_HEADLESS=OFF",
+        "-DUSE_ZLIB=OFF",
+        "-DUSE_PNG=OFF",
+        "-DUSE_LIBZIP=OFF",
+        "-DUSE_SQLITE3=OFF",
+        "-DUSE_ELF=OFF",
+        "-DUSE_FFMPEG=OFF",
+        "-DUSE_DISCORD_RPC=OFF",
+        "-DUSE_EPOXY=OFF",
+        "-DUSE_EDITLINE=OFF",
+        "-DUSE_LUA=OFF",
+        "-DUSE_MINIZIP=OFF",
+        "-DUSE_LZMA=OFF",
+        "-DUSE_JSON_C=OFF",
+        "-DUSE_FREETYPE=OFF"
+      ],
+      "dylib_out": "mgba_libretro.dylib",
+      "so_out": "mgba_libretro.so",
+      "switch_repo": "ticohq/tico-mgba"
+    },
+    {
+      "id": "genesis_plus_gx",
+      "repo": "https://github.com/libretro/Genesis-Plus-GX.git",
+      "subdir": ".",
+      "makefile": "Makefile.libretro",
+      "dylib_out": "genesis_plus_gx_libretro.dylib",
+      "so_out": "genesis_plus_gx_libretro.so",
+      "switch_repo": "ticohq/tico-genesisplusgx"
+    },
+    {
+      "id": "picodrive",
+      "repo": "https://github.com/libretro/picodrive.git",
+      "submodules": true,
+      "subdir": ".",
+      "makefile": "Makefile.libretro",
+      "dylib_out": "picodrive_libretro.dylib",
+      "so_out": "picodrive_libretro.so",
+      "switch_repo": "ticohq/tico-picodrive"
+    },
+    {
+      "id": "stella",
+      "repo": "https://github.com/stella-emu/stella.git",
+      "subdir": "src/os/libretro",
+      "makefile": "Makefile",
+      "cpp23": true,
+      "make_args_macos": [
+        "CROSS_COMPILE=1",
+        "LIBRETRO_APPLE_PLATFORM=arm64-apple-macos11.0"
+      ],
+      "dylib_out": "stella_libretro.dylib",
+      "so_out": "stella_libretro.so",
+      "switch_repo": "ticohq/tico-stella"
+    },
+    {
+      "id": "bluemsx",
+      "repo": "https://github.com/libretro/blueMSX-libretro.git",
+      "subdir": ".",
+      "makefile": "Makefile.libretro",
+      "dylib_out": "bluemsx_libretro.dylib",
+      "so_out": "bluemsx_libretro.so",
+      "switch_repo": "ticohq/tico-blueMSX"
+    },
+    {
+      "id": "beetle_cygne",
+      "repo": "https://github.com/libretro/beetle-wswan-libretro.git",
+      "subdir": ".",
+      "makefile": "Makefile",
+      "dylib_out": "mednafen_wswan_libretro.dylib",
+      "so_out": "mednafen_wswan_libretro.so",
+      "switch_repo": "ticohq/tico-beetle-cygne"
+    },
+    {
+      "id": "beetle_vb",
+      "repo": "https://github.com/libretro/beetle-vb-libretro.git",
+      "subdir": ".",
+      "makefile": "Makefile",
+      "dylib_out": "mednafen_vb_libretro.dylib",
+      "so_out": "mednafen_vb_libretro.so",
+      "switch_repo": "ticohq/tico-beetle-vb"
+    },
+    {
+      "id": "fbneo",
+      "repo": "https://github.com/libretro/FBNeo.git",
+      "subdir": "src/burner/libretro",
+      "makefile": "Makefile",
+      "dylib_out": "fbneo_libretro.dylib",
+      "so_out": "fbneo_libretro.so",
+      "switch_repo": "ticohq/tico-fbneo"
     }
   ]
 }

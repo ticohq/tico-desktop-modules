@@ -4,8 +4,12 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Release tag (e.g. v3.0.2-macos.1)'
+        description: 'Release tag (e.g. v3.0.2-macos.2)'
         required: true
+      cores:
+        description: 'Optional comma-separated core IDs to build (empty = all)'
+        required: false
+        default: ''
 
 permissions:
   contents: write
@@ -16,11 +20,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build and verify modules
-        run: ./scripts/build-macos-arm64.sh
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CORE_FILTER: ${{ inputs.cores }}
+        run: |
+          chmod +x ./scripts/build-macos-arm64.sh
+          ./scripts/build-macos-arm64.sh
       - name: Publish release assets
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           TAG="${{ inputs.tag }}"
-          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --title "$TAG" --notes "Desktop macOS arm64 libretro modules for tico."
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --title "macOS arm64 Modules (${TAG})" --notes "Desktop macOS arm64 libretro modules for tico."
           gh release upload "$TAG" build/out/*-macos-arm64-module.zip build/out/release-summary.json --clobber
