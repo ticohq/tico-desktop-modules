@@ -20,6 +20,10 @@ Prebuilt desktop libretro modules for [tico](https://github.com/ticohq/tico), pa
 - `beetle_cygne` — WonderSwan / WonderSwan Color
 - `beetle_vb` — Virtual Boy
 - `fbneo` — FinalBurn Neo (Arcade)
+- `ppsspp` — PlayStation Portable (libretro buildbot)
+- `flycast` — Dreamcast / NAOMI / Atomiswave (libretro buildbot)
+- `mupen64plus` — Nintendo 64 (`mupen64plus_next`, libretro buildbot)
+- `dolphin` — GameCube / Wii / Triforce (libretro buildbot)
 
 ## Building Locally
 

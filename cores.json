@@ -138,6 +138,50 @@
       "dylib_out": "fbneo_libretro.dylib",
       "so_out": "fbneo_libretro.so",
       "switch_repo": "ticohq/tico-fbneo"
+    },
+    {
+      "id": "ppsspp",
+      "source": "buildbot",
+      "buildbot_name": "ppsspp_libretro",
+      "switch_repo": "ticohq/tico-ppsspp",
+      "extra_allowed_libs_linux": [
+        "libGL.so.1"
+      ]
+    },
+    {
+      "id": "flycast",
+      "source": "buildbot",
+      "buildbot_name": "flycast_libretro",
+      "switch_repo": "ticohq/tico-flycast",
+      "extra_allowed_libs_linux": [
+        "libgomp.so.1"
+      ]
+    },
+    {
+      "id": "mupen64plus",
+      "source": "buildbot",
+      "buildbot_name": "mupen64plus_next_libretro",
+      "switch_repo": "ticohq/tico-mupen64plus",
+      "extra_allowed_libs_linux": [
+        "libGL.so.1",
+        "libmvec.so.1"
+      ]
+    },
+    {
+      "id": "dolphin",
+      "source": "buildbot",
+      "buildbot_name": "dolphin_libretro",
+      "switch_repo": "ticohq/tico-dolphin",
+      "extra_allowed_libs_linux": [
+        "libEGL.so.1",
+        "libX11.so.6",
+        "libXi.so.6",
+        "libcurl.so.4",
+        "liblzma.so.5",
+        "libudev.so.1",
+        "libusb-1.0.so.0"
+      ],
+      "verify_docker_image_linux": "ubuntu:24.04"
     }
   ]
 }

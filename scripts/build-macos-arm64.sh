@@ -4,12 +4,14 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 WORK="${WORK_DIR:-$ROOT/build}"
 OUT="$WORK/out"
-mkdir -p "$WORK/src" "$WORK/built" "$WORK/templates" "$OUT"
+mkdir -p "$WORK/src" "$WORK/built" "$WORK/templates" "$WORK/buildbot" "$OUT"
 
 clang++ -std=c++17 -O2 "$ROOT/scripts/verify_core.cpp" -o "$WORK/verify_core"
 
 python3 - "$ROOT/cores.json" "$WORK" <<'PY'
 import hashlib, json, os, pathlib, shutil, subprocess, sys, urllib.request, zipfile
+
+BUILDBOT_BASE = "https://buildbot.libretro.com/nightly/apple/osx/arm64/latest"
 
 def gh_headers():
     headers = {"User-Agent": "tico-desktop-modules/1.0", "Accept": "application/vnd.github+json"}
@@ -30,6 +32,28 @@ def fetch_template_info(switch_repo):
             return version, asset["browser_download_url"]
     raise RuntimeError(f"No *-module.zip asset in latest release of {switch_repo}")
 
+def download_buildbot_dylib(buildbot_name, work):
+    dylib_filename = f"{buildbot_name}.dylib"
+    url = f"{BUILDBOT_BASE}/{dylib_filename}.zip"
+    zpath = work / "buildbot" / f"{dylib_filename}.zip"
+    print(f"[buildbot] Downloading {url}", flush=True)
+    req = urllib.request.Request(url, headers={"User-Agent": "tico-desktop-modules/1.0"})
+    with urllib.request.urlopen(req, timeout=120) as r:
+        last_modified = r.headers.get("Last-Modified", "")
+        zpath.write_bytes(r.read())
+    ext_dir = work / "buildbot" / buildbot_name
+    if ext_dir.exists():
+        shutil.rmtree(ext_dir)
+    with zipfile.ZipFile(zpath) as zf:
+        zf.extractall(ext_dir)
+    dylib_path = ext_dir / dylib_filename
+    if not dylib_path.is_file():
+        candidates = list(ext_dir.rglob("*.dylib"))
+        if len(candidates) != 1:
+            raise RuntimeError(f"Expected {dylib_filename} inside {zpath}, found {candidates}")
+        dylib_path = candidates[0]
+    return dylib_path, last_modified
+
 cfg = json.loads(pathlib.Path(sys.argv[1]).read_text())
 work = pathlib.Path(sys.argv[2])
 jobs = str(os.cpu_count() or 4)
@@ -44,62 +68,71 @@ for core in cfg["cores"]:
     if core_filter is not None and cid not in core_filter:
         continue
 
-    print(f"=== Building {cid} (macos-arm64) ===", flush=True)
-    src_dir = work / "src" / cid
-    use_submodules = bool(core.get("submodules", False))
-    if not (src_dir / ".git").exists():
-        clone_cmd = ["git", "clone", "--depth=1"]
-        if core.get("ref"):
-            clone_cmd += ["--branch", core["ref"]]
-        if use_submodules:
-            clone_cmd += ["--recurse-submodules", "--shallow-submodules"]
-        clone_cmd += [core["repo"], str(src_dir)]
-        subprocess.run(clone_cmd, check=True)
-    elif use_submodules:
-        subprocess.run(
-            ["git", "submodule", "update", "--init", "--recursive", "--depth=1"],
-            cwd=src_dir, check=True
-        )
-
-    build_dir = src_dir / core["subdir"]
-    build_system = core.get("build_system", "make")
-
-    if build_system == "cmake":
-        cmake_build_dir = work / "cmake" / cid
-        cmake_cmd = [
-            "cmake",
-            "-S", str(build_dir),
-            "-B", str(cmake_build_dir),
-            "-DCMAKE_BUILD_TYPE=Release",
-            "-DCMAKE_OSX_ARCHITECTURES=arm64",
-            "-DCMAKE_OSX_DEPLOYMENT_TARGET=11.0",
-            *core.get("cmake_args", []),
-            *core.get("cmake_args_macos", []),
-        ]
-        subprocess.run(cmake_cmd, check=True)
-        build_cmd = ["cmake", "--build", str(cmake_build_dir), "-j", jobs]
-        if core.get("cmake_target"):
-            build_cmd += ["--target", core["cmake_target"]]
-        subprocess.run(build_cmd, check=True)
-        built_dylib = cmake_build_dir / core["dylib_out"]
-    else:
-        make_cmd = [
-            "make", "-f", core["makefile"],
-            "platform=osx", "arch=arm64", "OSX_MIN_VER=11.0",
-            f"-j{jobs}",
-            *core.get("make_args", []),
-            *core.get("make_args_macos", []),
-        ]
-        subprocess.run(make_cmd, cwd=build_dir, check=True)
-        built_dylib = build_dir / core["dylib_out"]
-
-    if not built_dylib.is_file():
-        raise RuntimeError(f"Expected built core not found for {cid}: {built_dylib}")
+    source = core.get("source", "git")
+    upstream_last_modified = ""
+    print(f"=== Preparing {cid} (macos-arm64, source={source}) ===", flush=True)
 
     dylib_name = f"{cid}_libretro.dylib"
     dylib_dst = work / "built" / dylib_name
-    shutil.copy2(built_dylib, dylib_dst)
-    subprocess.run(["strip", "-x", str(dylib_dst)], check=False)
+
+    if source == "buildbot":
+        built_dylib, upstream_last_modified = download_buildbot_dylib(core["buildbot_name"], work)
+        shutil.copy2(built_dylib, dylib_dst)
+    else:
+        src_dir = work / "src" / cid
+        use_submodules = bool(core.get("submodules", False))
+        if not (src_dir / ".git").exists():
+            clone_cmd = ["git", "clone", "--depth=1"]
+            if core.get("ref"):
+                clone_cmd += ["--branch", core["ref"]]
+            if use_submodules:
+                clone_cmd += ["--recurse-submodules", "--shallow-submodules"]
+            clone_cmd += [core["repo"], str(src_dir)]
+            subprocess.run(clone_cmd, check=True)
+        elif use_submodules:
+            subprocess.run(
+                ["git", "submodule", "update", "--init", "--recursive", "--depth=1"],
+                cwd=src_dir, check=True
+            )
+
+        build_dir = src_dir / core["subdir"]
+        build_system = core.get("build_system", "make")
+
+        if build_system == "cmake":
+            cmake_build_dir = work / "cmake" / cid
+            cmake_cmd = [
+                "cmake",
+                "-S", str(build_dir),
+                "-B", str(cmake_build_dir),
+                "-DCMAKE_BUILD_TYPE=Release",
+                "-DCMAKE_OSX_ARCHITECTURES=arm64",
+                "-DCMAKE_OSX_DEPLOYMENT_TARGET=11.0",
+                *core.get("cmake_args", []),
+                *core.get("cmake_args_macos", []),
+            ]
+            subprocess.run(cmake_cmd, check=True)
+            build_cmd = ["cmake", "--build", str(cmake_build_dir), "-j", jobs]
+            if core.get("cmake_target"):
+                build_cmd += ["--target", core["cmake_target"]]
+            subprocess.run(build_cmd, check=True)
+            built_dylib = cmake_build_dir / core["dylib_out"]
+        else:
+            make_cmd = [
+                "make", "-f", core["makefile"],
+                "platform=osx", "arch=arm64", "OSX_MIN_VER=11.0",
+                f"-j{jobs}",
+                *core.get("make_args", []),
+                *core.get("make_args_macos", []),
+            ]
+            subprocess.run(make_cmd, cwd=build_dir, check=True)
+            built_dylib = build_dir / core["dylib_out"]
+
+        if not built_dylib.is_file():
+            raise RuntimeError(f"Expected built core not found for {cid}: {built_dylib}")
+
+        shutil.copy2(built_dylib, dylib_dst)
+        subprocess.run(["strip", "-x", str(dylib_dst)], check=False)
+
     subprocess.run(["codesign", "--force", "--sign", "-", str(dylib_dst)], check=False)
 
     otool = subprocess.check_output(["otool", "-L", str(dylib_dst)], text=True)
@@ -140,6 +173,7 @@ for core in cfg["cores"]:
     mod_path = stage_dir / "module.json"
     mod = json.loads(mod_path.read_text())
     mod["version"] = version
+    mod["is_libretro"] = True
     mod.setdefault("executables", {})["macos-arm64"] = dylib_name
     mod_path.write_text(json.dumps(mod, indent=2, ensure_ascii=False) + "\n")
 
@@ -155,13 +189,17 @@ for core in cfg["cores"]:
                 zf.writestr(zi, file_path.read_bytes())
 
     raw = zip_path.read_bytes()
-    results.append({
+    entry = {
         "id": cid,
         "version": version,
         "filename": zip_name,
         "size": len(raw),
         "sha256": hashlib.sha256(raw).hexdigest(),
-    })
+        "source": source,
+    }
+    if upstream_last_modified:
+        entry["upstream_last_modified"] = upstream_last_modified
+    results.append(entry)
 
 (work / "out" / "release-summary.json").write_text(json.dumps(results, indent=2) + "\n")
 print(json.dumps(results, indent=2))
