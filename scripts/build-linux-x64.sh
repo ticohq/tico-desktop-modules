@@ -48,15 +48,15 @@ def gcc_major(compiler):
     except Exception:
         return 0
 
-def select_cpp23_compilers():
-    if gcc_major("g++") >= 13:
+def select_cpp20_compilers():
+    if gcc_major("g++") >= 12:
         return []
-    for ver in (14, 13):
+    for ver in (14, 13, 12):
         cxx = f"g++-{ver}"
         cc = f"gcc-{ver}"
         if shutil.which(cxx) and shutil.which(cc):
             return [f"CXX={cxx}", f"CC={cc}"]
-    raise RuntimeError("A C++23-capable GCC (>= 13, with <format>) is required to build this core")
+    return []
 
 cfg = json.loads(pathlib.Path(sys.argv[1]).read_text())
 work = pathlib.Path(sys.argv[2])
@@ -77,6 +77,8 @@ for core in cfg["cores"]:
     use_submodules = bool(core.get("submodules", False))
     if not (src_dir / ".git").exists():
         clone_cmd = ["git", "clone", "--depth=1"]
+        if core.get("ref"):
+            clone_cmd += ["--branch", core["ref"]]
         if use_submodules:
             clone_cmd += ["--recurse-submodules", "--shallow-submodules"]
         clone_cmd += [core["repo"], str(src_dir)]
@@ -108,8 +110,8 @@ for core in cfg["cores"]:
         built_so = cmake_build_dir / core["so_out"]
     else:
         make_cmd = ["make", "-f", core["makefile"], "platform=unix", f"-j{jobs}"]
-        if core.get("cpp23"):
-            make_cmd += select_cpp23_compilers()
+        if core.get("cpp20"):
+            make_cmd += select_cpp20_compilers()
         make_cmd += core.get("make_args", [])
         make_cmd += core.get("make_args_linux", [])
         subprocess.run(make_cmd, cwd=build_dir, check=True)

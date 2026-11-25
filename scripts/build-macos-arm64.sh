@@ -49,6 +49,8 @@ for core in cfg["cores"]:
     use_submodules = bool(core.get("submodules", False))
     if not (src_dir / ".git").exists():
         clone_cmd = ["git", "clone", "--depth=1"]
+        if core.get("ref"):
+            clone_cmd += ["--branch", core["ref"]]
         if use_submodules:
             clone_cmd += ["--recurse-submodules", "--shallow-submodules"]
         clone_cmd += [core["repo"], str(src_dir)]

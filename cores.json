@@ -91,9 +91,10 @@
     {
       "id": "stella",
       "repo": "https://github.com/stella-emu/stella.git",
+      "ref": "7.0",
       "subdir": "src/os/libretro",
       "makefile": "Makefile",
-      "cpp23": true,
+      "cpp20": true,
       "make_args_macos": [
         "CROSS_COMPILE=1",
         "LIBRETRO_APPLE_PLATFORM=arm64-apple-macos11.0"
