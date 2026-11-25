@@ -49,14 +49,14 @@ def gcc_major(compiler):
         return 0
 
 def select_cpp23_compilers():
-    if gcc_major("g++") >= 12:
+    if gcc_major("g++") >= 13:
         return []
-    for ver in (14, 13, 12):
+    for ver in (14, 13):
         cxx = f"g++-{ver}"
         cc = f"gcc-{ver}"
         if shutil.which(cxx) and shutil.which(cc):
             return [f"CXX={cxx}", f"CC={cc}"]
-    raise RuntimeError("A C++23-capable GCC (>= 12) is required to build this core")
+    raise RuntimeError("A C++23-capable GCC (>= 13, with <format>) is required to build this core")
 
 cfg = json.loads(pathlib.Path(sys.argv[1]).read_text())
 work = pathlib.Path(sys.argv[2])
