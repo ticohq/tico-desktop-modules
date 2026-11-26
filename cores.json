@@ -101,7 +101,23 @@
       ],
       "dylib_out": "stella_libretro.dylib",
       "so_out": "stella_libretro.so",
-      "switch_repo": "ticohq/tico-stella"
+      "switch_repo": "ticohq/tico-stella",
+      "settings_patch": {
+        "remove": [
+          "stella_detect_pal60",
+          "stella_detect_ntsc50",
+          "stella_messages",
+          "stella_crop_voverscan",
+          "stella_pal_contrast",
+          "stella_pal_brightness",
+          "stella_pal_hue",
+          "stella_pal_saturation",
+          "stella_pal_gamma",
+          "stella_dpc_pitch",
+          "stella_paddle_analog_deadzone",
+          "stella_paddle_analog_absolute"
+        ]
+      }
     },
     {
       "id": "bluemsx",
@@ -144,6 +160,26 @@
       "source": "buildbot",
       "buildbot_name": "ppsspp_libretro",
       "switch_repo": "ticohq/tico-ppsspp",
+      "settings_patch": {
+        "remove": [
+          "ppsspp_gpu_hardware_transform",
+          "ppsspp_buffer_filtering",
+          "ppsspp_spline_quality",
+          "ppsspp_adhoc_server",
+          "ppsspp_adhoc_relay_mode",
+          "ppsspp_enable_adhoc_server",
+          "ppsspp_nickname"
+        ],
+        "options": {
+          "ppsspp_io_timing_method": {
+            "choices": [
+              {"label": "Fast", "value": "Fast"},
+              {"label": "Host", "value": "Host"},
+              {"label": "Simulate UMD delays", "value": "Simulate UMD delays"}
+            ]
+          }
+        }
+      },
       "extra_allowed_libs_linux": [
         "libGL.so.1"
       ]
@@ -153,6 +189,11 @@
       "source": "buildbot",
       "buildbot_name": "flycast_libretro",
       "switch_repo": "ticohq/tico-flycast",
+      "settings_patch": {
+        "remove": [
+          "reicast_boot_to_bios"
+        ]
+      },
       "extra_allowed_libs_linux": [
         "libgomp.so.1"
       ]
@@ -162,6 +203,24 @@
       "source": "buildbot",
       "buildbot_name": "mupen64plus_next_libretro",
       "switch_repo": "ticohq/tico-mupen64plus",
+      "settings_patch": {
+        "remove": [
+          "mupen64plus-parallel-rsp-hle-audio",
+          "mupen64plus-gliden64-resolution",
+          "mupen64plus-gliden64-widescreen"
+        ],
+        "options": {
+          "tico_renderer": {
+            "key": "mupen64plus-rdp-plugin",
+            "default": "gliden64",
+            "choices": [
+              {"label": "GLideN64 (OpenGL)", "value": "gliden64"},
+              {"label": "ParaLLEl-RDP (Vulkan)", "value": "parallel"}
+            ],
+            "tico_only": null
+          }
+        }
+      },
       "extra_allowed_libs_linux": [
         "libGL.so.1",
         "libmvec.so.1"
@@ -172,6 +231,90 @@
       "source": "buildbot",
       "buildbot_name": "dolphin_libretro",
       "switch_repo": "ticohq/tico-dolphin",
+      "settings_patch": {
+        "remove": [
+          "dolphin_renderer",
+          "dolphin_sync_on_skip_idle",
+          "dolphin_boost_mode",
+          "dolphin_load_boost",
+          "dolphin_allow_sd_writes",
+          "dolphin_session_save_data_writable",
+          "dolphin_correct_time_drift",
+          "dolphin_sync_gpu_max_distance",
+          "dolphin_sync_gpu_min_distance",
+          "dolphin_sync_gpu_overclock",
+          "dolphin_vsync",
+          "dolphin_dpl2_decoder",
+          "dolphin_audio_latency",
+          "dolphin_audio_buffer_size",
+          "dolphin_audio_fill_gaps",
+          "dolphin_audio_volume",
+          "dolphin_audio_muted",
+          "dolphin_audio_mute_on_disabled_speed_limit",
+          "dolphin_gc_bba",
+          "dolphin_bba_dns",
+          "dolphin_override_region_settings",
+          "dolphin_emulate_skylander_portal",
+          "dolphin_wiilink",
+          "dolphin_shader_cache",
+          "dolphin_backend_multithreading",
+          "dolphin_cpu_cull",
+          "dolphin_mipmap_detection_threshold",
+          "dolphin_cap_immediate_xfb"
+        ],
+        "options": {
+          "dolphin_dual_core": {"key": "dolphin_main_cpu_thread"},
+          "dolphin_perf_queries_enable": {"key": "dolphin_per_queries_enable"},
+          "dolphin_emulation_speed": {
+            "choices": [
+              {"label": "100%", "value": "1.0"},
+              {"label": "Unlimited", "value": "0.0"}
+            ]
+          },
+          "dolphin_cpu_clock_rate": {
+            "default": "1.00",
+            "choices": [
+              {"label": "5%", "value": "0.05"},
+              {"label": "10%", "value": "0.10"},
+              {"label": "20%", "value": "0.20"},
+              {"label": "30%", "value": "0.30"},
+              {"label": "40%", "value": "0.40"},
+              {"label": "50%", "value": "0.50"},
+              {"label": "60%", "value": "0.60"},
+              {"label": "70%", "value": "0.70"},
+              {"label": "80%", "value": "0.80"},
+              {"label": "90%", "value": "0.90"},
+              {"label": "100%", "value": "1.00"},
+              {"label": "150%", "value": "1.50"},
+              {"label": "200%", "value": "2.00"},
+              {"label": "250%", "value": "2.50"},
+              {"label": "300%", "value": "3.00"}
+            ]
+          },
+          "dolphin_language": {
+            "default": "1",
+            "choices": [
+              {"label": "Japanese", "value": "0"},
+              {"label": "English", "value": "1"},
+              {"label": "German", "value": "2"},
+              {"label": "French", "value": "3"},
+              {"label": "Spanish", "value": "4"},
+              {"label": "Italian", "value": "5"},
+              {"label": "Dutch", "value": "6"},
+              {"label": "Simplified Chinese", "value": "7"},
+              {"label": "Traditional Chinese", "value": "8"},
+              {"label": "Korean", "value": "9"}
+            ]
+          },
+          "dolphin_vi_skip": {
+            "default": "disabled",
+            "choices": [
+              {"label": "Disabled", "value": "disabled"},
+              {"label": "Enabled", "value": "enabled"}
+            ]
+          }
+        }
+      },
       "extra_allowed_libs_linux": [
         "libEGL.so.1",
         "libX11.so.6",

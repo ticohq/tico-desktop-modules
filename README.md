@@ -25,6 +25,20 @@ Prebuilt desktop libretro modules for [tico](https://github.com/ticohq/tico), pa
 - `mupen64plus` — Nintendo 64 (`mupen64plus_next`, libretro buildbot)
 - `dolphin` — GameCube / Wii / Triforce (libretro buildbot)
 
+## Fitting a Switch `settings.json` to the Desktop Core
+
+The desktop core can be a different build or version than the Switch module's,
+so some of the template's options do not exist on the desktop or accept other
+values. `settings_patch` in `cores.json` fixes that on `linux-x64`:
+
+- `remove` — option keys that neither the desktop core nor tico reads. A section
+  or tab left without options is dropped.
+- `options` — fields set on an option, by its key in the template (`null`
+  removes a field), for example a new `key`, `choices` or `default`.
+
+The build warns when a listed key is no longer in the template, or when an
+option depends on a removed one.
+
 ## Building Locally
 
 ```bash

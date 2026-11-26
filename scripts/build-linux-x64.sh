@@ -102,6 +102,86 @@ def verify_so_runtime(work, so_name, docker_image):
     else:
         subprocess.run([str(work / "verify_core"), str(work / "built" / so_name)], check=True)
 
+def strip_jsonc(text):
+    """Drop // and /* */ comments outside strings (module.json files may be JSONC)."""
+    out, i, n, in_str = [], 0, len(text), False
+    while i < n:
+        c = text[i]
+        if in_str:
+            out.append(c)
+            if c == "\\" and i + 1 < n:
+                out.append(text[i + 1])
+                i += 1
+            elif c == '"':
+                in_str = False
+        elif c == '"':
+            in_str = True
+            out.append(c)
+        elif text.startswith("//", i):
+            while i < n and text[i] != "\n":
+                i += 1
+            continue
+        elif text.startswith("/*", i):
+            end = text.find("*/", i + 2)
+            i = n if end < 0 else end + 2
+            continue
+        else:
+            out.append(c)
+        i += 1
+    return "".join(out)
+
+def apply_overrides(target, overrides):
+    """Set each key of overrides on target; a null value removes the key."""
+    for key, value in overrides.items():
+        if value is None:
+            target.pop(key, None)
+        else:
+            target[key] = value
+
+def apply_settings_patch(path, patch, cid):
+    """Fit the Switch module's settings.json to the desktop core.
+
+    "remove" lists option keys that neither the desktop core nor tico desktop
+    reads. "options" maps an option key to fields to set on that option (a null
+    value removes the field), for example a new key, choices or default. A
+    section or tab left without options is dropped.
+    """
+    settings = json.loads(strip_jsonc(path.read_text(encoding="utf-8")))
+    remove = set(patch.get("remove", []))
+    edits = patch.get("options", {})
+    seen = set()
+    tabs = []
+    for tab in settings.get("tabs", []):
+        sections = []
+        for section in tab.get("sections", []):
+            options = []
+            for option in section.get("options", []):
+                key = option.get("key")
+                if key in remove:
+                    seen.add(key)
+                    continue
+                if key in edits:
+                    seen.add(key)
+                    apply_overrides(option, edits[key])
+                options.append(option)
+            section["options"] = options
+            if options:
+                sections.append(section)
+        tab["sections"] = sections
+        if sections:
+            tabs.append(tab)
+    settings["tabs"] = tabs
+    for key in sorted((remove | set(edits)) - seen):
+        print(f"[{cid}] WARNING: settings_patch key not in settings.json: {key}", flush=True)
+    kept = {o.get("key") for t in tabs for s in t["sections"] for o in s["options"]}
+    for t in tabs:
+        for s in t["sections"]:
+            for o in s["options"]:
+                parent = o.get("depends_on", {}).get("key")
+                if parent and parent not in kept:
+                    print(f"[{cid}] WARNING: {o.get('key')} depends on removed option {parent}", flush=True)
+    path.write_text(json.dumps(settings, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
 cfg = json.loads(pathlib.Path(sys.argv[1]).read_text())
 work = pathlib.Path(sys.argv[2])
 jobs = str(os.cpu_count() or 4)
@@ -228,6 +308,8 @@ for core in cfg["cores"]:
     mod["is_libretro"] = True
     mod.setdefault("executables", {})["linux-x64"] = so_name
     mod_path.write_text(json.dumps(mod, indent=2, ensure_ascii=False) + "\n")
+    if core.get("settings_patch"):
+        apply_settings_patch(stage_dir / mod.get("settings", "settings.json"), core["settings_patch"], cid)
 
     zip_name = f"{cid}-linux-x64-module.zip"
     zip_path = work / "out" / zip_name
