@@ -1,0 +1,93 @@
+{
+  "core_id": "prosystem",
+  "display_name": "ProSystem",
+  "config_file": "prosystem.jsonc",
+  "slugs": [
+    "atari-7800"
+  ],
+  "bool_true_value": "enabled",
+  "bool_false_value": "disabled",
+  "tabs": [
+    {
+      "name": "settings_prosystem_tab_general",
+      "sections": [
+        {
+          "title": "settings_prosystem_section_video",
+          "options": [
+            {
+              "key": "prosystem_color_depth",
+              "label": "settings_prosystem_color_depth",
+              "type": "enum",
+              "default": "16bit",
+              "choices": [
+                {
+                  "label": "16-bit",
+                  "value": "16bit"
+                },
+                {
+                  "label": "24-bit",
+                  "value": "24bit"
+                }
+              ],
+              "needs_restart": true
+            }
+          ]
+        },
+        {
+          "title": "settings_prosystem_section_audio",
+          "options": [
+            {
+              "key": "prosystem_low_pass_filter",
+              "label": "settings_prosystem_low_pass",
+              "type": "bool",
+              "default": "disabled"
+            },
+            {
+              "key": "prosystem_low_pass_range",
+              "label": "settings_prosystem_low_pass_level",
+              "type": "enum",
+              "default": "60",
+              "choices": [
+                {
+                  "label": "20%",
+                  "value": "20"
+                },
+                {
+                  "label": "40%",
+                  "value": "40"
+                },
+                {
+                  "label": "60%",
+                  "value": "60"
+                },
+                {
+                  "label": "80%",
+                  "value": "80"
+                },
+                {
+                  "label": "95%",
+                  "value": "95"
+                }
+              ],
+              "depends_on": {
+                "key": "prosystem_low_pass_filter",
+                "value": "enabled"
+              }
+            }
+          ]
+        },
+        {
+          "title": "settings_prosystem_section_input",
+          "options": [
+            {
+              "key": "prosystem_gamepad_dual_stick_hack",
+              "label": "settings_prosystem_dual_stick",
+              "type": "bool",
+              "default": "disabled"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

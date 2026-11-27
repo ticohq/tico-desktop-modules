@@ -1,0 +1,10 @@
+{
+  "settings_prosystem_color_depth": "Color Depth",
+  "settings_prosystem_dual_stick": "Dual Stick Controller (Robotron)",
+  "settings_prosystem_low_pass": "Audio Filter",
+  "settings_prosystem_low_pass_level": "Audio Filter Level",
+  "settings_prosystem_section_audio": "Audio",
+  "settings_prosystem_section_input": "Input",
+  "settings_prosystem_section_video": "Video",
+  "settings_prosystem_tab_general": "General"
+}

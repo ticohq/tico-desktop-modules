@@ -1,0 +1,15 @@
+{
+  "settings_neocd_aspect_ratio": "Aspect Ratio",
+  "settings_neocd_cdspeedhack": "CD Speed Hack",
+  "settings_neocd_loadskip": "Skip CD Loading",
+  "settings_neocd_overclock": "CPU Overclock",
+  "settings_neocd_overscan": "Horizontal Overscan Mask",
+  "settings_neocd_per_game_saves": "Per-Game Memory Card",
+  "settings_neocd_region": "Console Region",
+  "settings_neocd_section_display": "Display",
+  "settings_neocd_section_loading": "CD loading",
+  "settings_neocd_section_performance": "Performance",
+  "settings_neocd_section_system": "Console",
+  "settings_neocd_tab_system": "System",
+  "settings_neocd_tab_video": "Video"
+}

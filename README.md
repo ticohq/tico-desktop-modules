@@ -28,6 +28,13 @@ Prebuilt desktop libretro modules for [tico](https://github.com/ticohq/tico), pa
 - `melondsds` — Nintendo DS (melonDS DS, libretro buildbot, Linux only)
 - `azahar` — Nintendo 3DS (libretro buildbot, Linux only)
 - `yabasanshiro` — Sega Saturn (libretro buildbot, Linux only)
+- `beetle_pce_fast` — PC Engine / TurboGrafx-16, PC Engine CD (`mednafen_pce_fast`, libretro buildbot, Linux only)
+- `beetle_ngp` — Neo Geo Pocket / Color (`mednafen_ngp`, libretro buildbot, Linux only)
+- `handy` — Atari Lynx (libretro buildbot, Linux only)
+- `prosystem` — Atari 7800 (libretro buildbot, Linux only)
+- `pokemini` — Pokémon Mini (libretro buildbot, Linux only)
+- `neocd` — Neo Geo CD (libretro buildbot, Linux only)
+- `dosbox_pure` — MS-DOS (libretro buildbot, Linux only)
 
 ## Modules Built on Another Core's Template
 
@@ -41,6 +48,15 @@ console as its template (`switch_repo`) and adds, in `cores.json`:
   merged key by key into the template's.
 - `module_overrides` — keys set in `module.json` (`null` removes a key).
 - `system_overrides` — keys set on one console of `module.json`, by its slug.
+
+## Modules Written Here (No Switch Module)
+
+A console that has no Switch module has no template to start from. Its whole
+module lives in `modules/<id>/` (`module.json`, `settings.json`, `lang/`), and
+its entry in `cores.json` names it with `module_dir` and gives the module's own
+`version` instead of `switch_repo`. The build adds `version`, `is_libretro` and
+`executables` to `module.json` as it does for templates. These modules carry no
+console art or game lists yet.
 
 ## Fitting a Switch `settings.json` to the Desktop Core
 

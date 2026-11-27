@@ -1,0 +1,14 @@
+{
+  "settings_pokemini_60hz": "Modo 60 Hz",
+  "settings_pokemini_lcdfilter": "Filtro do LCD",
+  "settings_pokemini_lcdmode": "Modo do LCD",
+  "settings_pokemini_palette": "Paleta",
+  "settings_pokemini_piezo": "Filtro do alto-falante piezo",
+  "settings_pokemini_rumble": "Vibração do controle",
+  "settings_pokemini_screen_shake": "Tremer a tela",
+  "settings_pokemini_section_feedback": "Vibração e som",
+  "settings_pokemini_section_screen": "Tela",
+  "settings_pokemini_tab_feedback": "Vibração e som",
+  "settings_pokemini_tab_video": "Vídeo",
+  "settings_pokemini_video_scale": "Escala do vídeo"
+}

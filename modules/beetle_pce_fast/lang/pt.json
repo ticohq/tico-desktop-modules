@@ -1,0 +1,20 @@
+{
+  "settings_pcefast_cdbios": "BIOS do CD (System Card)",
+  "settings_pcefast_cdimagecache": "Carregar a imagem do CD na memória",
+  "settings_pcefast_cdspeed": "Velocidade do CD",
+  "settings_pcefast_disable_softreset": "Desativar reset suave (Run + Select)",
+  "settings_pcefast_frameskip": "Pular quadros",
+  "settings_pcefast_joypad_p1": "Controle do jogador 1",
+  "settings_pcefast_joypad_p2": "Controle do jogador 2",
+  "settings_pcefast_nospritelimit": "Sem limite de sprites",
+  "settings_pcefast_ocmultiplier": "Overclock da CPU",
+  "settings_pcefast_palette": "Paleta de cores",
+  "settings_pcefast_section_cd": "Jogos em CD",
+  "settings_pcefast_section_controllers": "Controles",
+  "settings_pcefast_section_display": "Tela",
+  "settings_pcefast_section_performance": "Desempenho",
+  "settings_pcefast_tab_cd": "CD",
+  "settings_pcefast_tab_input": "Controles",
+  "settings_pcefast_tab_video": "Vídeo",
+  "settings_pcefast_turbo_toggling": "Alternar turbo"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "pokemini",
+  "name": "PokeMini",
+  "settings": "settings.json",
+  "config_file": "pokemini.jsonc",
+  "is_libretro": true,
+  "bool_true_value": "enabled",
+  "bool_false_value": "disabled",
+  "achievements": true,
+  "system_dir": "pokemini",
+  "systems": [
+    {
+      "slug": "pokemini",
+      "title": "Pokémon Mini",
+      "short_title": "PM",
+      "extensions": [
+        ".min",
+        ".zip",
+        ".7z",
+        ".rar"
+      ],
+      "naming": "no-intro",
+      "retroachievements_id": 24,
+      "colors": {
+        "start": "FFD166",
+        "end": "EF476F",
+        "start_dark": "BF9C4C",
+        "end_dark": "B33553"
+      }
+    }
+  ]
+}

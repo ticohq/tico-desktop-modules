@@ -1,0 +1,176 @@
+{
+  "core_id": "handy",
+  "display_name": "Handy",
+  "config_file": "handy.jsonc",
+  "slugs": [
+    "lynx"
+  ],
+  "bool_true_value": "enabled",
+  "bool_false_value": "disabled",
+  "tabs": [
+    {
+      "name": "settings_handy_tab_video",
+      "sections": [
+        {
+          "title": "settings_handy_section_display",
+          "options": [
+            {
+              "key": "handy_rot",
+              "label": "settings_handy_rotation",
+              "type": "enum",
+              "default": "Auto",
+              "choices": [
+                {
+                  "label": "Auto",
+                  "value": "Auto"
+                },
+                {
+                  "label": "Off",
+                  "value": "None"
+                },
+                {
+                  "label": "Clockwise",
+                  "value": "270"
+                },
+                {
+                  "label": "Upside down",
+                  "value": "180"
+                },
+                {
+                  "label": "Anticlockwise",
+                  "value": "90"
+                }
+              ]
+            },
+            {
+              "key": "handy_lcd_ghosting",
+              "label": "settings_handy_lcd_ghosting",
+              "type": "enum",
+              "default": "disabled",
+              "choices": [
+                {
+                  "label": "Off",
+                  "value": "disabled"
+                },
+                {
+                  "label": "2 frames",
+                  "value": "2frames"
+                },
+                {
+                  "label": "3 frames",
+                  "value": "3frames"
+                },
+                {
+                  "label": "4 frames",
+                  "value": "4frames"
+                }
+              ]
+            },
+            {
+              "key": "handy_gfx_colors",
+              "label": "settings_handy_colors",
+              "type": "enum",
+              "default": "16bit",
+              "choices": [
+                {
+                  "label": "16-bit",
+                  "value": "16bit"
+                },
+                {
+                  "label": "24-bit",
+                  "value": "24bit"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "handy_refresh_rate",
+              "label": "settings_handy_refresh_rate",
+              "type": "enum",
+              "default": "60",
+              "choices": [
+                {
+                  "label": "50 Hz",
+                  "value": "50"
+                },
+                {
+                  "label": "60 Hz",
+                  "value": "60"
+                },
+                {
+                  "label": "75 Hz",
+                  "value": "75"
+                },
+                {
+                  "label": "100 Hz",
+                  "value": "100"
+                },
+                {
+                  "label": "120 Hz",
+                  "value": "120"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "settings_handy_section_performance",
+          "options": [
+            {
+              "key": "handy_frameskip",
+              "label": "settings_handy_frameskip",
+              "type": "enum",
+              "default": "disabled",
+              "choices": [
+                {
+                  "label": "Off",
+                  "value": "disabled"
+                },
+                {
+                  "label": "Auto",
+                  "value": "auto"
+                },
+                {
+                  "label": "Manual",
+                  "value": "manual"
+                }
+              ]
+            },
+            {
+              "key": "handy_overclock",
+              "label": "settings_handy_overclock",
+              "type": "enum",
+              "default": "1",
+              "choices": [
+                {
+                  "label": "1x",
+                  "value": "1"
+                },
+                {
+                  "label": "2x",
+                  "value": "2"
+                },
+                {
+                  "label": "3x",
+                  "value": "3"
+                },
+                {
+                  "label": "4x",
+                  "value": "4"
+                },
+                {
+                  "label": "5x",
+                  "value": "5"
+                },
+                {
+                  "label": "10x",
+                  "value": "10"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

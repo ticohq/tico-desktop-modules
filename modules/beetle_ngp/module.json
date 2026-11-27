@@ -1,0 +1,53 @@
+{
+  "id": "beetle_ngp",
+  "name": "Beetle NeoPop",
+  "settings": "settings.json",
+  "config_file": "beetle_ngp.jsonc",
+  "is_libretro": true,
+  "bool_true_value": "enabled",
+  "bool_false_value": "disabled",
+  "achievements": true,
+  "system_dir": "beetle_ngp",
+  "systems": [
+    {
+      "slug": "ngp",
+      "title": "Neo Geo Pocket",
+      "short_title": "NGP",
+      "extensions": [
+        ".ngp",
+        ".zip",
+        ".7z",
+        ".rar"
+      ],
+      "naming": "no-intro",
+      "retroachievements_id": 14,
+      "colors": {
+        "start": "56CCF2",
+        "end": "2F80ED",
+        "start_dark": "4099B5",
+        "end_dark": "2360B1"
+      }
+    },
+    {
+      "slug": "ngpc",
+      "title": "Neo Geo Pocket Color",
+      "short_title": "NGPC",
+      "extensions": [
+        ".ngc",
+        ".ngpc",
+        ".npc",
+        ".zip",
+        ".7z",
+        ".rar"
+      ],
+      "naming": "no-intro",
+      "retroachievements_id": 14,
+      "colors": {
+        "start": "6FCF97",
+        "end": "27AE60",
+        "start_dark": "539B71",
+        "end_dark": "1D8248"
+      }
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "id": "beetle_pce_fast",
+  "name": "Beetle PCE Fast",
+  "settings": "settings.json",
+  "config_file": "beetle_pce_fast.jsonc",
+  "is_libretro": true,
+  "bool_true_value": "enabled",
+  "bool_false_value": "disabled",
+  "achievements": true,
+  "system_dir": "beetle_pce_fast",
+  "systems": [
+    {
+      "slug": "pce",
+      "title": "PC Engine",
+      "short_title": "PCE",
+      "extensions": [
+        ".pce",
+        ".zip",
+        ".7z",
+        ".rar"
+      ],
+      "naming": "no-intro",
+      "retroachievements_id": 8,
+      "colors": {
+        "start": "F2994A",
+        "end": "EB5757",
+        "start_dark": "B5733A",
+        "end_dark": "AF4141"
+      }
+    },
+    {
+      "slug": "pce-cd",
+      "title": "PC Engine CD",
+      "short_title": "PCE-CD",
+      "extensions": [
+        ".cue",
+        ".ccd",
+        ".chd",
+        ".toc",
+        ".m3u"
+      ],
+      "disc_based": true,
+      "naming": "redump",
+      "retroachievements_id": 76,
+      "bios": [
+        {
+          "any_of": [
+            "syscard3.pce",
+            "syscard3u.pce",
+            "syscard2.pce",
+            "syscard2u.pce",
+            "syscard1.pce",
+            "gexpress.pce"
+          ]
+        }
+      ],
+      "colors": {
+        "start": "F2C94C",
+        "end": "F2994A",
+        "start_dark": "B59638",
+        "end_dark": "B5733A"
+      }
+    }
+  ]
+}

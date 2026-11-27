@@ -1,0 +1,231 @@
+{
+  "core_id": "beetle_pce_fast",
+  "display_name": "Beetle PCE Fast",
+  "config_file": "beetle_pce_fast.jsonc",
+  "slugs": [
+    "pce",
+    "pce-cd"
+  ],
+  "bool_true_value": "enabled",
+  "bool_false_value": "disabled",
+  "tabs": [
+    {
+      "name": "settings_pcefast_tab_video",
+      "sections": [
+        {
+          "title": "settings_pcefast_section_display",
+          "options": [
+            {
+              "key": "pce_fast_palette",
+              "label": "settings_pcefast_palette",
+              "type": "enum",
+              "default": "RGB",
+              "choices": [
+                {
+                  "label": "RGB",
+                  "value": "RGB"
+                },
+                {
+                  "label": "Composite",
+                  "value": "Composite"
+                }
+              ]
+            },
+            {
+              "key": "pce_fast_nospritelimit",
+              "label": "settings_pcefast_nospritelimit",
+              "type": "bool",
+              "default": "disabled"
+            }
+          ]
+        },
+        {
+          "title": "settings_pcefast_section_performance",
+          "options": [
+            {
+              "key": "pce_fast_frameskip",
+              "label": "settings_pcefast_frameskip",
+              "type": "enum",
+              "default": "disabled",
+              "choices": [
+                {
+                  "label": "Off",
+                  "value": "disabled"
+                },
+                {
+                  "label": "Auto",
+                  "value": "auto"
+                },
+                {
+                  "label": "Manual",
+                  "value": "manual"
+                }
+              ]
+            },
+            {
+              "key": "pce_fast_ocmultiplier",
+              "label": "settings_pcefast_ocmultiplier",
+              "type": "enum",
+              "default": "1",
+              "choices": [
+                {
+                  "label": "1x",
+                  "value": "1"
+                },
+                {
+                  "label": "2x",
+                  "value": "2"
+                },
+                {
+                  "label": "3x",
+                  "value": "3"
+                },
+                {
+                  "label": "4x",
+                  "value": "4"
+                },
+                {
+                  "label": "5x",
+                  "value": "5"
+                },
+                {
+                  "label": "10x",
+                  "value": "10"
+                }
+              ],
+              "needs_restart": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "settings_pcefast_tab_input",
+      "sections": [
+        {
+          "title": "settings_pcefast_section_controllers",
+          "options": [
+            {
+              "key": "pce_fast_default_joypad_type_p1",
+              "label": "settings_pcefast_joypad_p1",
+              "type": "enum",
+              "default": "2 Buttons",
+              "choices": [
+                {
+                  "label": "2 buttons",
+                  "value": "2 Buttons"
+                },
+                {
+                  "label": "6 buttons",
+                  "value": "6 Buttons"
+                }
+              ]
+            },
+            {
+              "key": "pce_fast_default_joypad_type_p2",
+              "label": "settings_pcefast_joypad_p2",
+              "type": "enum",
+              "default": "2 Buttons",
+              "choices": [
+                {
+                  "label": "2 buttons",
+                  "value": "2 Buttons"
+                },
+                {
+                  "label": "6 buttons",
+                  "value": "6 Buttons"
+                }
+              ]
+            },
+            {
+              "key": "pce_fast_turbo_toggling",
+              "label": "settings_pcefast_turbo_toggling",
+              "type": "bool",
+              "default": "disabled"
+            },
+            {
+              "key": "pce_fast_disable_softreset",
+              "label": "settings_pcefast_disable_softreset",
+              "type": "bool",
+              "default": "disabled"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "settings_pcefast_tab_cd",
+      "sections": [
+        {
+          "title": "settings_pcefast_section_cd",
+          "options": [
+            {
+              "key": "pce_fast_cdbios",
+              "label": "settings_pcefast_cdbios",
+              "type": "enum",
+              "default": "System Card 3",
+              "choices": [
+                {
+                  "label": "System Card 3 (syscard3.pce)",
+                  "value": "System Card 3"
+                },
+                {
+                  "label": "System Card 3 US (syscard3u.pce)",
+                  "value": "System Card 3 US"
+                },
+                {
+                  "label": "System Card 2 (syscard2.pce)",
+                  "value": "System Card 2"
+                },
+                {
+                  "label": "System Card 2 US (syscard2u.pce)",
+                  "value": "System Card 2 US"
+                },
+                {
+                  "label": "System Card 1 (syscard1.pce)",
+                  "value": "System Card 1"
+                },
+                {
+                  "label": "Games Express (gexpress.pce)",
+                  "value": "Games Express"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "pce_fast_cdspeed",
+              "label": "settings_pcefast_cdspeed",
+              "type": "enum",
+              "default": "1",
+              "choices": [
+                {
+                  "label": "1x",
+                  "value": "1"
+                },
+                {
+                  "label": "2x",
+                  "value": "2"
+                },
+                {
+                  "label": "4x",
+                  "value": "4"
+                },
+                {
+                  "label": "8x",
+                  "value": "8"
+                }
+              ]
+            },
+            {
+              "key": "pce_fast_cdimagecache",
+              "label": "settings_pcefast_cdimagecache",
+              "type": "bool",
+              "default": "disabled",
+              "needs_restart": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

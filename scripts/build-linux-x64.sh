@@ -358,25 +358,33 @@ for core in cfg["cores"]:
 
     verify_so_runtime(work, so_name, core.get("verify_docker_image_linux", ""))
 
-    # Fetch Switch module template directly from GitHub Releases
-    version, template_url = fetch_template_info(core["switch_repo"])
-    zpath = work / "templates" / f"{cid}.zip"
-    if not zpath.exists():
-        req = urllib.request.Request(template_url, headers={"User-Agent": "tico-desktop-modules/1.0"})
-        with urllib.request.urlopen(req, timeout=60) as r, open(zpath, "wb") as f:
-            f.write(r.read())
-    ext_dir = work / "templates" / "extracted" / cid
-    if ext_dir.exists():
-        shutil.rmtree(ext_dir)
-    with zipfile.ZipFile(zpath) as zf:
-        zf.extractall(ext_dir)
+    if core.get("module_dir"):
+        # A console with no Switch module: the whole module lives in this repo
+        # (module.json, settings.json, lang/), with its own version.
+        src_template = root / core["module_dir"]
+        if not (src_template / "module.json").is_file():
+            raise RuntimeError(f"{cid}: no module.json in {core['module_dir']}")
+        version = str(core["version"])
+    else:
+        # Fetch Switch module template directly from GitHub Releases
+        version, template_url = fetch_template_info(core["switch_repo"])
+        zpath = work / "templates" / f"{cid}.zip"
+        if not zpath.exists():
+            req = urllib.request.Request(template_url, headers={"User-Agent": "tico-desktop-modules/1.0"})
+            with urllib.request.urlopen(req, timeout=60) as r, open(zpath, "wb") as f:
+                f.write(r.read())
+        ext_dir = work / "templates" / "extracted" / cid
+        if ext_dir.exists():
+            shutil.rmtree(ext_dir)
+        with zipfile.ZipFile(zpath) as zf:
+            zf.extractall(ext_dir)
 
-    src_template = ext_dir / cid
-    if not src_template.is_dir():
-        candidates = [p.parent for p in ext_dir.glob("*/module.json")]
-        if len(candidates) != 1:
-            raise RuntimeError(f"Could not locate module directory in {zpath} for {cid}")
-        src_template = candidates[0]
+        src_template = ext_dir / cid
+        if not src_template.is_dir():
+            candidates = [p.parent for p in ext_dir.glob("*/module.json")]
+            if len(candidates) != 1:
+                raise RuntimeError(f"Could not locate module directory in {zpath} for {cid}")
+            src_template = candidates[0]
 
     stage_parent = work / "stage" / cid
     stage_dir = stage_parent / cid

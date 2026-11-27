@@ -1,0 +1,217 @@
+{
+  "core_id": "pokemini",
+  "display_name": "PokeMini",
+  "config_file": "pokemini.jsonc",
+  "slugs": [
+    "pokemini"
+  ],
+  "bool_true_value": "enabled",
+  "bool_false_value": "disabled",
+  "tabs": [
+    {
+      "name": "settings_pokemini_tab_video",
+      "sections": [
+        {
+          "title": "settings_pokemini_section_screen",
+          "options": [
+            {
+              "key": "pokemini_video_scale",
+              "label": "settings_pokemini_video_scale",
+              "type": "enum",
+              "default": "4x",
+              "choices": [
+                {
+                  "label": "1x",
+                  "value": "1x"
+                },
+                {
+                  "label": "2x",
+                  "value": "2x"
+                },
+                {
+                  "label": "3x",
+                  "value": "3x"
+                },
+                {
+                  "label": "4x",
+                  "value": "4x"
+                },
+                {
+                  "label": "5x",
+                  "value": "5x"
+                },
+                {
+                  "label": "6x",
+                  "value": "6x"
+                },
+                {
+                  "label": "7x",
+                  "value": "7x"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "pokemini_lcdfilter",
+              "label": "settings_pokemini_lcdfilter",
+              "type": "enum",
+              "default": "dotmatrix",
+              "choices": [
+                {
+                  "label": "Dot matrix",
+                  "value": "dotmatrix"
+                },
+                {
+                  "label": "Scanlines",
+                  "value": "scanline"
+                },
+                {
+                  "label": "None",
+                  "value": "none"
+                }
+              ]
+            },
+            {
+              "key": "pokemini_lcdmode",
+              "label": "settings_pokemini_lcdmode",
+              "type": "enum",
+              "default": "analog",
+              "choices": [
+                {
+                  "label": "Analog",
+                  "value": "analog"
+                },
+                {
+                  "label": "3 shades",
+                  "value": "3shades"
+                },
+                {
+                  "label": "2 shades",
+                  "value": "2shades"
+                }
+              ]
+            },
+            {
+              "key": "pokemini_palette",
+              "label": "settings_pokemini_palette",
+              "type": "enum",
+              "default": "Default",
+              "choices": [
+                {
+                  "label": "Default",
+                  "value": "Default"
+                },
+                {
+                  "label": "Old",
+                  "value": "Old"
+                },
+                {
+                  "label": "Black & white",
+                  "value": "Monochrome"
+                },
+                {
+                  "label": "Green",
+                  "value": "Green"
+                },
+                {
+                  "label": "Red",
+                  "value": "Red"
+                },
+                {
+                  "label": "Blue LCD",
+                  "value": "Blue LCD"
+                },
+                {
+                  "label": "LED backlight",
+                  "value": "LEDBacklight"
+                },
+                {
+                  "label": "Girl Power",
+                  "value": "Girl Power"
+                },
+                {
+                  "label": "Blue",
+                  "value": "Blue"
+                },
+                {
+                  "label": "Sepia",
+                  "value": "Sepia"
+                }
+              ]
+            },
+            {
+              "key": "pokemini_60hz_mode",
+              "label": "settings_pokemini_60hz",
+              "type": "bool",
+              "default": "enabled"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "settings_pokemini_tab_feedback",
+      "sections": [
+        {
+          "title": "settings_pokemini_section_feedback",
+          "options": [
+            {
+              "key": "pokemini_rumble_lv",
+              "label": "settings_pokemini_rumble",
+              "type": "enum",
+              "default": "10",
+              "choices": [
+                {
+                  "label": "Off",
+                  "value": "0"
+                },
+                {
+                  "label": "Low",
+                  "value": "3"
+                },
+                {
+                  "label": "Medium",
+                  "value": "6"
+                },
+                {
+                  "label": "High",
+                  "value": "10"
+                }
+              ]
+            },
+            {
+              "key": "pokemini_screen_shake_lv",
+              "label": "settings_pokemini_screen_shake",
+              "type": "enum",
+              "default": "3",
+              "choices": [
+                {
+                  "label": "Off",
+                  "value": "0"
+                },
+                {
+                  "label": "1",
+                  "value": "1"
+                },
+                {
+                  "label": "2",
+                  "value": "2"
+                },
+                {
+                  "label": "3",
+                  "value": "3"
+                }
+              ]
+            },
+            {
+              "key": "pokemini_piezofilter",
+              "label": "settings_pokemini_piezo",
+              "type": "bool",
+              "default": "enabled"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

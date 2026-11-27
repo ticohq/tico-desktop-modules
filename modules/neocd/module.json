@@ -1,0 +1,31 @@
+{
+  "id": "neocd",
+  "name": "NeoCD",
+  "settings": "settings.json",
+  "config_file": "neocd.jsonc",
+  "is_libretro": true,
+  "bool_true_value": "On",
+  "bool_false_value": "Off",
+  "achievements": true,
+  "system_dir": "neocd",
+  "systems": [
+    {
+      "slug": "neogeo-cd",
+      "title": "Neo Geo CD",
+      "short_title": "NGCD",
+      "extensions": [
+        ".cue",
+        ".chd"
+      ],
+      "disc_based": true,
+      "naming": "redump",
+      "retroachievements_id": 56,
+      "colors": {
+        "start": "4F4F4F",
+        "end": "2D9CDB",
+        "start_dark": "3B3B3B",
+        "end_dark": "2175A4"
+      }
+    }
+  ]
+}

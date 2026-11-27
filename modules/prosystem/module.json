@@ -1,0 +1,34 @@
+{
+  "id": "prosystem",
+  "name": "ProSystem",
+  "settings": "settings.json",
+  "config_file": "prosystem.jsonc",
+  "is_libretro": true,
+  "bool_true_value": "enabled",
+  "bool_false_value": "disabled",
+  "achievements": true,
+  "system_dir": "prosystem",
+  "systems": [
+    {
+      "slug": "atari-7800",
+      "title": "Atari 7800",
+      "short_title": "7800",
+      "extensions": [
+        ".a78",
+        ".bin",
+        ".cdf",
+        ".zip",
+        ".7z",
+        ".rar"
+      ],
+      "naming": "no-intro",
+      "retroachievements_id": 51,
+      "colors": {
+        "start": "EB5757",
+        "end": "9B2C2C",
+        "start_dark": "B04141",
+        "end_dark": "742121"
+      }
+    }
+  ]
+}

@@ -1,0 +1,158 @@
+{
+  "core_id": "neocd",
+  "display_name": "NeoCD",
+  "config_file": "neocd.jsonc",
+  "slugs": [
+    "neogeo-cd"
+  ],
+  "bool_true_value": "On",
+  "bool_false_value": "Off",
+  "tabs": [
+    {
+      "name": "settings_neocd_tab_system",
+      "sections": [
+        {
+          "title": "settings_neocd_section_system",
+          "options": [
+            {
+              "key": "neocd_region",
+              "label": "settings_neocd_region",
+              "type": "enum",
+              "default": "Japan",
+              "choices": [
+                {
+                  "label": "Japan",
+                  "value": "Japan"
+                },
+                {
+                  "label": "USA",
+                  "value": "USA"
+                },
+                {
+                  "label": "Europe",
+                  "value": "Europe"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "neocd_per_content_saves",
+              "label": "settings_neocd_per_game_saves",
+              "type": "bool",
+              "default": "Off",
+              "needs_restart": true
+            }
+          ]
+        },
+        {
+          "title": "settings_neocd_section_loading",
+          "options": [
+            {
+              "key": "neocd_loadskip",
+              "label": "settings_neocd_loadskip",
+              "type": "bool",
+              "default": "On"
+            },
+            {
+              "key": "neocd_cdspeedhack",
+              "label": "settings_neocd_cdspeedhack",
+              "type": "bool",
+              "default": "Off"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "settings_neocd_tab_video",
+      "sections": [
+        {
+          "title": "settings_neocd_section_display",
+          "options": [
+            {
+              "key": "neocd_aspect_ratio",
+              "label": "settings_neocd_aspect_ratio",
+              "type": "enum",
+              "default": "1:1 PAR",
+              "choices": [
+                {
+                  "label": "Square pixels (1:1)",
+                  "value": "1:1 PAR"
+                },
+                {
+                  "label": "45:44 pixels",
+                  "value": "45:44 PAR"
+                },
+                {
+                  "label": "4:3",
+                  "value": "4:3 DAR"
+                }
+              ]
+            },
+            {
+              "key": "neocd_overscan_h",
+              "label": "settings_neocd_overscan",
+              "type": "enum",
+              "default": "8",
+              "choices": [
+                {
+                  "label": "0",
+                  "value": "0"
+                },
+                {
+                  "label": "4",
+                  "value": "4"
+                },
+                {
+                  "label": "8",
+                  "value": "8"
+                },
+                {
+                  "label": "12",
+                  "value": "12"
+                },
+                {
+                  "label": "16",
+                  "value": "16"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "settings_neocd_section_performance",
+          "options": [
+            {
+              "key": "neocd_cpu_overclock",
+              "label": "settings_neocd_overclock",
+              "type": "enum",
+              "default": "100%",
+              "choices": [
+                {
+                  "label": "100%",
+                  "value": "100%"
+                },
+                {
+                  "label": "110%",
+                  "value": "110%"
+                },
+                {
+                  "label": "125%",
+                  "value": "125%"
+                },
+                {
+                  "label": "150%",
+                  "value": "150%"
+                },
+                {
+                  "label": "200%",
+                  "value": "200%"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

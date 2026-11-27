@@ -1,0 +1,34 @@
+{
+  "id": "handy",
+  "name": "Handy",
+  "settings": "settings.json",
+  "config_file": "handy.jsonc",
+  "is_libretro": true,
+  "bool_true_value": "enabled",
+  "bool_false_value": "disabled",
+  "achievements": true,
+  "system_dir": "handy",
+  "systems": [
+    {
+      "slug": "lynx",
+      "title": "Atari Lynx",
+      "short_title": "Lynx",
+      "extensions": [
+        ".lnx",
+        ".lyx",
+        ".o",
+        ".zip",
+        ".7z",
+        ".rar"
+      ],
+      "naming": "no-intro",
+      "retroachievements_id": 13,
+      "colors": {
+        "start": "BB6BD9",
+        "end": "9B51E0",
+        "start_dark": "8C50A2",
+        "end_dark": "743DA8"
+      }
+    }
+  ]
+}

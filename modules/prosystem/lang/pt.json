@@ -1,0 +1,10 @@
+{
+  "settings_prosystem_color_depth": "Profundidade de cor",
+  "settings_prosystem_dual_stick": "Controle com dois analógicos (Robotron)",
+  "settings_prosystem_low_pass": "Filtro de áudio",
+  "settings_prosystem_low_pass_level": "Intensidade do filtro de áudio",
+  "settings_prosystem_section_audio": "Áudio",
+  "settings_prosystem_section_input": "Controles",
+  "settings_prosystem_section_video": "Vídeo",
+  "settings_prosystem_tab_general": "Geral"
+}

@@ -431,6 +431,65 @@
         "libGL.so.1",
         "libmvec.so.1"
       ]
+    },
+    {
+      "id": "beetle_pce_fast",
+      "source": "buildbot",
+      "buildbot_name": "mednafen_pce_fast_libretro",
+      "platforms": ["linux-x64"],
+      "module_dir": "modules/beetle_pce_fast",
+      "version": "1.0.0"
+    },
+    {
+      "id": "beetle_ngp",
+      "source": "buildbot",
+      "buildbot_name": "mednafen_ngp_libretro",
+      "platforms": ["linux-x64"],
+      "module_dir": "modules/beetle_ngp",
+      "version": "1.0.0"
+    },
+    {
+      "id": "handy",
+      "source": "buildbot",
+      "buildbot_name": "handy_libretro",
+      "platforms": ["linux-x64"],
+      "module_dir": "modules/handy",
+      "version": "1.0.0"
+    },
+    {
+      "id": "prosystem",
+      "source": "buildbot",
+      "buildbot_name": "prosystem_libretro",
+      "platforms": ["linux-x64"],
+      "module_dir": "modules/prosystem",
+      "version": "1.0.0"
+    },
+    {
+      "id": "pokemini",
+      "source": "buildbot",
+      "buildbot_name": "pokemini_libretro",
+      "platforms": ["linux-x64"],
+      "module_dir": "modules/pokemini",
+      "version": "1.0.0"
+    },
+    {
+      "id": "neocd",
+      "source": "buildbot",
+      "buildbot_name": "neocd_libretro",
+      "platforms": ["linux-x64"],
+      "module_dir": "modules/neocd",
+      "version": "1.0.0",
+      "extra_allowed_libs_linux": [
+        "libmvec.so.1"
+      ]
+    },
+    {
+      "id": "dosbox_pure",
+      "source": "buildbot",
+      "buildbot_name": "dosbox_pure_libretro",
+      "platforms": ["linux-x64"],
+      "module_dir": "modules/dosbox_pure",
+      "version": "1.0.0"
     }
   ]
 }

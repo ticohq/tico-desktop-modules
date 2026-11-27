@@ -1,0 +1,20 @@
+{
+  "settings_pcefast_cdbios": "CD BIOS (System Card)",
+  "settings_pcefast_cdimagecache": "Load CD Image Into Memory",
+  "settings_pcefast_cdspeed": "CD Speed",
+  "settings_pcefast_disable_softreset": "Disable Soft Reset (Run + Select)",
+  "settings_pcefast_frameskip": "Frame Skip",
+  "settings_pcefast_joypad_p1": "Player 1 Controller",
+  "settings_pcefast_joypad_p2": "Player 2 Controller",
+  "settings_pcefast_nospritelimit": "No Sprite Limit",
+  "settings_pcefast_ocmultiplier": "CPU Overclock",
+  "settings_pcefast_palette": "Color Palette",
+  "settings_pcefast_section_cd": "CD games",
+  "settings_pcefast_section_controllers": "Controllers",
+  "settings_pcefast_section_display": "Display",
+  "settings_pcefast_section_performance": "Performance",
+  "settings_pcefast_tab_cd": "CD",
+  "settings_pcefast_tab_input": "Input",
+  "settings_pcefast_tab_video": "Video",
+  "settings_pcefast_turbo_toggling": "Turbo Toggle"
+}

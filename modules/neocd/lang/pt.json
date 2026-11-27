@@ -1,0 +1,15 @@
+{
+  "settings_neocd_aspect_ratio": "Proporção da tela",
+  "settings_neocd_cdspeedhack": "Acelerar o CD",
+  "settings_neocd_loadskip": "Pular o carregamento do CD",
+  "settings_neocd_overclock": "Overclock da CPU",
+  "settings_neocd_overscan": "Corte horizontal das bordas",
+  "settings_neocd_per_game_saves": "Cartão de memória por jogo",
+  "settings_neocd_region": "Região do console",
+  "settings_neocd_section_display": "Tela",
+  "settings_neocd_section_loading": "Carregamento do CD",
+  "settings_neocd_section_performance": "Desempenho",
+  "settings_neocd_section_system": "Console",
+  "settings_neocd_tab_system": "Sistema",
+  "settings_neocd_tab_video": "Vídeo"
+}

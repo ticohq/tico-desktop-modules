@@ -1,0 +1,39 @@
+{
+  "id": "dosbox_pure",
+  "name": "DOSBox Pure",
+  "settings": "settings.json",
+  "config_file": "dosbox_pure.jsonc",
+  "is_libretro": true,
+  "bool_true_value": "true",
+  "bool_false_value": "false",
+  "achievements": false,
+  "system_dir": "dosbox_pure",
+  "systems": [
+    {
+      "slug": "dos",
+      "title": "MS-DOS",
+      "short_title": "DOS",
+      "extensions": [
+        ".zip",
+        ".dosz",
+        ".exe",
+        ".com",
+        ".bat",
+        ".iso",
+        ".cue",
+        ".chd",
+        ".img",
+        ".ima",
+        ".vhd",
+        ".m3u",
+        ".conf"
+      ],
+      "colors": {
+        "start": "828282",
+        "end": "333333",
+        "start_dark": "616161",
+        "end_dark": "262626"
+      }
+    }
+  ]
+}

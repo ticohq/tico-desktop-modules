@@ -1,0 +1,40 @@
+{
+  "core_id": "beetle_ngp",
+  "display_name": "Beetle NeoPop",
+  "config_file": "beetle_ngp.jsonc",
+  "slugs": [
+    "ngp",
+    "ngpc"
+  ],
+  "bool_true_value": "enabled",
+  "bool_false_value": "disabled",
+  "tabs": [
+    {
+      "name": "settings_ngp_tab_system",
+      "sections": [
+        {
+          "title": "settings_ngp_section_system",
+          "options": [
+            {
+              "key": "ngp_language",
+              "label": "settings_ngp_language",
+              "type": "enum",
+              "default": "english",
+              "choices": [
+                {
+                  "label": "English",
+                  "value": "english"
+                },
+                {
+                  "label": "Japanese",
+                  "value": "japanese"
+                }
+              ],
+              "needs_restart": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

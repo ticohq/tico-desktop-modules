@@ -1,0 +1,427 @@
+{
+  "core_id": "dosbox_pure",
+  "display_name": "DOSBox Pure",
+  "config_file": "dosbox_pure.jsonc",
+  "slugs": [
+    "dos"
+  ],
+  "bool_true_value": "true",
+  "bool_false_value": "false",
+  "tabs": [
+    {
+      "name": "settings_dosbox_tab_system",
+      "sections": [
+        {
+          "title": "settings_dosbox_section_performance",
+          "options": [
+            {
+              "key": "dosbox_pure_cycles",
+              "label": "settings_dosbox_cycles",
+              "type": "enum",
+              "default": "auto",
+              "choices": [
+                {
+                  "label": "Auto",
+                  "value": "auto"
+                },
+                {
+                  "label": "Maximum",
+                  "value": "max"
+                },
+                {
+                  "label": "8086, 4.77 MHz (1980)",
+                  "value": "315"
+                },
+                {
+                  "label": "286, 12.5 MHz (1985)",
+                  "value": "2750"
+                },
+                {
+                  "label": "386DX, 33 MHz (1989)",
+                  "value": "7800"
+                },
+                {
+                  "label": "486DX2, 66 MHz (1992)",
+                  "value": "26800"
+                },
+                {
+                  "label": "Pentium, 100 MHz (1995)",
+                  "value": "77000"
+                },
+                {
+                  "label": "Pentium II, 300 MHz (1997)",
+                  "value": "200000"
+                }
+              ]
+            },
+            {
+              "key": "dosbox_pure_cpu_type",
+              "label": "settings_dosbox_cpu_type",
+              "type": "enum",
+              "default": "auto",
+              "choices": [
+                {
+                  "label": "Auto",
+                  "value": "auto"
+                },
+                {
+                  "label": "386",
+                  "value": "386"
+                },
+                {
+                  "label": "386 (slow)",
+                  "value": "386_slow"
+                },
+                {
+                  "label": "486 (slow)",
+                  "value": "486_slow"
+                },
+                {
+                  "label": "Pentium (slow)",
+                  "value": "pentium_slow"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "dosbox_pure_memory_size",
+              "label": "settings_dosbox_memory",
+              "type": "enum",
+              "default": "16",
+              "choices": [
+                {
+                  "label": "No extended memory",
+                  "value": "none"
+                },
+                {
+                  "label": "4 MB",
+                  "value": "4"
+                },
+                {
+                  "label": "8 MB",
+                  "value": "8"
+                },
+                {
+                  "label": "16 MB",
+                  "value": "16"
+                },
+                {
+                  "label": "32 MB",
+                  "value": "32"
+                },
+                {
+                  "label": "64 MB",
+                  "value": "64"
+                }
+              ],
+              "needs_restart": true
+            }
+          ]
+        },
+        {
+          "title": "settings_dosbox_section_savestates",
+          "options": [
+            {
+              "key": "dosbox_pure_savestate",
+              "label": "settings_dosbox_savestate",
+              "type": "enum",
+              "default": "on",
+              "choices": [
+                {
+                  "label": "On",
+                  "value": "on"
+                },
+                {
+                  "label": "On, with rewind",
+                  "value": "rewind"
+                },
+                {
+                  "label": "Off",
+                  "value": "disabled"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "settings_dosbox_tab_video",
+      "sections": [
+        {
+          "title": "settings_dosbox_section_graphics",
+          "options": [
+            {
+              "key": "dosbox_pure_machine",
+              "label": "settings_dosbox_machine",
+              "type": "enum",
+              "default": "svga",
+              "choices": [
+                {
+                  "label": "SVGA",
+                  "value": "svga"
+                },
+                {
+                  "label": "VGA",
+                  "value": "vga"
+                },
+                {
+                  "label": "EGA",
+                  "value": "ega"
+                },
+                {
+                  "label": "CGA",
+                  "value": "cga"
+                },
+                {
+                  "label": "Tandy",
+                  "value": "tandy"
+                },
+                {
+                  "label": "Hercules",
+                  "value": "hercules"
+                },
+                {
+                  "label": "PCjr",
+                  "value": "pcjr"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "dosbox_pure_aspect_correction",
+              "label": "settings_dosbox_aspect",
+              "type": "enum",
+              "default": "false",
+              "choices": [
+                {
+                  "label": "Off",
+                  "value": "false"
+                },
+                {
+                  "label": "On",
+                  "value": "true"
+                },
+                {
+                  "label": "Padded to 4:3",
+                  "value": "padded"
+                }
+              ]
+            },
+            {
+              "key": "dosbox_pure_voodoo",
+              "label": "settings_dosbox_voodoo",
+              "type": "enum",
+              "default": "8mb",
+              "choices": [
+                {
+                  "label": "8 MB",
+                  "value": "8mb"
+                },
+                {
+                  "label": "12 MB, dual texture",
+                  "value": "12mb"
+                },
+                {
+                  "label": "4 MB, low resolution",
+                  "value": "4mb"
+                },
+                {
+                  "label": "Off",
+                  "value": "off"
+                }
+              ]
+            },
+            {
+              "key": "dosbox_pure_force60fps",
+              "label": "settings_dosbox_force60",
+              "type": "enum",
+              "default": "false",
+              "choices": [
+                {
+                  "label": "Off",
+                  "value": "false"
+                },
+                {
+                  "label": "60 FPS",
+                  "value": "true"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "settings_dosbox_tab_input",
+      "sections": [
+        {
+          "title": "settings_dosbox_section_input",
+          "options": [
+            {
+              "key": "dosbox_pure_on_screen_keyboard",
+              "label": "settings_dosbox_l3_menu",
+              "type": "enum",
+              "default": "true",
+              "choices": [
+                {
+                  "label": "Menu",
+                  "value": "true"
+                },
+                {
+                  "label": "On-screen keyboard",
+                  "value": "keyboard"
+                },
+                {
+                  "label": "Keyboard only, in game",
+                  "value": "onlyosk"
+                },
+                {
+                  "label": "Off",
+                  "value": "false"
+                }
+              ]
+            },
+            {
+              "key": "dosbox_pure_mouse_input",
+              "label": "settings_dosbox_mouse",
+              "type": "enum",
+              "default": "true",
+              "choices": [
+                {
+                  "label": "Auto",
+                  "value": "true"
+                },
+                {
+                  "label": "Virtual mouse",
+                  "value": "virtual"
+                },
+                {
+                  "label": "Direct",
+                  "value": "direct"
+                },
+                {
+                  "label": "Touchpad",
+                  "value": "pad"
+                },
+                {
+                  "label": "Off",
+                  "value": "false"
+                }
+              ]
+            },
+            {
+              "key": "dosbox_pure_auto_mapping",
+              "label": "settings_dosbox_auto_mapping",
+              "type": "enum",
+              "default": "true",
+              "choices": [
+                {
+                  "label": "On",
+                  "value": "true"
+                },
+                {
+                  "label": "On, with notice",
+                  "value": "notify"
+                },
+                {
+                  "label": "Off",
+                  "value": "false"
+                }
+              ]
+            },
+            {
+              "key": "dosbox_pure_keyboard_layout",
+              "label": "settings_dosbox_keyboard_layout",
+              "type": "enum",
+              "default": "us",
+              "choices": [
+                {
+                  "label": "US",
+                  "value": "us"
+                },
+                {
+                  "label": "UK",
+                  "value": "uk"
+                },
+                {
+                  "label": "Brazil",
+                  "value": "br"
+                },
+                {
+                  "label": "France",
+                  "value": "fr"
+                },
+                {
+                  "label": "Germany",
+                  "value": "gr"
+                },
+                {
+                  "label": "Spain",
+                  "value": "sp"
+                },
+                {
+                  "label": "Italy",
+                  "value": "it"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "settings_dosbox_tab_audio",
+      "sections": [
+        {
+          "title": "settings_dosbox_section_audio",
+          "options": [
+            {
+              "key": "dosbox_pure_sblaster_type",
+              "label": "settings_dosbox_sblaster",
+              "type": "enum",
+              "default": "sb16",
+              "choices": [
+                {
+                  "label": "Sound Blaster 16",
+                  "value": "sb16"
+                },
+                {
+                  "label": "Sound Blaster Pro 2",
+                  "value": "sbpro2"
+                },
+                {
+                  "label": "Sound Blaster Pro",
+                  "value": "sbpro1"
+                },
+                {
+                  "label": "Sound Blaster 2.0",
+                  "value": "sb2"
+                },
+                {
+                  "label": "Sound Blaster 1.0",
+                  "value": "sb1"
+                },
+                {
+                  "label": "Game Blaster",
+                  "value": "gb"
+                },
+                {
+                  "label": "None",
+                  "value": "none"
+                }
+              ]
+            },
+            {
+              "key": "dosbox_pure_gus",
+              "label": "settings_dosbox_gus",
+              "type": "bool",
+              "default": "false",
+              "needs_restart": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
