@@ -309,7 +309,10 @@ for core in cfg["cores"]:
     mod.setdefault("executables", {})["linux-x64"] = so_name
     mod_path.write_text(json.dumps(mod, indent=2, ensure_ascii=False) + "\n")
     if core.get("settings_patch"):
-        apply_settings_patch(stage_dir / mod.get("settings", "settings.json"), core["settings_patch"], cid)
+        # The settings file sits beside module.json: use its file name, whatever
+        # path the template's "settings" holds.
+        settings_name = pathlib.PurePosixPath(mod.get("settings") or "settings.json").name
+        apply_settings_patch(stage_dir / settings_name, core["settings_patch"], cid)
 
     zip_name = f"{cid}-linux-x64-module.zip"
     zip_path = work / "out" / zip_name
