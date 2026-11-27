@@ -1,0 +1,500 @@
+{
+  "core_id": "pcsx2",
+  "display_name": "ParaLLEl PS2",
+  "config_file": "pcsx2.jsonc",
+  "slugs": [
+    "ps2"
+  ],
+  "bool_true_value": "enabled",
+  "bool_false_value": "disabled",
+  "tabs": [
+    {
+      "name": "settings_nethersx2_tab_video",
+      "sections": [
+        {
+          "title": "settings_nethersx2_section_graphics",
+          "options": [
+            {
+              "key": "pcsx2_renderer",
+              "label": "settings_nethersx2_emucore_gs_renderer",
+              "type": "enum",
+              "default": "Auto",
+              "choices": [
+                {
+                  "label": "Auto",
+                  "value": "Auto"
+                },
+                {
+                  "label": "Vulkan",
+                  "value": "Vulkan"
+                },
+                {
+                  "label": "OpenGL",
+                  "value": "OpenGL"
+                },
+                {
+                  "label": "paraLLEl-GS",
+                  "value": "paraLLEl-GS"
+                },
+                {
+                  "label": "Software",
+                  "value": "Software (SW)"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "pcsx2_upscale_multiplier",
+              "label": "settings_nethersx2_emucore_gs_upscale_multiplier",
+              "type": "enum",
+              "default": "1x (Native)",
+              "choices": [
+                {
+                  "label": "1x (Native)",
+                  "value": "1x (Native)"
+                },
+                {
+                  "label": "2x",
+                  "value": "2x"
+                },
+                {
+                  "label": "4x",
+                  "value": "4x"
+                },
+                {
+                  "label": "8x",
+                  "value": "8x"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "pcsx2_widescreen_hint",
+              "label": "settings_nethersx2_emucore_enablewidescreenpatches",
+              "type": "enum",
+              "default": "disabled",
+              "choices": [
+                {
+                  "label": "Off",
+                  "value": "disabled"
+                },
+                {
+                  "label": "16:9",
+                  "value": "enabled (16:9)"
+                },
+                {
+                  "label": "16:10",
+                  "value": "enabled (16:10)"
+                },
+                {
+                  "label": "21:9",
+                  "value": "enabled (21:9)"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "pcsx2_nointerlacing_hint",
+              "label": "settings_nethersx2_emucore_enablenointerlacingpatches",
+              "type": "bool",
+              "default": "enabled",
+              "needs_restart": true
+            }
+          ]
+        },
+        {
+          "title": "settings_nethersx2_section_enhancements",
+          "options": [
+            {
+              "key": "pcsx2_texture_filtering",
+              "label": "settings_nethersx2_emucore_gs_filter",
+              "type": "enum",
+              "default": "Bilinear (PS2)",
+              "choices": [
+                {
+                  "label": "Nearest",
+                  "value": "Nearest"
+                },
+                {
+                  "label": "Bilinear (PS2)",
+                  "value": "Bilinear (PS2)"
+                },
+                {
+                  "label": "Bilinear (forced)",
+                  "value": "Bilinear (Forced)"
+                },
+                {
+                  "label": "Bilinear (forced, no sprites)",
+                  "value": "Bilinear (Forced excluding sprite)"
+                }
+              ]
+            },
+            {
+              "key": "pcsx2_trilinear_filtering",
+              "label": "settings_nethersx2_emucore_gs_userhacks_trifilter",
+              "type": "enum",
+              "default": "Automatic",
+              "choices": [
+                {
+                  "label": "Automatic",
+                  "value": "Automatic"
+                },
+                {
+                  "label": "Off",
+                  "value": "disabled"
+                },
+                {
+                  "label": "Trilinear (PS2)",
+                  "value": "Trilinear (PS2)"
+                },
+                {
+                  "label": "Trilinear (forced)",
+                  "value": "Trilinear (Forced)"
+                }
+              ]
+            },
+            {
+              "key": "pcsx2_anisotropic_filtering",
+              "label": "settings_nethersx2_emucore_gs_maxanisotropy",
+              "type": "enum",
+              "default": "disabled",
+              "choices": [
+                {
+                  "label": "Off",
+                  "value": "disabled"
+                },
+                {
+                  "label": "2x",
+                  "value": "2x"
+                },
+                {
+                  "label": "4x",
+                  "value": "4x"
+                },
+                {
+                  "label": "8x",
+                  "value": "8x"
+                },
+                {
+                  "label": "16x",
+                  "value": "16x"
+                }
+              ]
+            },
+            {
+              "key": "pcsx2_blending_accuracy",
+              "label": "settings_nethersx2_emucore_gs_accurate_blending_unit",
+              "type": "enum",
+              "default": "Basic",
+              "choices": [
+                {
+                  "label": "Minimum",
+                  "value": "Minimum"
+                },
+                {
+                  "label": "Basic",
+                  "value": "Basic"
+                },
+                {
+                  "label": "Medium",
+                  "value": "Medium"
+                },
+                {
+                  "label": "High",
+                  "value": "High"
+                },
+                {
+                  "label": "Full",
+                  "value": "Full"
+                },
+                {
+                  "label": "Maximum",
+                  "value": "Maximum"
+                }
+              ]
+            },
+            {
+              "key": "pcsx2_deinterlace_mode",
+              "label": "settings_nethersx2_emucore_gs_deinterlace_mode",
+              "type": "enum",
+              "default": "Automatic",
+              "choices": [
+                {
+                  "label": "Automatic",
+                  "value": "Automatic"
+                },
+                {
+                  "label": "Off",
+                  "value": "Off"
+                },
+                {
+                  "label": "Weave (top field first)",
+                  "value": "Weave TFF"
+                },
+                {
+                  "label": "Bob (top field first)",
+                  "value": "Bob TFF"
+                },
+                {
+                  "label": "Blend (top field first)",
+                  "value": "Blend TFF"
+                },
+                {
+                  "label": "Adaptive (top field first)",
+                  "value": "Adaptive TFF"
+                }
+              ]
+            },
+            {
+              "key": "pcsx2_dithering",
+              "label": "settings_nethersx2_emucore_gs_dithering_ps2",
+              "type": "enum",
+              "default": "Unscaled",
+              "choices": [
+                {
+                  "label": "Off",
+                  "value": "disabled"
+                },
+                {
+                  "label": "Scaled",
+                  "value": "Scaled"
+                },
+                {
+                  "label": "Unscaled",
+                  "value": "Unscaled"
+                },
+                {
+                  "label": "Force 32-bit",
+                  "value": "Force 32bit"
+                }
+              ]
+            },
+            {
+              "key": "pcsx2_pcrtc_antiblur",
+              "label": "settings_nethersx2_emucore_gs_pcrtc_antiblur",
+              "type": "bool",
+              "default": "enabled"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "settings_nethersx2_tab_system",
+      "sections": [
+        {
+          "title": "settings_nethersx2_section_emulation",
+          "options": [
+            {
+              "key": "pcsx2_fastboot",
+              "label": "settings_nethersx2_wrapper_fastboot",
+              "type": "bool",
+              "default": "enabled",
+              "needs_restart": true
+            },
+            {
+              "key": "pcsx2_fastcdvd",
+              "label": "settings_pcsx2_fastcdvd",
+              "type": "bool",
+              "default": "disabled",
+              "needs_restart": true
+            },
+            {
+              "key": "pcsx2_enable_cheats",
+              "label": "settings_pcsx2_enable_cheats",
+              "type": "bool",
+              "default": "disabled",
+              "needs_restart": true
+            }
+          ]
+        },
+        {
+          "title": "settings_nethersx2_section_performance",
+          "options": [
+            {
+              "key": "pcsx2_ee_cycle_rate",
+              "label": "settings_nethersx2_emucore_speedhacks_eecyclerate",
+              "type": "enum",
+              "default": "100% (Normal Speed)",
+              "choices": [
+                {
+                  "label": "50%",
+                  "value": "50% (Underclock)"
+                },
+                {
+                  "label": "60%",
+                  "value": "60% (Underclock)"
+                },
+                {
+                  "label": "75%",
+                  "value": "75% (Underclock)"
+                },
+                {
+                  "label": "100% (normal)",
+                  "value": "100% (Normal Speed)"
+                },
+                {
+                  "label": "130%",
+                  "value": "130% (Overclock)"
+                },
+                {
+                  "label": "180%",
+                  "value": "180% (Overclock)"
+                },
+                {
+                  "label": "300%",
+                  "value": "300% (Overclock)"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "pcsx2_ee_cycle_skip",
+              "label": "settings_nethersx2_emucore_speedhacks_eecycleskip",
+              "type": "enum",
+              "default": "disabled",
+              "choices": [
+                {
+                  "label": "Off",
+                  "value": "disabled"
+                },
+                {
+                  "label": "Mild underclock",
+                  "value": "Mild Underclock"
+                },
+                {
+                  "label": "Moderate underclock",
+                  "value": "Moderate Underclock"
+                },
+                {
+                  "label": "Maximum underclock",
+                  "value": "Maximum Underclock"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "pcsx2_mtvu",
+              "label": "settings_nethersx2_emucore_speedhacks_vuthread",
+              "type": "bool",
+              "default": "disabled",
+              "needs_restart": true
+            },
+            {
+              "key": "pcsx2_instant_vu1",
+              "label": "settings_nethersx2_emucore_speedhacks_vu1instant",
+              "type": "bool",
+              "default": "enabled",
+              "needs_restart": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "settings_nethersx2_tab_controls",
+      "sections": [
+        {
+          "title": "settings_nethersx2_section_controller",
+          "options": [
+            {
+              "key": "pcsx2_analog_mode1",
+              "label": "settings_pcsx2_analog_mode",
+              "type": "bool",
+              "default": "disabled"
+            },
+            {
+              "key": "pcsx2_axis_deadzone1",
+              "label": "settings_nethersx2_wrapper_pad1_deadzone",
+              "type": "enum",
+              "default": "15%",
+              "choices": [
+                {
+                  "label": "0%",
+                  "value": "0%"
+                },
+                {
+                  "label": "5%",
+                  "value": "5%"
+                },
+                {
+                  "label": "10%",
+                  "value": "10%"
+                },
+                {
+                  "label": "15%",
+                  "value": "15%"
+                },
+                {
+                  "label": "20%",
+                  "value": "20%"
+                },
+                {
+                  "label": "25%",
+                  "value": "25%"
+                },
+                {
+                  "label": "30%",
+                  "value": "30%"
+                }
+              ]
+            },
+            {
+              "key": "pcsx2_enable_rumble1",
+              "label": "settings_nethersx2_wrapper_vibration",
+              "type": "enum",
+              "default": "100%",
+              "choices": [
+                {
+                  "label": "Off",
+                  "value": "disabled"
+                },
+                {
+                  "label": "25%",
+                  "value": "25%"
+                },
+                {
+                  "label": "50%",
+                  "value": "50%"
+                },
+                {
+                  "label": "75%",
+                  "value": "75%"
+                },
+                {
+                  "label": "100%",
+                  "value": "100%"
+                }
+              ]
+            },
+            {
+              "key": "pcsx2_multitap",
+              "label": "settings_pcsx2_multitap",
+              "type": "enum",
+              "default": "disabled",
+              "choices": [
+                {
+                  "label": "Off",
+                  "value": "disabled"
+                },
+                {
+                  "label": "Port 1",
+                  "value": "port 1"
+                },
+                {
+                  "label": "Port 2",
+                  "value": "port 2"
+                },
+                {
+                  "label": "Ports 1 and 2",
+                  "value": "ports 1 and 2"
+                }
+              ],
+              "needs_restart": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

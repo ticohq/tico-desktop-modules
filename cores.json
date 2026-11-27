@@ -466,6 +466,32 @@
       ]
     },
     {
+      "id": "pcsx2",
+      "source": "buildbot",
+      "buildbot_name": "pcsx2_libretro",
+      "platforms": ["linux-x64"],
+      "switch_repo": "ticohq/tico-NetherSX2",
+      "overlay_dir": "modules/pcsx2",
+      "module_overrides": {
+        "id": "pcsx2",
+        "name": "ParaLLEl PS2",
+        "nro": null,
+        "launch": null,
+        "settings": "settings.json",
+        "config_file": "pcsx2.jsonc",
+        "system_dir": "pcsx2",
+        "list_label": "ParaLLEl PS2 (PS2)",
+        "bool_true_value": "enabled",
+        "bool_false_value": "disabled"
+      },
+      "system_overrides": {
+        "ps2": {
+          "extensions": [".iso", ".chd", ".cso", ".zso", ".gz", ".cue", ".m3u"],
+          "bios": null
+        }
+      }
+    },
+    {
       "id": "beetle_pce_fast",
       "source": "buildbot",
       "buildbot_name": "mednafen_pce_fast_libretro",

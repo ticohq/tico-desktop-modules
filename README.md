@@ -28,6 +28,7 @@ Prebuilt desktop libretro modules for [tico](https://github.com/ticohq/tico), pa
 - `melondsds` — Nintendo DS (melonDS DS, libretro buildbot, Linux only)
 - `azahar` — Nintendo 3DS (libretro buildbot, Linux only)
 - `yabasanshiro` — Sega Saturn (libretro buildbot, Linux only)
+- `pcsx2` — PlayStation 2 (ParaLLEl PS2, libretro buildbot, Linux only)
 - `beetle_pce_fast` — PC Engine / TurboGrafx-16, PC Engine CD (`mednafen_pce_fast`, libretro buildbot, Linux only)
 - `beetle_ngp` — Neo Geo Pocket / Color (`mednafen_ngp`, libretro buildbot, Linux only)
 - `handy` — Atari Lynx (libretro buildbot, Linux only)
