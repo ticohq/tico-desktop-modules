@@ -138,6 +138,26 @@ def apply_overrides(target, overrides):
         else:
             target[key] = value
 
+def apply_overlay(stage_dir, overlay_dir):
+    """Copy this repo's files for a module over the Switch template.
+
+    lang/*.json are merged key by key (the overlay wins), so the template's
+    translations stay and the overlay only adds or replaces strings. Every other
+    file replaces the template's file of the same path.
+    """
+    for src in sorted(overlay_dir.rglob("*")):
+        if not src.is_file():
+            continue
+        rel = src.relative_to(overlay_dir)
+        dst = stage_dir / rel
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        if rel.parts[0] == "lang" and src.suffix == ".json" and dst.is_file():
+            merged = json.loads(dst.read_text(encoding="utf-8"))
+            merged.update(json.loads(src.read_text(encoding="utf-8")))
+            dst.write_text(json.dumps(merged, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        else:
+            shutil.copy2(src, dst)
+
 def apply_settings_patch(path, patch, cid):
     """Fit the Switch module's settings.json to the desktop core.
 
@@ -183,6 +203,7 @@ def apply_settings_patch(path, patch, cid):
     path.write_text(json.dumps(settings, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 cfg = json.loads(pathlib.Path(sys.argv[1]).read_text())
+root = pathlib.Path(sys.argv[1]).resolve().parent
 work = pathlib.Path(sys.argv[2])
 jobs = str(os.cpu_count() or 4)
 
@@ -194,6 +215,9 @@ results = []
 for core in cfg["cores"]:
     cid = core["id"]
     if core_filter is not None and cid not in core_filter:
+        continue
+    if "linux-x64" not in core.get("platforms", cfg["platforms"]):
+        print(f"=== Skipping {cid} (not built for linux-x64) ===", flush=True)
         continue
 
     source = core.get("source", "git")
@@ -299,15 +323,20 @@ for core in cfg["cores"]:
     shutil.copytree(src_template, stage_dir)
     for nro in stage_dir.glob("*.nro"):
         nro.unlink()
+    if core.get("overlay_dir"):
+        apply_overlay(stage_dir, root / core["overlay_dir"])
     shutil.copy2(so_dst, stage_dir / so_name)
     os.chmod(stage_dir / so_name, 0o755)
 
     mod_path = stage_dir / "module.json"
-    mod = json.loads(mod_path.read_text())
+    mod = json.loads(strip_jsonc(mod_path.read_text(encoding="utf-8")))
+    apply_overrides(mod, core.get("module_overrides", {}))
+    for system in mod.get("systems", []):
+        apply_overrides(system, core.get("system_overrides", {}).get(system.get("slug", ""), {}))
     mod["version"] = version
     mod["is_libretro"] = True
     mod.setdefault("executables", {})["linux-x64"] = so_name
-    mod_path.write_text(json.dumps(mod, indent=2, ensure_ascii=False) + "\n")
+    mod_path.write_text(json.dumps(mod, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     if core.get("settings_patch"):
         # The settings file sits beside module.json: use its file name, whatever
         # path the template's "settings" holds.

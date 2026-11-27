@@ -67,6 +67,9 @@ for core in cfg["cores"]:
     cid = core["id"]
     if core_filter is not None and cid not in core_filter:
         continue
+    if "macos-arm64" not in core.get("platforms", cfg["platforms"]):
+        print(f"=== Skipping {cid} (not built for macos-arm64) ===", flush=True)
+        continue
 
     source = core.get("source", "git")
     upstream_last_modified = ""

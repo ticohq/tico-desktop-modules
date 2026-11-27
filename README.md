@@ -25,6 +25,19 @@ Prebuilt desktop libretro modules for [tico](https://github.com/ticohq/tico), pa
 - `mupen64plus` — Nintendo 64 (`mupen64plus_next`, libretro buildbot)
 - `dolphin` — GameCube / Wii / Triforce (libretro buildbot)
 
+## Modules Built on Another Core's Template
+
+When a Switch module runs a standalone emulator, its `settings.json` does not
+match the desktop libretro core. Such a core takes the Switch module of the same
+console as its template (`switch_repo`) and adds, in `cores.json`:
+
+- `platforms` — the targets the core is built for (default: all of them).
+- `overlay_dir` — files in this repository copied over the template, for example
+  a `settings.json` written for the core's own options. Files in `lang/` are
+  merged key by key into the template's.
+- `module_overrides` — keys set in `module.json` (`null` removes a key).
+- `system_overrides` — keys set on one console of `module.json`, by its slug.
+
 ## Fitting a Switch `settings.json` to the Desktop Core
 
 The desktop core can be a different build or version than the Switch module's,
