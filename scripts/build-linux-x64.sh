@@ -202,6 +202,68 @@ def apply_settings_patch(path, patch, cid):
                     print(f"[{cid}] WARNING: {o.get('key')} depends on removed option {parent}", flush=True)
     path.write_text(json.dumps(settings, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
+SYSTEM_STAMP = ".tico-system-files"
+
+def add_system_files(stage_dir, spec, work, cid):
+    """Put the data files a core reads from its system folder in the module.
+
+    The pack (for example libretro's PPSSPP.zip or Dolphin.zip) is unpacked into
+    the module's system/ folder with its own layout (PPSSPP/, dolphin-emu/Sys/),
+    next to a stamp file naming the pack and its SHA-256.
+    """
+    url = spec["url"]
+    name = url.rsplit("/", 1)[-1]
+    zpath = work / "system-packs" / f"{cid}-{name}"
+    zpath.parent.mkdir(parents=True, exist_ok=True)
+    print(f"[{cid}] Downloading system files {url}", flush=True)
+    req = urllib.request.Request(url, headers={"User-Agent": "tico-desktop-modules/1.0"})
+    with urllib.request.urlopen(req, timeout=300) as r:
+        last_modified = r.headers.get("Last-Modified", "")
+        zpath.write_bytes(r.read())
+    digest = hashlib.sha256(zpath.read_bytes()).hexdigest()
+
+    dst_root = stage_dir / "system"
+    if dst_root.exists():
+        shutil.rmtree(dst_root)
+    pack_root = spec.get("root", "")
+    count = 0
+    with zipfile.ZipFile(zpath) as zf:
+        for info in zf.infolist():
+            if info.is_dir():
+                continue
+            parts = pathlib.PurePosixPath(info.filename).parts
+            unsafe = (
+                not parts
+                or info.filename.startswith("/")
+                or "\\" in info.filename
+                or "\0" in info.filename
+                or ".." in parts
+                or ":" in parts[0]
+            )
+            if unsafe:
+                raise RuntimeError(f"[{cid}] Unsafe path in {name}: {info.filename!r}")
+            if (info.external_attr >> 16) & 0o170000 == 0o120000:
+                raise RuntimeError(f"[{cid}] Symlink in {name}: {info.filename!r}")
+            if pack_root and parts[0] != pack_root:
+                raise RuntimeError(f"[{cid}] {name}: {info.filename} is outside {pack_root}/")
+            out = dst_root.joinpath(*parts)
+            out.parent.mkdir(parents=True, exist_ok=True)
+            out.write_bytes(zf.read(info))
+            count += 1
+    for required in spec.get("must_contain", []):
+        if not (dst_root / required).is_file():
+            raise RuntimeError(f"[{cid}] {name} does not contain {required}")
+
+    stamp = f"{name} sha256:{digest}"
+    if last_modified:
+        stamp += f" last-modified:{last_modified}"
+    (dst_root / SYSTEM_STAMP).write_text(stamp + "\n", encoding="utf-8")
+    print(f"[{cid}] system files: {count} from {name} (sha256 {digest[:12]})", flush=True)
+    info = {"url": url, "sha256": digest, "files": count}
+    if last_modified:
+        info["last_modified"] = last_modified
+    return info
+
 cfg = json.loads(pathlib.Path(sys.argv[1]).read_text())
 root = pathlib.Path(sys.argv[1]).resolve().parent
 work = pathlib.Path(sys.argv[2])
@@ -342,6 +404,9 @@ for core in cfg["cores"]:
         # path the template's "settings" holds.
         settings_name = pathlib.PurePosixPath(mod.get("settings") or "settings.json").name
         apply_settings_patch(stage_dir / settings_name, core["settings_patch"], cid)
+    system_files = None
+    if core.get("system_files"):
+        system_files = add_system_files(stage_dir, core["system_files"], work, cid)
 
     zip_name = f"{cid}-linux-x64-module.zip"
     zip_path = work / "out" / zip_name
@@ -365,6 +430,8 @@ for core in cfg["cores"]:
     }
     if upstream_last_modified:
         entry["upstream_last_modified"] = upstream_last_modified
+    if system_files:
+        entry["system_files"] = system_files
     results.append(entry)
 
 (work / "out" / "release-summary.json").write_text(json.dumps(results, indent=2) + "\n")

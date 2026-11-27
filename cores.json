@@ -160,6 +160,11 @@
       "source": "buildbot",
       "buildbot_name": "ppsspp_libretro",
       "switch_repo": "ticohq/tico-ppsspp",
+      "system_files": {
+        "url": "https://buildbot.libretro.com/assets/system/PPSSPP.zip",
+        "root": "PPSSPP",
+        "must_contain": ["PPSSPP/ppge_atlas.zim", "PPSSPP/compat.ini", "PPSSPP/lang/en_US.ini"]
+      },
       "settings_patch": {
         "remove": [
           "ppsspp_gpu_hardware_transform",
@@ -231,6 +236,11 @@
       "source": "buildbot",
       "buildbot_name": "dolphin_libretro",
       "switch_repo": "ticohq/tico-dolphin",
+      "system_files": {
+        "url": "https://buildbot.libretro.com/assets/system/Dolphin.zip",
+        "root": "dolphin-emu",
+        "must_contain": ["dolphin-emu/Sys/codehandler.bin", "dolphin-emu/Sys/Shaders/default_pre_post_process.glsl"]
+      },
       "settings_patch": {
         "remove": [
           "dolphin_renderer",
