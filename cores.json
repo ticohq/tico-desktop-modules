@@ -424,7 +424,8 @@
         "launch": null,
         "settings": "settings.json",
         "bool_true_value": "enabled",
-        "bool_false_value": "disabled"
+        "bool_false_value": "disabled",
+        "reuse_core": false
       },
       "extra_allowed_libs_linux": [
         "libmvec.so.1"
