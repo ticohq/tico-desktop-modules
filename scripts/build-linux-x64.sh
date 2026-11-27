@@ -158,17 +158,21 @@ def apply_overlay(stage_dir, overlay_dir):
         else:
             shutil.copy2(src, dst)
 
-def apply_settings_patch(path, patch, cid):
+def apply_settings_patch(path, patch, cid, warn_missing=True):
     """Fit the Switch module's settings.json to the desktop core.
 
     "remove" lists option keys that neither the desktop core nor tico desktop
     reads. "options" maps an option key to fields to set on that option (a null
-    value removes the field), for example a new key, choices or default. A
-    section or tab left without options is dropped.
+    value removes the field), for example a new key, choices or default.
+    "insert" maps an option key to new options placed right after it, in the
+    same section. A section or tab left without options is dropped.
+    warn_missing=False is for the patch every module gets, whose keys are in
+    only some of them.
     """
     settings = json.loads(strip_jsonc(path.read_text(encoding="utf-8")))
     remove = set(patch.get("remove", []))
     edits = patch.get("options", {})
+    inserts = patch.get("insert", {})
     seen = set()
     tabs = []
     for tab in settings.get("tabs", []):
@@ -184,6 +188,9 @@ def apply_settings_patch(path, patch, cid):
                     seen.add(key)
                     apply_overrides(option, edits[key])
                 options.append(option)
+                if key in inserts:
+                    seen.add(key)
+                    options.extend(inserts[key])
             section["options"] = options
             if options:
                 sections.append(section)
@@ -191,7 +198,8 @@ def apply_settings_patch(path, patch, cid):
         if sections:
             tabs.append(tab)
     settings["tabs"] = tabs
-    for key in sorted((remove | set(edits)) - seen):
+    missing = (remove | set(edits) | set(inserts)) - seen
+    for key in sorted(missing if warn_missing else ()):
         print(f"[{cid}] WARNING: settings_patch key not in settings.json: {key}", flush=True)
     kept = {o.get("key") for t in tabs for s in t["sections"] for o in s["options"]}
     for t in tabs:
@@ -407,11 +415,14 @@ for core in cfg["cores"]:
     mod["is_libretro"] = True
     mod.setdefault("executables", {})["linux-x64"] = so_name
     mod_path.write_text(json.dumps(mod, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    # The settings file sits beside module.json: use its file name, whatever
+    # path the template's "settings" holds.
+    settings_name = pathlib.PurePosixPath(mod.get("settings") or "settings.json").name
+    settings_path = stage_dir / settings_name
+    if cfg.get("settings_patch") and settings_path.is_file():
+        apply_settings_patch(settings_path, cfg["settings_patch"], cid, warn_missing=False)
     if core.get("settings_patch"):
-        # The settings file sits beside module.json: use its file name, whatever
-        # path the template's "settings" holds.
-        settings_name = pathlib.PurePosixPath(mod.get("settings") or "settings.json").name
-        apply_settings_patch(stage_dir / settings_name, core["settings_patch"], cid)
+        apply_settings_patch(settings_path, core["settings_patch"], cid)
     system_files = None
     if core.get("system_files"):
         system_files = add_system_files(stage_dir, core["system_files"], work, cid)

@@ -68,9 +68,16 @@ values. `settings_patch` in `cores.json` fixes that on `linux-x64`:
   or tab left without options is dropped.
 - `options` — fields set on an option, by its key in the template (`null`
   removes a field), for example a new `key`, `choices` or `default`.
+- `insert` — new options placed right after an option of the template, by its
+  key, in the same section. Their labels go in the core's `overlay_dir` `lang/`.
+
+A `settings_patch` at the top of `cores.json` applies to every module before the
+core's own. It removes the Switch display options (screen mode and size, the
+on-screen counters, integer scale, frame generation).
 
 The build warns when a listed key is no longer in the template, or when an
-option depends on a removed one.
+option depends on a removed one. Keys of the top-level patch that a module does
+not have are skipped silently.
 
 ## Data Files a Core Reads From Its System Folder
 

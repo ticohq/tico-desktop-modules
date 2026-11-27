@@ -3,6 +3,21 @@
     "macos-arm64",
     "linux-x64"
   ],
+  "settings_patch": {
+    "remove": [
+      "display_mode",
+      "display_size",
+      "fps_counter_position",
+      "rendered_ir_position",
+      "integer_scale",
+      "lsfg_enabled",
+      "lsfg_flow_scale",
+      "lsfg_performance_mode",
+      "ppsspp_lsfg",
+      "ppsspp_lsfg_flow_scale",
+      "ppsspp_lsfg_performance_mode"
+    ]
+  },
   "cores": [
     {
       "id": "gambatte",
@@ -165,6 +180,7 @@
         "root": "PPSSPP",
         "must_contain": ["PPSSPP/ppge_atlas.zim", "PPSSPP/compat.ini", "PPSSPP/lang/en_US.ini"]
       },
+      "overlay_dir": "modules/ppsspp",
       "settings_patch": {
         "remove": [
           "ppsspp_gpu_hardware_transform",
@@ -173,7 +189,8 @@
           "ppsspp_adhoc_server",
           "ppsspp_adhoc_relay_mode",
           "ppsspp_enable_adhoc_server",
-          "ppsspp_nickname"
+          "ppsspp_nickname",
+          "ppsspp_skip_buffer_effects"
         ],
         "options": {
           "ppsspp_io_timing_method": {
@@ -183,6 +200,21 @@
               {"label": "Simulate UMD delays", "value": "Simulate UMD delays"}
             ]
           }
+        },
+        "insert": {
+          "ppsspp_internal_resolution": [
+            {
+              "key": "ppsspp_backend",
+              "label": "settings_ppsspp_renderer",
+              "type": "enum",
+              "default": "vulkan",
+              "choices": [
+                {"label": "Vulkan", "value": "vulkan"},
+                {"label": "OpenGL", "value": "opengl"}
+              ],
+              "restart": true
+            }
+          ]
         }
       },
       "extra_allowed_libs_linux": [
