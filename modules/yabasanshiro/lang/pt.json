@@ -1,0 +1,7 @@
+{
+  "settings_yabasanshiro_lr_auto_frameskip": "Pular quadros automaticamente",
+  "settings_yabasanshiro_lr_force_hle_bios": "BIOS HLE (experimental, sem arquivo de BIOS)",
+  "settings_yabasanshiro_lr_multitap_port1": "Adaptador 6Player na porta 1",
+  "settings_yabasanshiro_lr_multitap_port2": "Adaptador 6Player na porta 2",
+  "settings_yabasanshiro_lr_system_language": "Idioma do sistema"
+}

@@ -1,0 +1,7 @@
+{
+  "settings_yabasanshiro_lr_auto_frameskip": "Auto Frame Skip",
+  "settings_yabasanshiro_lr_force_hle_bios": "HLE BIOS (experimental, no BIOS file)",
+  "settings_yabasanshiro_lr_multitap_port1": "6Player Adaptor on Port 1",
+  "settings_yabasanshiro_lr_multitap_port2": "6Player Adaptor on Port 2",
+  "settings_yabasanshiro_lr_system_language": "System Language"
+}

@@ -1,0 +1,679 @@
+{
+  "core_id": "melondsds",
+  "display_name": "melonDS DS",
+  "config_file": "melondsds.jsonc",
+  "slugs": [
+    "nds"
+  ],
+  "bool_true_value": "enabled",
+  "bool_false_value": "disabled",
+  "tabs": [
+    {
+      "name": "settings_melondsds_tab_system",
+      "sections": [
+        {
+          "title": "settings_melondsds_section_console",
+          "options": [
+            {
+              "key": "melonds_console_mode",
+              "label": "settings_melondsds_console_mode",
+              "type": "enum",
+              "default": "auto",
+              "choices": [
+                {
+                  "label": "Auto",
+                  "value": "auto"
+                },
+                {
+                  "label": "Nintendo DS",
+                  "value": "ds"
+                },
+                {
+                  "label": "Nintendo DSi",
+                  "value": "dsi"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "melonds_sysfile_mode",
+              "label": "settings_melondsds_sysfile_mode",
+              "type": "enum",
+              "default": "native",
+              "choices": [
+                {
+                  "label": "BIOS files (built-in if missing)",
+                  "value": "native"
+                },
+                {
+                  "label": "Built-in",
+                  "value": "builtin"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "melonds_boot_mode",
+              "label": "settings_melondsds_boot_mode",
+              "type": "enum",
+              "default": "direct",
+              "choices": [
+                {
+                  "label": "Straight to the game",
+                  "value": "direct"
+                },
+                {
+                  "label": "System menu",
+                  "value": "native"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "melonds_firmware_language",
+              "label": "settings_melondsds_firmware_language",
+              "type": "enum",
+              "default": "auto",
+              "choices": [
+                {
+                  "label": "Auto",
+                  "value": "auto"
+                },
+                {
+                  "label": "English",
+                  "value": "en"
+                },
+                {
+                  "label": "Japanese",
+                  "value": "ja"
+                },
+                {
+                  "label": "French",
+                  "value": "fr"
+                },
+                {
+                  "label": "German",
+                  "value": "de"
+                },
+                {
+                  "label": "Italian",
+                  "value": "it"
+                },
+                {
+                  "label": "Spanish",
+                  "value": "es"
+                },
+                {
+                  "label": "Firmware default",
+                  "value": "default"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "melonds_slot2_device",
+              "label": "settings_melondsds_slot2_device",
+              "type": "enum",
+              "default": "auto",
+              "choices": [
+                {
+                  "label": "Auto",
+                  "value": "auto"
+                },
+                {
+                  "label": "Rumble Pak",
+                  "value": "rumble-pak"
+                },
+                {
+                  "label": "Memory Expansion Pak",
+                  "value": "expansion-pak"
+                }
+              ],
+              "needs_restart": true
+            }
+          ]
+        },
+        {
+          "title": "settings_melondsds_section_cpu",
+          "options": [
+            {
+              "key": "melonds_jit_enable",
+              "label": "settings_melondsds_jit_enable",
+              "type": "bool",
+              "default": "enabled",
+              "needs_restart": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "settings_melondsds_tab_graphics",
+      "sections": [
+        {
+          "title": "settings_melondsds_section_renderer",
+          "options": [
+            {
+              "key": "melonds_render_mode",
+              "label": "settings_melondsds_render_mode",
+              "type": "enum",
+              "default": "software",
+              "choices": [
+                {
+                  "label": "Software",
+                  "value": "software"
+                },
+                {
+                  "label": "OpenGL",
+                  "value": "opengl"
+                },
+                {
+                  "label": "OpenGL Compute",
+                  "value": "compute"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "melonds_threaded_renderer",
+              "label": "settings_melondsds_threaded_renderer",
+              "type": "bool",
+              "default": "enabled",
+              "depends_on": {
+                "key": "melonds_render_mode",
+                "value": "software"
+              }
+            },
+            {
+              "key": "melonds_opengl_resolution",
+              "label": "settings_melondsds_opengl_resolution",
+              "type": "enum",
+              "default": "1",
+              "choices": [
+                {
+                  "label": "1x (256x192)",
+                  "value": "1"
+                },
+                {
+                  "label": "2x (512x384)",
+                  "value": "2"
+                },
+                {
+                  "label": "3x (768x576)",
+                  "value": "3"
+                },
+                {
+                  "label": "4x (1024x768)",
+                  "value": "4"
+                },
+                {
+                  "label": "5x (1280x960)",
+                  "value": "5"
+                },
+                {
+                  "label": "6x (1536x1152)",
+                  "value": "6"
+                }
+              ],
+              "depends_on": {
+                "key": "melonds_render_mode",
+                "value": "opengl"
+              }
+            },
+            {
+              "key": "melonds_opengl_better_polygons",
+              "label": "settings_melondsds_opengl_better_polygons",
+              "type": "bool",
+              "default": "enabled",
+              "depends_on": {
+                "key": "melonds_render_mode",
+                "value": "opengl"
+              }
+            },
+            {
+              "key": "melonds_opengl_filtering",
+              "label": "settings_melondsds_opengl_filtering",
+              "type": "enum",
+              "default": "nearest",
+              "choices": [
+                {
+                  "label": "Nearest",
+                  "value": "nearest"
+                },
+                {
+                  "label": "Linear",
+                  "value": "linear"
+                }
+              ],
+              "depends_on": {
+                "key": "melonds_render_mode",
+                "value": "opengl"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "settings_melondsds_tab_screen",
+      "sections": [
+        {
+          "title": "settings_melondsds_section_layout",
+          "options": [
+            {
+              "key": "melonds_screen_layout1",
+              "label": "settings_melondsds_screen_layout1",
+              "type": "enum",
+              "default": "top-bottom",
+              "choices": [
+                {
+                  "label": "Top / Bottom",
+                  "value": "top-bottom"
+                },
+                {
+                  "label": "Bottom / Top",
+                  "value": "bottom-top"
+                },
+                {
+                  "label": "Side by side",
+                  "value": "left-right"
+                },
+                {
+                  "label": "Side by side (swapped)",
+                  "value": "right-left"
+                },
+                {
+                  "label": "Top only",
+                  "value": "top"
+                },
+                {
+                  "label": "Bottom only",
+                  "value": "bottom"
+                },
+                {
+                  "label": "Large top",
+                  "value": "largescreen-top"
+                },
+                {
+                  "label": "Large bottom",
+                  "value": "largescreen-bottom"
+                },
+                {
+                  "label": "Hybrid (top large)",
+                  "value": "hybrid-top"
+                },
+                {
+                  "label": "Hybrid (bottom large)",
+                  "value": "hybrid-bottom"
+                },
+                {
+                  "label": "Rotated left",
+                  "value": "rotate-left"
+                },
+                {
+                  "label": "Rotated right",
+                  "value": "rotate-right"
+                }
+              ]
+            },
+            {
+              "key": "melonds_number_of_screen_layouts",
+              "label": "settings_melondsds_number_of_screen_layouts",
+              "type": "enum",
+              "default": "2",
+              "choices": [
+                {
+                  "label": "1",
+                  "value": "1"
+                },
+                {
+                  "label": "2",
+                  "value": "2"
+                }
+              ]
+            },
+            {
+              "key": "melonds_screen_layout2",
+              "label": "settings_melondsds_screen_layout2",
+              "type": "enum",
+              "default": "left-right",
+              "choices": [
+                {
+                  "label": "Top / Bottom",
+                  "value": "top-bottom"
+                },
+                {
+                  "label": "Bottom / Top",
+                  "value": "bottom-top"
+                },
+                {
+                  "label": "Side by side",
+                  "value": "left-right"
+                },
+                {
+                  "label": "Side by side (swapped)",
+                  "value": "right-left"
+                },
+                {
+                  "label": "Top only",
+                  "value": "top"
+                },
+                {
+                  "label": "Bottom only",
+                  "value": "bottom"
+                },
+                {
+                  "label": "Large top",
+                  "value": "largescreen-top"
+                },
+                {
+                  "label": "Large bottom",
+                  "value": "largescreen-bottom"
+                },
+                {
+                  "label": "Hybrid (top large)",
+                  "value": "hybrid-top"
+                },
+                {
+                  "label": "Hybrid (bottom large)",
+                  "value": "hybrid-bottom"
+                },
+                {
+                  "label": "Rotated left",
+                  "value": "rotate-left"
+                },
+                {
+                  "label": "Rotated right",
+                  "value": "rotate-right"
+                }
+              ],
+              "depends_on": {
+                "key": "melonds_number_of_screen_layouts",
+                "value": "2"
+              }
+            },
+            {
+              "key": "melonds_screen_gap",
+              "label": "settings_melondsds_screen_gap",
+              "type": "enum",
+              "default": "0",
+              "choices": [
+                {
+                  "label": "None",
+                  "value": "0"
+                },
+                {
+                  "label": "8 px",
+                  "value": "8"
+                },
+                {
+                  "label": "16 px",
+                  "value": "16"
+                },
+                {
+                  "label": "32 px",
+                  "value": "32"
+                },
+                {
+                  "label": "48 px",
+                  "value": "48"
+                },
+                {
+                  "label": "64 px",
+                  "value": "64"
+                },
+                {
+                  "label": "90 px",
+                  "value": "90"
+                }
+              ]
+            },
+            {
+              "key": "melonds_hybrid_ratio",
+              "label": "settings_melondsds_hybrid_ratio",
+              "type": "enum",
+              "default": "2",
+              "choices": [
+                {
+                  "label": "2:1",
+                  "value": "2"
+                },
+                {
+                  "label": "3:1",
+                  "value": "3"
+                }
+              ]
+            },
+            {
+              "key": "melonds_hybrid_small_screen",
+              "label": "settings_melondsds_hybrid_small_screen",
+              "type": "enum",
+              "default": "both",
+              "choices": [
+                {
+                  "label": "Both screens",
+                  "value": "both"
+                },
+                {
+                  "label": "The other screen",
+                  "value": "one"
+                }
+              ]
+            },
+            {
+              "key": "melonds_show_current_layout",
+              "label": "settings_melondsds_show_current_layout",
+              "type": "bool",
+              "default": "enabled"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "settings_melondsds_tab_input",
+      "sections": [
+        {
+          "title": "settings_melondsds_section_touch",
+          "options": [
+            {
+              "key": "melonds_touch_mode",
+              "label": "settings_melondsds_touch_mode",
+              "type": "enum",
+              "default": "auto",
+              "choices": [
+                {
+                  "label": "Auto",
+                  "value": "auto"
+                },
+                {
+                  "label": "Touch screen",
+                  "value": "touch"
+                },
+                {
+                  "label": "Joystick cursor",
+                  "value": "joystick"
+                }
+              ]
+            },
+            {
+              "key": "melonds_show_cursor",
+              "label": "settings_melondsds_show_cursor",
+              "type": "enum",
+              "default": "timeout",
+              "choices": [
+                {
+                  "label": "Never",
+                  "value": "disabled"
+                },
+                {
+                  "label": "While touching",
+                  "value": "touching"
+                },
+                {
+                  "label": "Until idle",
+                  "value": "timeout"
+                },
+                {
+                  "label": "Always",
+                  "value": "always"
+                }
+              ]
+            },
+            {
+              "key": "melonds_cursor_timeout",
+              "label": "settings_melondsds_cursor_timeout",
+              "type": "enum",
+              "default": "3",
+              "choices": [
+                {
+                  "label": "1 s",
+                  "value": "1"
+                },
+                {
+                  "label": "2 s",
+                  "value": "2"
+                },
+                {
+                  "label": "3 s",
+                  "value": "3"
+                },
+                {
+                  "label": "5 s",
+                  "value": "5"
+                },
+                {
+                  "label": "10 s",
+                  "value": "10"
+                },
+                {
+                  "label": "15 s",
+                  "value": "15"
+                },
+                {
+                  "label": "30 s",
+                  "value": "30"
+                },
+                {
+                  "label": "60 s",
+                  "value": "60"
+                }
+              ],
+              "depends_on": {
+                "key": "melonds_show_cursor",
+                "value": "timeout"
+              }
+            }
+          ]
+        },
+        {
+          "title": "settings_melondsds_section_microphone",
+          "options": [
+            {
+              "key": "melonds_mic_input",
+              "label": "settings_melondsds_mic_input",
+              "type": "enum",
+              "default": "microphone",
+              "choices": [
+                {
+                  "label": "Microphone",
+                  "value": "microphone"
+                },
+                {
+                  "label": "Blow",
+                  "value": "blow"
+                },
+                {
+                  "label": "Noise",
+                  "value": "noise"
+                },
+                {
+                  "label": "Silence",
+                  "value": "silence"
+                }
+              ]
+            },
+            {
+              "key": "melonds_mic_input_active",
+              "label": "settings_melondsds_mic_input_active",
+              "type": "enum",
+              "default": "hold",
+              "choices": [
+                {
+                  "label": "Hold",
+                  "value": "hold"
+                },
+                {
+                  "label": "Toggle",
+                  "value": "toggle"
+                },
+                {
+                  "label": "Always on",
+                  "value": "always"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "settings_melondsds_tab_audio",
+      "sections": [
+        {
+          "title": "settings_melondsds_section_audio",
+          "options": [
+            {
+              "key": "melonds_audio_interpolation",
+              "label": "settings_melondsds_audio_interpolation",
+              "type": "enum",
+              "default": "disabled",
+              "choices": [
+                {
+                  "label": "Off",
+                  "value": "disabled"
+                },
+                {
+                  "label": "Linear",
+                  "value": "linear"
+                },
+                {
+                  "label": "Cosine",
+                  "value": "cosine"
+                },
+                {
+                  "label": "Cubic",
+                  "value": "cubic"
+                },
+                {
+                  "label": "Gaussian",
+                  "value": "gaussian"
+                }
+              ]
+            },
+            {
+              "key": "melonds_audio_bitdepth",
+              "label": "settings_melondsds_audio_bitdepth",
+              "type": "enum",
+              "default": "auto",
+              "choices": [
+                {
+                  "label": "Auto",
+                  "value": "auto"
+                },
+                {
+                  "label": "10-bit",
+                  "value": "10bit"
+                },
+                {
+                  "label": "16-bit",
+                  "value": "16bit"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

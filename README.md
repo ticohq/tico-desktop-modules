@@ -24,6 +24,10 @@ Prebuilt desktop libretro modules for [tico](https://github.com/ticohq/tico), pa
 - `flycast` — Dreamcast / NAOMI / Atomiswave (libretro buildbot)
 - `mupen64plus` — Nintendo 64 (`mupen64plus_next`, libretro buildbot)
 - `dolphin` — GameCube / Wii / Triforce (libretro buildbot)
+- `swanstation` — PlayStation (libretro buildbot, Linux only)
+- `melondsds` — Nintendo DS (melonDS DS, libretro buildbot, Linux only)
+- `azahar` — Nintendo 3DS (libretro buildbot, Linux only)
+- `yabasanshiro` — Sega Saturn (libretro buildbot, Linux only)
 
 ## Modules Built on Another Core's Template
 

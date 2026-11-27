@@ -1,0 +1,8 @@
+{
+  "settings_azahar_lr_analog_deadzone": "Stick Deadzone",
+  "settings_azahar_lr_analog_function": "Right Stick",
+  "settings_azahar_lr_audio_emulation": "Audio Emulation",
+  "settings_azahar_lr_cpu_jit": "CPU JIT",
+  "settings_azahar_lr_enable_motion": "Motion Controls",
+  "settings_azahar_lr_swap_screen_mode": "Swap Screens Button"
+}

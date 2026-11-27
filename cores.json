@@ -325,6 +325,102 @@
         "libusb-1.0.so.0"
       ],
       "verify_docker_image_linux": "ubuntu:24.04"
+    },
+    {
+      "id": "swanstation",
+      "source": "buildbot",
+      "buildbot_name": "swanstation_libretro",
+      "platforms": ["linux-x64"],
+      "switch_repo": "ticohq/tico-duckstation",
+      "overlay_dir": "modules/swanstation",
+      "module_overrides": {
+        "id": "swanstation",
+        "name": "SwanStation",
+        "nro": null,
+        "launch": null,
+        "settings": "settings.json",
+        "config_file": "swanstation.jsonc",
+        "system_dir": "swanstation"
+      }
+    },
+    {
+      "id": "melondsds",
+      "source": "buildbot",
+      "buildbot_name": "melondsds_libretro",
+      "platforms": ["linux-x64"],
+      "switch_repo": "ticohq/tico-drasticDS",
+      "overlay_dir": "modules/melondsds",
+      "module_overrides": {
+        "id": "melondsds",
+        "name": "melonDS DS",
+        "nro": null,
+        "launch": null,
+        "settings": "settings.json",
+        "config_file": "melondsds.jsonc",
+        "system_dir": "melondsds",
+        "bool_true_value": "enabled",
+        "bool_false_value": "disabled"
+      },
+      "system_overrides": {
+        "nds": {
+          "bios": null
+        }
+      },
+      "extra_allowed_libs_linux": [
+        "libmvec.so.1"
+      ]
+    },
+    {
+      "id": "azahar",
+      "source": "buildbot",
+      "buildbot_name": "azahar_libretro",
+      "platforms": ["linux-x64"],
+      "switch_repo": "ticohq/tico-azahar",
+      "overlay_dir": "modules/azahar",
+      "module_overrides": {
+        "nro": null,
+        "launch": null,
+        "settings": "settings.json",
+        "bool_true_value": "enabled",
+        "bool_false_value": "disabled"
+      },
+      "extra_allowed_libs_linux": [
+        "libmvec.so.1"
+      ]
+    },
+    {
+      "id": "yabasanshiro",
+      "source": "buildbot",
+      "buildbot_name": "yabasanshiro_libretro",
+      "platforms": ["linux-x64"],
+      "switch_repo": "ticohq/tico-yabasanshiro",
+      "overlay_dir": "modules/yabasanshiro",
+      "module_overrides": {
+        "nro": null,
+        "launch": null,
+        "settings": "settings.json",
+        "achievements": false,
+        "bool_true_value": "enabled",
+        "bool_false_value": "disabled"
+      },
+      "system_overrides": {
+        "saturn": {
+          "extensions": [".cue", ".iso", ".chd", ".ccd", ".mds"],
+          "bios": [
+            {
+              "any_of": ["saturn_bios.bin"],
+              "unless_option": {
+                "key": "yabasanshiro_force_hle_bios",
+                "value": "enabled"
+              }
+            }
+          ]
+        }
+      },
+      "extra_allowed_libs_linux": [
+        "libGL.so.1",
+        "libmvec.so.1"
+      ]
     }
   ]
 }

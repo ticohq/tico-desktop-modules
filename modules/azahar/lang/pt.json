@@ -1,0 +1,8 @@
+{
+  "settings_azahar_lr_analog_deadzone": "Zona morta do analógico",
+  "settings_azahar_lr_analog_function": "Analógico direito",
+  "settings_azahar_lr_audio_emulation": "Emulação de áudio",
+  "settings_azahar_lr_cpu_jit": "JIT da CPU",
+  "settings_azahar_lr_enable_motion": "Controles de movimento",
+  "settings_azahar_lr_swap_screen_mode": "Botão de trocar telas"
+}

@@ -1,0 +1,225 @@
+{
+  "core_id": "yabasanshiro",
+  "display_name": "YabaSanshiro",
+  "config_file": "yabasanshiro.jsonc",
+  "slugs": [
+    "saturn"
+  ],
+  "bool_true_value": "enabled",
+  "bool_false_value": "disabled",
+  "tabs": [
+    {
+      "name": "settings_yabasanshiro_tab_emulation",
+      "sections": [
+        {
+          "title": "settings_yabasanshiro_section_bios",
+          "options": [
+            {
+              "key": "yabasanshiro_force_hle_bios",
+              "label": "settings_yabasanshiro_lr_force_hle_bios",
+              "type": "bool",
+              "default": "disabled",
+              "needs_restart": true
+            },
+            {
+              "key": "yabasanshiro_system_language",
+              "label": "settings_yabasanshiro_lr_system_language",
+              "type": "enum",
+              "default": "english",
+              "choices": [
+                {
+                  "label": "English",
+                  "value": "english"
+                },
+                {
+                  "label": "German",
+                  "value": "deutsch"
+                },
+                {
+                  "label": "French",
+                  "value": "french"
+                },
+                {
+                  "label": "Spanish",
+                  "value": "spanish"
+                },
+                {
+                  "label": "Italian",
+                  "value": "italian"
+                },
+                {
+                  "label": "Japanese",
+                  "value": "japanese"
+                }
+              ],
+              "needs_restart": true
+            }
+          ]
+        },
+        {
+          "title": "settings_yabasanshiro_section_cartridge",
+          "options": [
+            {
+              "key": "yabasanshiro_addon_cart",
+              "label": "settings_yabasanshiro_cartridge_type",
+              "type": "enum",
+              "default": "4M_extended_ram",
+              "choices": [
+                {
+                  "label": "4 MB RAM cartridge",
+                  "value": "4M_extended_ram"
+                },
+                {
+                  "label": "1 MB RAM cartridge",
+                  "value": "1M_extended_ram"
+                }
+              ],
+              "needs_restart": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "settings_yabasanshiro_tab_video",
+      "sections": [
+        {
+          "title": "settings_yabasanshiro_section_display",
+          "options": [
+            {
+              "key": "yabasanshiro_resolution_mode",
+              "label": "settings_yabasanshiro_internal_resolution",
+              "type": "enum",
+              "default": "original",
+              "choices": [
+                {
+                  "label": "Original",
+                  "value": "original"
+                },
+                {
+                  "label": "2x",
+                  "value": "2x"
+                },
+                {
+                  "label": "4x",
+                  "value": "4x"
+                },
+                {
+                  "label": "720p",
+                  "value": "720p"
+                },
+                {
+                  "label": "1080p",
+                  "value": "1080p"
+                },
+                {
+                  "label": "4K",
+                  "value": "4k"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "yabasanshiro_polygon_mode",
+              "label": "settings_yabasanshiro_polygon_generation",
+              "type": "enum",
+              "default": "perspective_correction",
+              "choices": [
+                {
+                  "label": "Perspective correction",
+                  "value": "perspective_correction"
+                },
+                {
+                  "label": "GPU tessellation",
+                  "value": "gpu_tesselation"
+                },
+                {
+                  "label": "CPU tessellation",
+                  "value": "cpu_tesselation"
+                }
+              ],
+              "needs_restart": true
+            }
+          ]
+        },
+        {
+          "title": "settings_yabasanshiro_section_rendering",
+          "options": [
+            {
+              "key": "yabasanshiro_rbg_resolution_mode",
+              "label": "settings_yabasanshiro_rbg_resolution",
+              "type": "enum",
+              "default": "original",
+              "choices": [
+                {
+                  "label": "Original",
+                  "value": "original"
+                },
+                {
+                  "label": "2x",
+                  "value": "2x"
+                },
+                {
+                  "label": "720p",
+                  "value": "720p"
+                },
+                {
+                  "label": "1080p",
+                  "value": "1080p"
+                },
+                {
+                  "label": "Match internal resolution",
+                  "value": "Fit_to_emulation"
+                }
+              ]
+            },
+            {
+              "key": "yabasanshiro_rbg_use_compute_shader",
+              "label": "settings_yabasanshiro_rbg_compute_shader",
+              "type": "bool",
+              "default": "disabled"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "settings_yabasanshiro_tab_performance",
+      "sections": [
+        {
+          "title": "settings_yabasanshiro_section_frame_rate",
+          "options": [
+            {
+              "key": "yabasanshiro_frameskip",
+              "label": "settings_yabasanshiro_lr_auto_frameskip",
+              "type": "bool",
+              "default": "enabled"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "settings_yabasanshiro_tab_input",
+      "sections": [
+        {
+          "title": "settings_yabasanshiro_section_controllers",
+          "options": [
+            {
+              "key": "yabasanshiro_multitap_port1",
+              "label": "settings_yabasanshiro_lr_multitap_port1",
+              "type": "bool",
+              "default": "disabled"
+            },
+            {
+              "key": "yabasanshiro_multitap_port2",
+              "label": "settings_yabasanshiro_lr_multitap_port2",
+              "type": "bool",
+              "default": "disabled"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,614 @@
+{
+  "core_id": "azahar",
+  "display_name": "Azahar",
+  "config_file": "azahar.jsonc",
+  "slugs": [
+    "3ds"
+  ],
+  "bool_true_value": "enabled",
+  "bool_false_value": "disabled",
+  "tabs": [
+    {
+      "name": "settings_azahar_system",
+      "sections": [
+        {
+          "title": "settings_azahar_console",
+          "options": [
+            {
+              "key": "citra_is_new_3ds",
+              "label": "settings_azahar_new_3ds",
+              "type": "enum",
+              "default": "New 3DS",
+              "choices": [
+                {
+                  "label": "New 3DS",
+                  "value": "New 3DS"
+                },
+                {
+                  "label": "Old 3DS",
+                  "value": "Old 3DS"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "citra_region_value",
+              "label": "settings_azahar_region",
+              "type": "enum",
+              "default": "Auto",
+              "choices": [
+                {
+                  "label": "Auto",
+                  "value": "Auto"
+                },
+                {
+                  "label": "Japan",
+                  "value": "Japan"
+                },
+                {
+                  "label": "USA",
+                  "value": "USA"
+                },
+                {
+                  "label": "Europe",
+                  "value": "Europe"
+                },
+                {
+                  "label": "Australia",
+                  "value": "Australia"
+                },
+                {
+                  "label": "China",
+                  "value": "China"
+                },
+                {
+                  "label": "Korea",
+                  "value": "Korea"
+                },
+                {
+                  "label": "Taiwan",
+                  "value": "Taiwan"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "citra_language_value",
+              "label": "settings_azahar_language",
+              "type": "enum",
+              "default": "English",
+              "choices": [
+                {
+                  "label": "English",
+                  "value": "English"
+                },
+                {
+                  "label": "Japanese",
+                  "value": "Japanese"
+                },
+                {
+                  "label": "French",
+                  "value": "French"
+                },
+                {
+                  "label": "Spanish",
+                  "value": "Spanish"
+                },
+                {
+                  "label": "German",
+                  "value": "German"
+                },
+                {
+                  "label": "Italian",
+                  "value": "Italian"
+                },
+                {
+                  "label": "Dutch",
+                  "value": "Dutch"
+                },
+                {
+                  "label": "Portuguese",
+                  "value": "Portuguese"
+                },
+                {
+                  "label": "Russian",
+                  "value": "Russian"
+                },
+                {
+                  "label": "Korean",
+                  "value": "Korean"
+                },
+                {
+                  "label": "Traditional Chinese",
+                  "value": "Traditional Chinese"
+                },
+                {
+                  "label": "Simplified Chinese",
+                  "value": "Simplified Chinese"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "citra_use_virtual_sd",
+              "label": "settings_azahar_use_virtual_sd",
+              "type": "bool",
+              "default": "enabled",
+              "needs_restart": true
+            }
+          ]
+        },
+        {
+          "title": "settings_azahar_cpu",
+          "options": [
+            {
+              "key": "citra_use_cpu_jit",
+              "label": "settings_azahar_lr_cpu_jit",
+              "type": "bool",
+              "default": "enabled",
+              "needs_restart": true
+            },
+            {
+              "key": "citra_cpu_clock_percentage",
+              "label": "settings_azahar_cpu_clock",
+              "type": "enum",
+              "default": "100",
+              "choices": [
+                {
+                  "label": "25%",
+                  "value": "25"
+                },
+                {
+                  "label": "50%",
+                  "value": "50"
+                },
+                {
+                  "label": "75%",
+                  "value": "75"
+                },
+                {
+                  "label": "100%",
+                  "value": "100"
+                },
+                {
+                  "label": "125%",
+                  "value": "125"
+                },
+                {
+                  "label": "150%",
+                  "value": "150"
+                },
+                {
+                  "label": "200%",
+                  "value": "200"
+                },
+                {
+                  "label": "250%",
+                  "value": "250"
+                },
+                {
+                  "label": "300%",
+                  "value": "300"
+                },
+                {
+                  "label": "400%",
+                  "value": "400"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "settings_azahar_graphics",
+      "sections": [
+        {
+          "title": "settings_azahar_graphics",
+          "options": [
+            {
+              "key": "citra_graphics_api",
+              "label": "settings_azahar_renderer",
+              "type": "enum",
+              "default": "Auto",
+              "choices": [
+                {
+                  "label": "Auto",
+                  "value": "Auto"
+                },
+                {
+                  "label": "Vulkan",
+                  "value": "Vulkan"
+                },
+                {
+                  "label": "OpenGL",
+                  "value": "OpenGL"
+                },
+                {
+                  "label": "Software",
+                  "value": "Software"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "citra_resolution_factor",
+              "label": "settings_azahar_resolution",
+              "type": "enum",
+              "default": "1",
+              "choices": [
+                {
+                  "label": "1x (400x240)",
+                  "value": "1"
+                },
+                {
+                  "label": "2x (800x480)",
+                  "value": "2"
+                },
+                {
+                  "label": "3x (1200x720)",
+                  "value": "3"
+                },
+                {
+                  "label": "4x (1600x960)",
+                  "value": "4"
+                },
+                {
+                  "label": "5x (2000x1200)",
+                  "value": "5"
+                },
+                {
+                  "label": "6x (2400x1440)",
+                  "value": "6"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "citra_use_hw_shader",
+              "label": "settings_azahar_use_hw_shader",
+              "type": "bool",
+              "default": "enabled",
+              "needs_restart": true
+            },
+            {
+              "key": "citra_use_shader_jit",
+              "label": "settings_azahar_shader_jit",
+              "type": "bool",
+              "default": "enabled",
+              "needs_restart": true
+            },
+            {
+              "key": "citra_shaders_accurate_mul",
+              "label": "settings_azahar_accurate_mul",
+              "type": "bool",
+              "default": "enabled",
+              "needs_restart": true
+            },
+            {
+              "key": "citra_use_disk_shader_cache",
+              "label": "settings_azahar_disk_shader_cache",
+              "type": "bool",
+              "default": "enabled",
+              "needs_restart": true
+            }
+          ]
+        },
+        {
+          "title": "settings_azahar_textures",
+          "options": [
+            {
+              "key": "citra_texture_filter",
+              "label": "settings_azahar_texture_filter",
+              "type": "enum",
+              "default": "none",
+              "choices": [
+                {
+                  "label": "None",
+                  "value": "none"
+                },
+                {
+                  "label": "Anime4K",
+                  "value": "Anime4K"
+                },
+                {
+                  "label": "Bicubic",
+                  "value": "Bicubic"
+                },
+                {
+                  "label": "ScaleForce",
+                  "value": "ScaleForce"
+                },
+                {
+                  "label": "xBRZ",
+                  "value": "xBRZ"
+                },
+                {
+                  "label": "MMPX",
+                  "value": "MMPX"
+                }
+              ]
+            },
+            {
+              "key": "citra_texture_sampling",
+              "label": "settings_azahar_texture_sampling",
+              "type": "enum",
+              "default": "GameControlled",
+              "choices": [
+                {
+                  "label": "Game controlled",
+                  "value": "GameControlled"
+                },
+                {
+                  "label": "Nearest",
+                  "value": "NearestNeighbor"
+                },
+                {
+                  "label": "Linear",
+                  "value": "Linear"
+                }
+              ]
+            },
+            {
+              "key": "citra_custom_textures",
+              "label": "settings_azahar_custom_textures",
+              "type": "bool",
+              "default": "disabled",
+              "needs_restart": true
+            },
+            {
+              "key": "citra_dump_textures",
+              "label": "settings_azahar_dump_textures",
+              "type": "bool",
+              "default": "disabled",
+              "needs_restart": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "settings_azahar_screen",
+      "sections": [
+        {
+          "title": "settings_azahar_layout",
+          "options": [
+            {
+              "key": "citra_layout_option",
+              "label": "settings_azahar_layout_option",
+              "type": "enum",
+              "default": "default",
+              "choices": [
+                {
+                  "label": "Top / Bottom",
+                  "value": "default"
+                },
+                {
+                  "label": "Single screen",
+                  "value": "single_screen"
+                },
+                {
+                  "label": "Large screen",
+                  "value": "large_screen"
+                },
+                {
+                  "label": "Side by side",
+                  "value": "side_by_side"
+                }
+              ]
+            },
+            {
+              "key": "citra_large_screen_proportion",
+              "label": "settings_azahar_large_screen_proportion",
+              "type": "enum",
+              "default": "4.00",
+              "choices": [
+                {
+                  "label": "2:1",
+                  "value": "2.00"
+                },
+                {
+                  "label": "2.5:1",
+                  "value": "2.50"
+                },
+                {
+                  "label": "3:1",
+                  "value": "3.00"
+                },
+                {
+                  "label": "3.5:1",
+                  "value": "3.50"
+                },
+                {
+                  "label": "4:1",
+                  "value": "4.00"
+                },
+                {
+                  "label": "5:1",
+                  "value": "5.00"
+                },
+                {
+                  "label": "6:1",
+                  "value": "6.00"
+                }
+              ],
+              "depends_on": {
+                "key": "citra_layout_option",
+                "value": "large_screen"
+              }
+            },
+            {
+              "key": "citra_swap_screen",
+              "label": "settings_azahar_swap_screens",
+              "type": "enum",
+              "default": "Top",
+              "choices": [
+                {
+                  "label": "Top screen first",
+                  "value": "Top"
+                },
+                {
+                  "label": "Bottom screen first",
+                  "value": "Bottom"
+                }
+              ]
+            },
+            {
+              "key": "citra_swap_screen_mode",
+              "label": "settings_azahar_lr_swap_screen_mode",
+              "type": "enum",
+              "default": "Toggle",
+              "choices": [
+                {
+                  "label": "Toggle",
+                  "value": "Toggle"
+                },
+                {
+                  "label": "Hold",
+                  "value": "Hold"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "settings_azahar_controls",
+      "sections": [
+        {
+          "title": "settings_azahar_sticks",
+          "options": [
+            {
+              "key": "citra_analog_function",
+              "label": "settings_azahar_lr_analog_function",
+              "type": "enum",
+              "default": "c_stick_and_touchscreen",
+              "choices": [
+                {
+                  "label": "C-Stick and touch pointer",
+                  "value": "c_stick_and_touchscreen"
+                },
+                {
+                  "label": "Touch pointer",
+                  "value": "touchscreen_pointer"
+                },
+                {
+                  "label": "C-Stick",
+                  "value": "c_stick"
+                }
+              ]
+            },
+            {
+              "key": "citra_analog_deadzone",
+              "label": "settings_azahar_lr_analog_deadzone",
+              "type": "enum",
+              "default": "15",
+              "choices": [
+                {
+                  "label": "0%",
+                  "value": "0"
+                },
+                {
+                  "label": "5%",
+                  "value": "5"
+                },
+                {
+                  "label": "10%",
+                  "value": "10"
+                },
+                {
+                  "label": "15%",
+                  "value": "15"
+                },
+                {
+                  "label": "20%",
+                  "value": "20"
+                },
+                {
+                  "label": "25%",
+                  "value": "25"
+                },
+                {
+                  "label": "30%",
+                  "value": "30"
+                },
+                {
+                  "label": "35%",
+                  "value": "35"
+                }
+              ]
+            },
+            {
+              "key": "citra_enable_motion",
+              "label": "settings_azahar_lr_enable_motion",
+              "type": "bool",
+              "default": "enabled"
+            }
+          ]
+        },
+        {
+          "title": "settings_azahar_microphone",
+          "options": [
+            {
+              "key": "citra_input_type",
+              "label": "settings_azahar_mic_input",
+              "type": "enum",
+              "default": "auto",
+              "choices": [
+                {
+                  "label": "Auto",
+                  "value": "auto"
+                },
+                {
+                  "label": "None",
+                  "value": "none"
+                },
+                {
+                  "label": "Static noise",
+                  "value": "static_noise"
+                },
+                {
+                  "label": "Microphone",
+                  "value": "frontend"
+                }
+              ],
+              "needs_restart": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "settings_azahar_audio",
+      "sections": [
+        {
+          "title": "settings_azahar_output",
+          "options": [
+            {
+              "key": "citra_audio_emulation",
+              "label": "settings_azahar_lr_audio_emulation",
+              "type": "enum",
+              "default": "hle",
+              "choices": [
+                {
+                  "label": "HLE (fast)",
+                  "value": "hle"
+                },
+                {
+                  "label": "LLE (accurate)",
+                  "value": "lle"
+                },
+                {
+                  "label": "LLE multi-thread",
+                  "value": "lle_multithread"
+                }
+              ],
+              "needs_restart": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
