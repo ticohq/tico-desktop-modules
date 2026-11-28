@@ -1,0 +1,367 @@
+{
+  "core_id": "xemu",
+  "display_name": "xemu",
+  "config_file": "xemu.jsonc",
+  "slugs": [
+    "xbox"
+  ],
+  "bool_true_value": "enabled",
+  "bool_false_value": "disabled",
+  "tabs": [
+    {
+      "name": "settings_xemu_tab_video",
+      "sections": [
+        {
+          "title": "settings_xemu_section_renderer",
+          "options": [
+            {
+              "key": "xemu_renderer",
+              "label": "settings_xemu_renderer",
+              "type": "enum",
+              "default": "vulkan",
+              "choices": [
+                {
+                  "label": "Vulkan",
+                  "value": "vulkan"
+                },
+                {
+                  "label": "OpenGL",
+                  "value": "opengl"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "xemu_surface_scale",
+              "label": "settings_xemu_resolution",
+              "type": "enum",
+              "default": "1",
+              "choices": [
+                {
+                  "label": "1x (640x480)",
+                  "value": "1"
+                },
+                {
+                  "label": "2x (1280x960)",
+                  "value": "2"
+                },
+                {
+                  "label": "3x (1920x1440)",
+                  "value": "3"
+                },
+                {
+                  "label": "4x (2560x1920)",
+                  "value": "4"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "xemu_anisotropic_filtering",
+              "label": "settings_xemu_anisotropic",
+              "type": "enum",
+              "default": "1",
+              "choices": [
+                {
+                  "label": "Off",
+                  "value": "1"
+                },
+                {
+                  "label": "2x",
+                  "value": "2"
+                },
+                {
+                  "label": "4x",
+                  "value": "4"
+                },
+                {
+                  "label": "8x",
+                  "value": "8"
+                },
+                {
+                  "label": "16x",
+                  "value": "16"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "settings_xemu_section_display",
+          "options": [
+            {
+              "key": "xemu_video_aspect",
+              "label": "settings_xemu_system_aspect",
+              "type": "enum",
+              "default": "16:9",
+              "choices": [
+                {
+                  "label": "16:9",
+                  "value": "16:9"
+                },
+                {
+                  "label": "4:3",
+                  "value": "4:3"
+                },
+                {
+                  "label": "Letterbox",
+                  "value": "letterbox"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "xemu_aspect_ratio",
+              "label": "settings_xemu_core_aspect",
+              "type": "enum",
+              "default": "auto",
+              "choices": [
+                {
+                  "label": "Auto",
+                  "value": "auto"
+                },
+                {
+                  "label": "4:3",
+                  "value": "4:3"
+                },
+                {
+                  "label": "16:9",
+                  "value": "16:9"
+                }
+              ]
+            },
+            {
+              "key": "xemu_overscan_crop",
+              "label": "settings_xemu_overscan",
+              "type": "enum",
+              "default": "auto",
+              "choices": [
+                {
+                  "label": "Auto",
+                  "value": "auto"
+                },
+                {
+                  "label": "Off",
+                  "value": "off"
+                }
+              ]
+            },
+            {
+              "key": "xemu_avpack",
+              "label": "settings_xemu_avpack",
+              "type": "enum",
+              "default": "hdtv",
+              "choices": [
+                {
+                  "label": "HDTV",
+                  "value": "hdtv"
+                },
+                {
+                  "label": "Composite",
+                  "value": "composite"
+                },
+                {
+                  "label": "S-Video",
+                  "value": "svideo"
+                },
+                {
+                  "label": "SCART",
+                  "value": "scart"
+                },
+                {
+                  "label": "VGA",
+                  "value": "vga"
+                }
+              ],
+              "needs_restart": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "settings_xemu_tab_system",
+      "sections": [
+        {
+          "title": "settings_xemu_section_console",
+          "options": [
+            {
+              "key": "xemu_language",
+              "label": "settings_xemu_language",
+              "type": "enum",
+              "default": "auto",
+              "choices": [
+                {
+                  "label": "Auto",
+                  "value": "auto"
+                },
+                {
+                  "label": "English",
+                  "value": "english"
+                },
+                {
+                  "label": "Português",
+                  "value": "portuguese"
+                },
+                {
+                  "label": "Español",
+                  "value": "spanish"
+                },
+                {
+                  "label": "Français",
+                  "value": "french"
+                },
+                {
+                  "label": "Deutsch",
+                  "value": "german"
+                },
+                {
+                  "label": "Italiano",
+                  "value": "italian"
+                },
+                {
+                  "label": "日本語",
+                  "value": "japanese"
+                },
+                {
+                  "label": "한국어",
+                  "value": "korean"
+                },
+                {
+                  "label": "中文",
+                  "value": "chinese"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "xemu_skip_boot_anim",
+              "label": "settings_xemu_skip_boot",
+              "type": "bool",
+              "default": "enabled",
+              "needs_restart": true
+            },
+            {
+              "key": "xemu_memory",
+              "label": "settings_xemu_memory",
+              "type": "enum",
+              "default": "64",
+              "choices": [
+                {
+                  "label": "64 MB",
+                  "value": "64"
+                },
+                {
+                  "label": "128 MB",
+                  "value": "128"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "xemu_network_backend",
+              "label": "settings_xemu_network",
+              "type": "enum",
+              "default": "disabled",
+              "choices": [
+                {
+                  "label": "Off",
+                  "value": "disabled"
+                },
+                {
+                  "label": "NAT",
+                  "value": "nat"
+                }
+              ],
+              "needs_restart": true
+            }
+          ]
+        },
+        {
+          "title": "settings_xemu_section_performance",
+          "options": [
+            {
+              "key": "xemu_cpu_boost",
+              "label": "settings_xemu_cpu_boost",
+              "type": "bool",
+              "default": "enabled",
+              "needs_restart": true
+            },
+            {
+              "key": "xemu_hard_fpu",
+              "label": "settings_xemu_hard_fpu",
+              "type": "bool",
+              "default": "enabled",
+              "needs_restart": true
+            },
+            {
+              "key": "xemu_audio_thread",
+              "label": "settings_xemu_audio_thread",
+              "type": "bool",
+              "default": "enabled",
+              "needs_restart": true
+            },
+            {
+              "key": "xemu_use_dsp",
+              "label": "settings_xemu_dsp",
+              "type": "bool",
+              "default": "disabled"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "settings_xemu_tab_controls",
+      "sections": [
+        {
+          "title": "settings_xemu_section_controller",
+          "options": [
+            {
+              "key": "xemu_rumble_p1",
+              "label": "settings_xemu_rumble",
+              "type": "bool",
+              "default": "enabled"
+            },
+            {
+              "key": "xemu_deadzone_p1",
+              "label": "settings_xemu_deadzone",
+              "type": "enum",
+              "default": "0",
+              "choices": [
+                {
+                  "label": "0%",
+                  "value": "0"
+                },
+                {
+                  "label": "5%",
+                  "value": "5"
+                },
+                {
+                  "label": "10%",
+                  "value": "10"
+                },
+                {
+                  "label": "15%",
+                  "value": "15"
+                },
+                {
+                  "label": "20%",
+                  "value": "20"
+                },
+                {
+                  "label": "25%",
+                  "value": "25"
+                },
+                {
+                  "label": "30%",
+                  "value": "30"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

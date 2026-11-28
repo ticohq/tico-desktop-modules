@@ -1,0 +1,279 @@
+{
+  "core_id": "vita3k",
+  "display_name": "Vita3K",
+  "config_file": "vita3k.jsonc",
+  "slugs": [
+    "psvita"
+  ],
+  "bool_true_value": "enabled",
+  "bool_false_value": "disabled",
+  "tabs": [
+    {
+      "name": "settings_vita3k_tab_video",
+      "sections": [
+        {
+          "title": "settings_vita3k_section_renderer",
+          "options": [
+            {
+              "key": "vita3k_backend_renderer",
+              "label": "settings_vita3k_renderer",
+              "type": "enum",
+              "default": "auto",
+              "choices": [
+                {
+                  "label": "Auto",
+                  "value": "auto"
+                },
+                {
+                  "label": "Vulkan",
+                  "value": "Vulkan"
+                },
+                {
+                  "label": "OpenGL",
+                  "value": "OpenGL"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "vita3k_resolution_multiplier",
+              "label": "settings_vita3k_resolution",
+              "type": "enum",
+              "default": "1",
+              "choices": [
+                {
+                  "label": "1x (960x544)",
+                  "value": "1"
+                },
+                {
+                  "label": "2x (1920x1088)",
+                  "value": "2"
+                },
+                {
+                  "label": "3x (2880x1632)",
+                  "value": "3"
+                },
+                {
+                  "label": "4x (3840x2176)",
+                  "value": "4"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "vita3k_anisotropic_filtering",
+              "label": "settings_vita3k_anisotropic",
+              "type": "enum",
+              "default": "1",
+              "choices": [
+                {
+                  "label": "Off",
+                  "value": "1"
+                },
+                {
+                  "label": "2x",
+                  "value": "2"
+                },
+                {
+                  "label": "4x",
+                  "value": "4"
+                },
+                {
+                  "label": "8x",
+                  "value": "8"
+                },
+                {
+                  "label": "16x",
+                  "value": "16"
+                }
+              ]
+            },
+            {
+              "key": "vita3k_async_pipeline",
+              "label": "settings_vita3k_async_pipeline",
+              "type": "bool",
+              "default": "enabled"
+            },
+            {
+              "key": "vita3k_high_accuracy",
+              "label": "settings_vita3k_high_accuracy",
+              "type": "bool",
+              "default": "disabled"
+            },
+            {
+              "key": "vita3k_disable_surface_sync",
+              "label": "settings_vita3k_disable_surface_sync",
+              "type": "bool",
+              "default": "disabled"
+            }
+          ]
+        },
+        {
+          "title": "settings_vita3k_section_performance",
+          "options": [
+            {
+              "key": "vita3k_fps_hack",
+              "label": "settings_vita3k_fps_hack",
+              "type": "bool",
+              "default": "disabled"
+            },
+            {
+              "key": "vita3k_cpu_opt",
+              "label": "settings_vita3k_cpu_opt",
+              "type": "bool",
+              "default": "enabled",
+              "needs_restart": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "settings_vita3k_tab_system",
+      "sections": [
+        {
+          "title": "settings_vita3k_section_console",
+          "options": [
+            {
+              "key": "vita3k_sys_lang",
+              "label": "settings_vita3k_language",
+              "type": "enum",
+              "default": "1",
+              "choices": [
+                {
+                  "label": "English (US)",
+                  "value": "1"
+                },
+                {
+                  "label": "English (UK)",
+                  "value": "18"
+                },
+                {
+                  "label": "Português (Brasil)",
+                  "value": "17"
+                },
+                {
+                  "label": "Português (Portugal)",
+                  "value": "7"
+                },
+                {
+                  "label": "Español",
+                  "value": "3"
+                },
+                {
+                  "label": "Français",
+                  "value": "2"
+                },
+                {
+                  "label": "Deutsch",
+                  "value": "4"
+                },
+                {
+                  "label": "Italiano",
+                  "value": "5"
+                },
+                {
+                  "label": "Nederlands",
+                  "value": "6"
+                },
+                {
+                  "label": "Русский",
+                  "value": "8"
+                },
+                {
+                  "label": "Polski",
+                  "value": "16"
+                },
+                {
+                  "label": "Türkçe",
+                  "value": "19"
+                },
+                {
+                  "label": "日本語",
+                  "value": "0"
+                },
+                {
+                  "label": "한국어",
+                  "value": "9"
+                },
+                {
+                  "label": "中文 (繁體)",
+                  "value": "10"
+                },
+                {
+                  "label": "中文 (简体)",
+                  "value": "11"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "vita3k_sys_button",
+              "label": "settings_vita3k_confirm_button",
+              "type": "enum",
+              "default": "1",
+              "choices": [
+                {
+                  "label": "Cross",
+                  "value": "1"
+                },
+                {
+                  "label": "Circle",
+                  "value": "0"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "vita3k_pstv_mode",
+              "label": "settings_vita3k_pstv_mode",
+              "type": "bool",
+              "default": "disabled",
+              "needs_restart": true
+            },
+            {
+              "key": "vita3k_psn_signed_in",
+              "label": "settings_vita3k_psn_signed_in",
+              "type": "bool",
+              "default": "disabled",
+              "needs_restart": true
+            }
+          ]
+        },
+        {
+          "title": "settings_vita3k_section_games",
+          "options": [
+            {
+              "key": "vita3k_pkg_mode",
+              "label": "settings_vita3k_pkg_mode",
+              "type": "enum",
+              "default": "run",
+              "choices": [
+                {
+                  "label": "Direct",
+                  "value": "run"
+                },
+                {
+                  "label": "Direct with cache",
+                  "value": "cache"
+                },
+                {
+                  "label": "Install",
+                  "value": "install"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "vita3k_ngs_enable",
+              "label": "settings_vita3k_ngs",
+              "type": "bool",
+              "default": "enabled",
+              "needs_restart": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "id": "cemu",
+  "name": "Cemu",
+  "settings": "settings.json",
+  "config_file": "cemu.jsonc",
+  "is_libretro": true,
+  "bool_true_value": "enabled",
+  "bool_false_value": "disabled",
+  "achievements": false,
+  "system_dir": "cemu",
+  "systems": [
+    {
+      "slug": "wiiu",
+      "title": "Wii U",
+      "short_title": "Wii U",
+      "extensions": [
+        ".wua",
+        ".wux",
+        ".wud",
+        ".iso",
+        ".rpx"
+      ],
+      "colors": {
+        "start": "0099DC",
+        "end": "0065A8",
+        "start_dark": "0076B0",
+        "end_dark": "00467A"
+      }
+    }
+  ]
+}

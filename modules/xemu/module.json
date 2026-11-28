@@ -1,0 +1,48 @@
+{
+  "id": "xemu",
+  "name": "xemu",
+  "settings": "settings.json",
+  "config_file": "xemu.jsonc",
+  "is_libretro": true,
+  "bool_true_value": "enabled",
+  "bool_false_value": "disabled",
+  "achievements": false,
+  "system_dir": "xemu",
+  "systems": [
+    {
+      "slug": "xbox",
+      "title": "Xbox",
+      "short_title": "Xbox",
+      "extensions": [
+        ".iso",
+        ".xiso"
+      ],
+      "disc_based": true,
+      "bios": [
+        {
+          "any_of": [
+            "xemu/mcpx_1.0.bin"
+          ],
+          "size": 512
+        },
+        {
+          "any_of": [
+            "xemu/Complex_4627v1.03.bin",
+            "xemu/Complex_4627.bin"
+          ]
+        },
+        {
+          "any_of": [
+            "xemu/xbox_hdd.qcow2"
+          ]
+        }
+      ],
+      "colors": {
+        "start": "107C10",
+        "end": "0B4F0B",
+        "start_dark": "0C5E0C",
+        "end_dark": "073807"
+      }
+    }
+  ]
+}

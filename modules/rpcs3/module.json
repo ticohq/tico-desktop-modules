@@ -1,0 +1,41 @@
+{
+  "id": "rpcs3",
+  "name": "RPCS3",
+  "settings": "settings.json",
+  "config_file": "rpcs3.jsonc",
+  "is_libretro": true,
+  "bool_true_value": "enabled",
+  "bool_false_value": "disabled",
+  "achievements": false,
+  "system_dir": "rpcs3",
+  "systems": [
+    {
+      "slug": "ps3",
+      "title": "PlayStation 3",
+      "short_title": "PS3",
+      "extensions": [
+        ".iso",
+        ".pkg",
+        ".sfb"
+      ],
+      "disc_based": true,
+      "bios": [
+        {
+          "any_of": [
+            "rpcs3/PS3UPDAT.PUP",
+            "PS3UPDAT.PUP",
+            "rpcs3/firmware/PS3UPDAT.PUP",
+            "rpcs3/dev_flash/vsh/etc/version.txt"
+          ],
+          "example": "PS3UPDAT.PUP"
+        }
+      ],
+      "colors": {
+        "start": "4A4A4A",
+        "end": "101010",
+        "start_dark": "383838",
+        "end_dark": "0A0A0A"
+      }
+    }
+  ]
+}

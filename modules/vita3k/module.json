@@ -1,0 +1,40 @@
+{
+  "id": "vita3k",
+  "name": "Vita3K",
+  "settings": "settings.json",
+  "config_file": "vita3k.jsonc",
+  "is_libretro": true,
+  "bool_true_value": "enabled",
+  "bool_false_value": "disabled",
+  "achievements": false,
+  "system_dir": "vita3k",
+  "systems": [
+    {
+      "slug": "psvita",
+      "title": "PlayStation Vita",
+      "short_title": "Vita",
+      "extensions": [
+        ".vpk",
+        ".zip",
+        ".pkg"
+      ],
+      "bios": [
+        {
+          "any_of": [
+            "vita3k/PSP2UPDAT.PUP",
+            "vita3k/PSVUPDAT.PUP",
+            "vita3k/psp2updat.pup",
+            "vita3k/psvupdat.pup"
+          ],
+          "example": "PSP2UPDAT.PUP"
+        }
+      ],
+      "colors": {
+        "start": "2E4F8F",
+        "end": "182B54",
+        "start_dark": "233C6E",
+        "end_dark": "101E3D"
+      }
+    }
+  ]
+}

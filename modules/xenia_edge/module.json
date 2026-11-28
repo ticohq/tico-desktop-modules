@@ -1,0 +1,31 @@
+{
+  "id": "xenia_edge",
+  "name": "Xenia Edge",
+  "settings": "settings.json",
+  "config_file": "xenia_edge.jsonc",
+  "is_libretro": true,
+  "bool_true_value": "enabled",
+  "bool_false_value": "disabled",
+  "achievements": false,
+  "system_dir": "xenia_edge",
+  "systems": [
+    {
+      "slug": "xbox360",
+      "title": "Xbox 360",
+      "short_title": "X360",
+      "extensions": [
+        ".iso",
+        ".xex",
+        ".zar",
+        ".m3u"
+      ],
+      "disc_based": true,
+      "colors": {
+        "start": "9BC848",
+        "end": "5C8A1E",
+        "start_dark": "7AA035",
+        "end_dark": "3E5E14"
+      }
+    }
+  ]
+}

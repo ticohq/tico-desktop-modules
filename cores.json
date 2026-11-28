@@ -549,6 +549,80 @@
       "platforms": ["linux-x64"],
       "module_dir": "modules/dosbox_pure",
       "version": "1.0.0"
+    },
+    {
+      "id": "cemu",
+      "source": "buildbot",
+      "buildbot_name": "cemu_libretro",
+      "platforms": ["linux-x64"],
+      "module_dir": "modules/cemu",
+      "version": "1.0.0",
+      "extra_allowed_libs_linux": [
+        "libudev.so.1",
+        "libEGL.so.1"
+      ]
+    },
+    {
+      "id": "vita3k",
+      "source": "buildbot",
+      "buildbot_name": "vita3k_libretro",
+      "platforms": ["linux-x64"],
+      "module_dir": "modules/vita3k",
+      "version": "1.0.0",
+      "extra_allowed_libs_linux": [
+        "libz.so.1",
+        "libssl.so.3",
+        "libcrypto.so.3"
+      ],
+      "verify_docker_image_linux": "ubuntu:24.04",
+      "verify_packages_linux": ["libssl3t64"]
+    },
+    {
+      "id": "rpcs3",
+      "source": "buildbot",
+      "buildbot_name": "rpcs3_libretro",
+      "platforms": ["linux-x64"],
+      "module_dir": "modules/rpcs3",
+      "version": "1.0.0",
+      "extra_allowed_libs_linux": [
+        "libOpenGL.so.0",
+        "libEGL.so.1",
+        "libz.so.1",
+        "libvulkan.so.1",
+        "libasound.so.2"
+      ],
+      "verify_docker_image_linux": "ubuntu:24.04",
+      "verify_packages_linux": ["libopengl0", "libvulkan1", "libasound2t64"]
+    },
+    {
+      "id": "xemu",
+      "source": "buildbot",
+      "buildbot_name": "xemu_libretro",
+      "platforms": ["linux-x64"],
+      "module_dir": "modules/xemu",
+      "version": "1.0.0",
+      "extra_allowed_libs_linux": [
+        "libepoxy.so.0",
+        "libz.so.1",
+        "libusb-1.0.so.0",
+        "libsamplerate.so.0"
+      ],
+      "verify_docker_image_linux": "ubuntu:24.04",
+      "verify_packages_linux": ["libepoxy0", "libsamplerate0"]
+    },
+    {
+      "id": "xenia_edge",
+      "source": "buildbot",
+      "buildbot_name": "xenia_edge_libretro",
+      "platforms": ["linux-x64"],
+      "module_dir": "modules/xenia_edge",
+      "version": "1.0.0",
+      "extra_allowed_libs_linux": [
+        "liblz4.so.1",
+        "libfontconfig.so.1"
+      ],
+      "verify_docker_image_linux": "ubuntu:24.04",
+      "verify_packages_linux": ["liblz4-1", "libfontconfig1"]
     }
   ]
 }

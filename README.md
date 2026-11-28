@@ -36,6 +36,11 @@ Prebuilt desktop libretro modules for [tico](https://github.com/ticohq/tico), pa
 - `pokemini` — Pokémon Mini (libretro buildbot, Linux only)
 - `neocd` — Neo Geo CD (libretro buildbot, Linux only)
 - `dosbox_pure` — MS-DOS (libretro buildbot, Linux only)
+- `cemu` — Wii U (libretro buildbot, Linux only)
+- `vita3k` — PlayStation Vita (libretro buildbot, Linux only)
+- `rpcs3` — PlayStation 3 (libretro buildbot, Linux only)
+- `xemu` — Xbox (libretro buildbot, Linux only)
+- `xenia_edge` — Xbox 360 (Xenia Edge, libretro buildbot, Linux only, experimental)
 
 ## Modules Built on Another Core's Template
 

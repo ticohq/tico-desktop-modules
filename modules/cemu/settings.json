@@ -1,0 +1,395 @@
+{
+  "core_id": "cemu",
+  "display_name": "Cemu",
+  "config_file": "cemu.jsonc",
+  "slugs": [
+    "wiiu"
+  ],
+  "bool_true_value": "enabled",
+  "bool_false_value": "disabled",
+  "tabs": [
+    {
+      "name": "settings_cemu_tab_video",
+      "sections": [
+        {
+          "title": "settings_cemu_section_renderer",
+          "options": [
+            {
+              "key": "cemu_gpu_api",
+              "label": "settings_cemu_gpu_api",
+              "type": "enum",
+              "default": "Vulkan",
+              "choices": [
+                {
+                  "label": "Vulkan",
+                  "value": "Vulkan"
+                },
+                {
+                  "label": "OpenGL",
+                  "value": "OpenGL"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "cemu_internal_resolution",
+              "label": "settings_cemu_internal_resolution",
+              "type": "enum",
+              "default": "native",
+              "choices": [
+                {
+                  "label": "0.5x",
+                  "value": "0.5x"
+                },
+                {
+                  "label": "0.75x",
+                  "value": "0.75x"
+                },
+                {
+                  "label": "Native",
+                  "value": "native"
+                },
+                {
+                  "label": "1.5x",
+                  "value": "1.5x"
+                },
+                {
+                  "label": "2x",
+                  "value": "2x"
+                },
+                {
+                  "label": "3x",
+                  "value": "3x"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "cemu_async_shader_compile",
+              "label": "settings_cemu_async_shaders",
+              "type": "bool",
+              "default": "enabled"
+            },
+            {
+              "key": "cemu_vk_accurate_barriers",
+              "label": "settings_cemu_accurate_barriers",
+              "type": "bool",
+              "default": "enabled"
+            },
+            {
+              "key": "cemu_accurate_shader_mul",
+              "label": "settings_cemu_accurate_shader_mul",
+              "type": "enum",
+              "default": "auto",
+              "choices": [
+                {
+                  "label": "Auto",
+                  "value": "auto"
+                },
+                {
+                  "label": "On",
+                  "value": "enabled"
+                },
+                {
+                  "label": "Off",
+                  "value": "disabled"
+                }
+              ]
+            },
+            {
+              "key": "cemu_gx2drawdone_sync",
+              "label": "settings_cemu_gx2drawdone_sync",
+              "type": "bool",
+              "default": "enabled"
+            }
+          ]
+        },
+        {
+          "title": "settings_cemu_section_gamepad_screen",
+          "options": [
+            {
+              "key": "cemu_screen_layout1",
+              "label": "settings_cemu_screen_layout",
+              "type": "enum",
+              "default": "Default Screen",
+              "choices": [
+                {
+                  "label": "TV",
+                  "value": "Default Screen"
+                },
+                {
+                  "label": "GamePad",
+                  "value": "GamePad Screen"
+                },
+                {
+                  "label": "Side by Side",
+                  "value": "Side by Side"
+                },
+                {
+                  "label": "Top / Bottom",
+                  "value": "Top Bottom"
+                },
+                {
+                  "label": "Picture in Picture",
+                  "value": "Picture in Picture"
+                }
+              ]
+            },
+            {
+              "key": "cemu_next_screen_layout_button",
+              "label": "settings_cemu_next_layout_button",
+              "type": "enum",
+              "default": "L + R + L2 + R2 + L3 + R3",
+              "choices": [
+                {
+                  "label": "Off",
+                  "value": "Disabled"
+                },
+                {
+                  "label": "L + R + L2 + R2 + L3 + R3",
+                  "value": "L + R + L2 + R2 + L3 + R3"
+                },
+                {
+                  "label": "Select + L3",
+                  "value": "Select + L3"
+                },
+                {
+                  "label": "Select + R3",
+                  "value": "Select + R3"
+                }
+              ]
+            },
+            {
+              "key": "cemu_drc_position",
+              "label": "settings_cemu_drc_position",
+              "type": "enum",
+              "default": "normal",
+              "choices": [
+                {
+                  "label": "Normal",
+                  "value": "normal"
+                },
+                {
+                  "label": "Swapped",
+                  "value": "swapped"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "settings_cemu_tab_system",
+      "sections": [
+        {
+          "title": "settings_cemu_section_console",
+          "options": [
+            {
+              "key": "cemu_console_language",
+              "label": "settings_cemu_console_language",
+              "type": "enum",
+              "default": "English",
+              "choices": [
+                {
+                  "label": "English",
+                  "value": "English"
+                },
+                {
+                  "label": "Português",
+                  "value": "Portuguese"
+                },
+                {
+                  "label": "Español",
+                  "value": "Spanish"
+                },
+                {
+                  "label": "Français",
+                  "value": "French"
+                },
+                {
+                  "label": "Deutsch",
+                  "value": "German"
+                },
+                {
+                  "label": "Italiano",
+                  "value": "Italian"
+                },
+                {
+                  "label": "Nederlands",
+                  "value": "Dutch"
+                },
+                {
+                  "label": "Русский",
+                  "value": "Russian"
+                },
+                {
+                  "label": "日本語",
+                  "value": "Japanese"
+                },
+                {
+                  "label": "한국어",
+                  "value": "Korean"
+                },
+                {
+                  "label": "中文 (简体)",
+                  "value": "Chinese"
+                },
+                {
+                  "label": "中文 (繁體)",
+                  "value": "Taiwanese"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "cemu_audio_channels",
+              "label": "settings_cemu_audio_channels",
+              "type": "enum",
+              "default": "stereo",
+              "choices": [
+                {
+                  "label": "Mono",
+                  "value": "mono"
+                },
+                {
+                  "label": "Stereo",
+                  "value": "stereo"
+                },
+                {
+                  "label": "Surround 5.1",
+                  "value": "surround"
+                }
+              ],
+              "needs_restart": true
+            }
+          ]
+        },
+        {
+          "title": "settings_cemu_section_performance",
+          "options": [
+            {
+              "key": "cemu_cpu_mode",
+              "label": "settings_cemu_cpu_mode",
+              "type": "enum",
+              "default": "auto",
+              "choices": [
+                {
+                  "label": "Auto",
+                  "value": "auto"
+                },
+                {
+                  "label": "Multicore recompiler",
+                  "value": "multicore_recompiler"
+                },
+                {
+                  "label": "Single-core recompiler",
+                  "value": "singlecore_recompiler"
+                },
+                {
+                  "label": "Single-core interpreter",
+                  "value": "singlecore_interpreter"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "cemu_audio_thread",
+              "label": "settings_cemu_audio_thread",
+              "type": "bool",
+              "default": "disabled",
+              "needs_restart": true
+            },
+            {
+              "key": "cemu_bc1_16bit",
+              "label": "settings_cemu_bc1_16bit",
+              "type": "bool",
+              "default": "disabled",
+              "needs_restart": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "settings_cemu_tab_controls",
+      "sections": [
+        {
+          "title": "settings_cemu_section_controller",
+          "options": [
+            {
+              "key": "cemu_rumble_strength",
+              "label": "settings_cemu_rumble",
+              "type": "enum",
+              "default": "100",
+              "choices": [
+                {
+                  "label": "Off",
+                  "value": "0"
+                },
+                {
+                  "label": "20%",
+                  "value": "20"
+                },
+                {
+                  "label": "50%",
+                  "value": "50"
+                },
+                {
+                  "label": "70%",
+                  "value": "70"
+                },
+                {
+                  "label": "100%",
+                  "value": "100"
+                }
+              ]
+            },
+            {
+              "key": "cemu_stick_deadzone_p1",
+              "label": "settings_cemu_deadzone",
+              "type": "enum",
+              "default": "25",
+              "choices": [
+                {
+                  "label": "0%",
+                  "value": "0"
+                },
+                {
+                  "label": "5%",
+                  "value": "5"
+                },
+                {
+                  "label": "10%",
+                  "value": "10"
+                },
+                {
+                  "label": "15%",
+                  "value": "15"
+                },
+                {
+                  "label": "20%",
+                  "value": "20"
+                },
+                {
+                  "label": "25%",
+                  "value": "25"
+                },
+                {
+                  "label": "30%",
+                  "value": "30"
+                }
+              ]
+            },
+            {
+              "key": "cemu_gamepad_motion",
+              "label": "settings_cemu_gamepad_motion",
+              "type": "bool",
+              "default": "disabled"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

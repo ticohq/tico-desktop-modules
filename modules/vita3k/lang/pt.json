@@ -1,0 +1,22 @@
+{
+  "settings_vita3k_anisotropic": "Filtragem anisotrópica",
+  "settings_vita3k_async_pipeline": "Compilar pipelines em segundo plano (Vulkan)",
+  "settings_vita3k_confirm_button": "Botão de confirmar",
+  "settings_vita3k_cpu_opt": "Otimizações da CPU",
+  "settings_vita3k_disable_surface_sync": "Desligar a sincronização de superfícies",
+  "settings_vita3k_fps_hack": "Hack de FPS (30 para 60)",
+  "settings_vita3k_high_accuracy": "Renderização de alta precisão (Vulkan)",
+  "settings_vita3k_language": "Idioma do sistema",
+  "settings_vita3k_ngs": "Motor de áudio NGS",
+  "settings_vita3k_pkg_mode": "Como os jogos rodam",
+  "settings_vita3k_psn_signed_in": "Conectado à PSN",
+  "settings_vita3k_pstv_mode": "Modo PS TV",
+  "settings_vita3k_renderer": "Renderizador",
+  "settings_vita3k_resolution": "Resolução interna",
+  "settings_vita3k_section_console": "Console",
+  "settings_vita3k_section_games": "Jogos",
+  "settings_vita3k_section_performance": "Desempenho",
+  "settings_vita3k_section_renderer": "Renderização",
+  "settings_vita3k_tab_system": "Sistema",
+  "settings_vita3k_tab_video": "Vídeo"
+}

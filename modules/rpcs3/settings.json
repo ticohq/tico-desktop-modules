@@ -1,0 +1,665 @@
+{
+  "core_id": "rpcs3",
+  "display_name": "RPCS3",
+  "config_file": "rpcs3.jsonc",
+  "slugs": [
+    "ps3"
+  ],
+  "bool_true_value": "enabled",
+  "bool_false_value": "disabled",
+  "tabs": [
+    {
+      "name": "settings_rpcs3_tab_video",
+      "sections": [
+        {
+          "title": "settings_rpcs3_section_renderer",
+          "options": [
+            {
+              "key": "rpcs3_renderer",
+              "label": "settings_rpcs3_renderer",
+              "type": "enum",
+              "default": "vulkan",
+              "choices": [
+                {
+                  "label": "Vulkan",
+                  "value": "vulkan"
+                },
+                {
+                  "label": "OpenGL",
+                  "value": "opengl"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "rpcs3_resolution_scale",
+              "label": "settings_rpcs3_resolution_scale",
+              "type": "enum",
+              "default": "100",
+              "choices": [
+                {
+                  "label": "50%",
+                  "value": "50"
+                },
+                {
+                  "label": "75%",
+                  "value": "75"
+                },
+                {
+                  "label": "100% (Native)",
+                  "value": "100"
+                },
+                {
+                  "label": "150%",
+                  "value": "150"
+                },
+                {
+                  "label": "200%",
+                  "value": "200"
+                },
+                {
+                  "label": "300%",
+                  "value": "300"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "rpcs3_default_resolution",
+              "label": "settings_rpcs3_default_resolution",
+              "type": "enum",
+              "default": "720p",
+              "choices": [
+                {
+                  "label": "720p",
+                  "value": "720p"
+                },
+                {
+                  "label": "1080p",
+                  "value": "1080p"
+                },
+                {
+                  "label": "480p",
+                  "value": "480p"
+                },
+                {
+                  "label": "576p",
+                  "value": "576p"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "rpcs3_aspect_ratio",
+              "label": "settings_rpcs3_aspect_ratio",
+              "type": "enum",
+              "default": "16:9",
+              "choices": [
+                {
+                  "label": "16:9",
+                  "value": "16:9"
+                },
+                {
+                  "label": "4:3",
+                  "value": "4:3"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "rpcs3_frame_limit",
+              "label": "settings_rpcs3_frame_limit",
+              "type": "enum",
+              "default": "auto",
+              "choices": [
+                {
+                  "label": "Auto",
+                  "value": "auto"
+                },
+                {
+                  "label": "PS3 native",
+                  "value": "ps3"
+                },
+                {
+                  "label": "30 FPS",
+                  "value": "30"
+                },
+                {
+                  "label": "60 FPS",
+                  "value": "60"
+                },
+                {
+                  "label": "Off",
+                  "value": "off"
+                }
+              ]
+            },
+            {
+              "key": "rpcs3_anisotropic_filter",
+              "label": "settings_rpcs3_anisotropic",
+              "type": "enum",
+              "default": "auto",
+              "choices": [
+                {
+                  "label": "Auto",
+                  "value": "auto"
+                },
+                {
+                  "label": "2x",
+                  "value": "2"
+                },
+                {
+                  "label": "4x",
+                  "value": "4"
+                },
+                {
+                  "label": "8x",
+                  "value": "8"
+                },
+                {
+                  "label": "16x",
+                  "value": "16"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "settings_rpcs3_section_shaders",
+          "options": [
+            {
+              "key": "rpcs3_shader_mode",
+              "label": "settings_rpcs3_shader_mode",
+              "type": "enum",
+              "default": "async",
+              "choices": [
+                {
+                  "label": "Async",
+                  "value": "async"
+                },
+                {
+                  "label": "Async + interpreter (no stutter)",
+                  "value": "async_interpreter"
+                },
+                {
+                  "label": "Async + recompiler",
+                  "value": "async_recompiler"
+                },
+                {
+                  "label": "Synchronous",
+                  "value": "sync"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "rpcs3_shader_quality",
+              "label": "settings_rpcs3_shader_quality",
+              "type": "enum",
+              "default": "high",
+              "choices": [
+                {
+                  "label": "Low",
+                  "value": "low"
+                },
+                {
+                  "label": "High",
+                  "value": "high"
+                },
+                {
+                  "label": "Ultra",
+                  "value": "ultra"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "rpcs3_zcull_accuracy",
+              "label": "settings_rpcs3_zcull",
+              "type": "enum",
+              "default": "precise",
+              "choices": [
+                {
+                  "label": "Precise",
+                  "value": "precise"
+                },
+                {
+                  "label": "Approximate",
+                  "value": "approximate"
+                },
+                {
+                  "label": "Relaxed",
+                  "value": "relaxed"
+                }
+              ]
+            },
+            {
+              "key": "rpcs3_multithreaded_rsx",
+              "label": "settings_rpcs3_multithreaded_rsx",
+              "type": "bool",
+              "default": "disabled",
+              "needs_restart": true
+            },
+            {
+              "key": "rpcs3_async_texture_streaming",
+              "label": "settings_rpcs3_async_textures",
+              "type": "bool",
+              "default": "disabled",
+              "needs_restart": true
+            },
+            {
+              "key": "rpcs3_write_color_buffers",
+              "label": "settings_rpcs3_write_color_buffers",
+              "type": "bool",
+              "default": "disabled",
+              "needs_restart": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "settings_rpcs3_tab_cpu",
+      "sections": [
+        {
+          "title": "settings_rpcs3_section_cpu",
+          "options": [
+            {
+              "key": "rpcs3_ppu_decoder",
+              "label": "settings_rpcs3_ppu_decoder",
+              "type": "enum",
+              "default": "llvm",
+              "choices": [
+                {
+                  "label": "Recompiler (LLVM)",
+                  "value": "llvm"
+                },
+                {
+                  "label": "Interpreter",
+                  "value": "interpreter"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "rpcs3_spu_decoder",
+              "label": "settings_rpcs3_spu_decoder",
+              "type": "enum",
+              "default": "llvm",
+              "choices": [
+                {
+                  "label": "Recompiler (LLVM)",
+                  "value": "llvm"
+                },
+                {
+                  "label": "Recompiler (ASMJIT)",
+                  "value": "asmjit"
+                },
+                {
+                  "label": "Interpreter (dynamic)",
+                  "value": "dynamic"
+                },
+                {
+                  "label": "Interpreter (static)",
+                  "value": "interpreter"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "rpcs3_spu_block_size",
+              "label": "settings_rpcs3_spu_block_size",
+              "type": "enum",
+              "default": "safe",
+              "choices": [
+                {
+                  "label": "Safe",
+                  "value": "safe"
+                },
+                {
+                  "label": "Mega",
+                  "value": "mega"
+                },
+                {
+                  "label": "Giga",
+                  "value": "giga"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "rpcs3_preferred_spu_threads",
+              "label": "settings_rpcs3_spu_threads",
+              "type": "enum",
+              "default": "0",
+              "choices": [
+                {
+                  "label": "Auto",
+                  "value": "0"
+                },
+                {
+                  "label": "1",
+                  "value": "1"
+                },
+                {
+                  "label": "2",
+                  "value": "2"
+                },
+                {
+                  "label": "3",
+                  "value": "3"
+                },
+                {
+                  "label": "4",
+                  "value": "4"
+                },
+                {
+                  "label": "5",
+                  "value": "5"
+                },
+                {
+                  "label": "6",
+                  "value": "6"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "rpcs3_spu_loop_detection",
+              "label": "settings_rpcs3_spu_loop_detection",
+              "type": "bool",
+              "default": "disabled",
+              "needs_restart": true
+            },
+            {
+              "key": "rpcs3_llvm_precompilation",
+              "label": "settings_rpcs3_llvm_precompilation",
+              "type": "bool",
+              "default": "enabled",
+              "needs_restart": true
+            },
+            {
+              "key": "rpcs3_clocks_scale",
+              "label": "settings_rpcs3_clocks_scale",
+              "type": "enum",
+              "default": "100",
+              "choices": [
+                {
+                  "label": "50%",
+                  "value": "50"
+                },
+                {
+                  "label": "75%",
+                  "value": "75"
+                },
+                {
+                  "label": "100%",
+                  "value": "100"
+                },
+                {
+                  "label": "150%",
+                  "value": "150"
+                },
+                {
+                  "label": "200%",
+                  "value": "200"
+                }
+              ],
+              "needs_restart": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "settings_rpcs3_tab_system",
+      "sections": [
+        {
+          "title": "settings_rpcs3_section_console",
+          "options": [
+            {
+              "key": "rpcs3_language",
+              "label": "settings_rpcs3_language",
+              "type": "enum",
+              "default": "english",
+              "choices": [
+                {
+                  "label": "English",
+                  "value": "english"
+                },
+                {
+                  "label": "Português",
+                  "value": "portuguese"
+                },
+                {
+                  "label": "Español",
+                  "value": "spanish"
+                },
+                {
+                  "label": "Français",
+                  "value": "french"
+                },
+                {
+                  "label": "Deutsch",
+                  "value": "german"
+                },
+                {
+                  "label": "Italiano",
+                  "value": "italian"
+                },
+                {
+                  "label": "Nederlands",
+                  "value": "dutch"
+                },
+                {
+                  "label": "Русский",
+                  "value": "russian"
+                },
+                {
+                  "label": "日本語",
+                  "value": "japanese"
+                },
+                {
+                  "label": "한국어",
+                  "value": "korean"
+                },
+                {
+                  "label": "中文 (繁體)",
+                  "value": "chinese_trad"
+                },
+                {
+                  "label": "中文 (简体)",
+                  "value": "chinese_simp"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "rpcs3_license_area",
+              "label": "settings_rpcs3_region",
+              "type": "enum",
+              "default": "usa",
+              "choices": [
+                {
+                  "label": "Americas",
+                  "value": "usa"
+                },
+                {
+                  "label": "Europe / Oceania",
+                  "value": "eu"
+                },
+                {
+                  "label": "Japan",
+                  "value": "jp"
+                },
+                {
+                  "label": "Hong Kong / Southeast Asia",
+                  "value": "hk"
+                },
+                {
+                  "label": "Korea",
+                  "value": "kr"
+                },
+                {
+                  "label": "China",
+                  "value": "cn"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "rpcs3_enter_button",
+              "label": "settings_rpcs3_enter_button",
+              "type": "enum",
+              "default": "cross",
+              "choices": [
+                {
+                  "label": "Cross",
+                  "value": "cross"
+                },
+                {
+                  "label": "Circle",
+                  "value": "circle"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "rpcs3_show_trophy_popups",
+              "label": "settings_rpcs3_trophy_popups",
+              "type": "bool",
+              "default": "enabled"
+            }
+          ]
+        },
+        {
+          "title": "settings_rpcs3_section_network",
+          "options": [
+            {
+              "key": "rpcs3_network_enabled",
+              "label": "settings_rpcs3_network",
+              "type": "bool",
+              "default": "disabled",
+              "needs_restart": true
+            },
+            {
+              "key": "rpcs3_psn_status",
+              "label": "settings_rpcs3_psn_status",
+              "type": "enum",
+              "default": "disabled",
+              "choices": [
+                {
+                  "label": "Off",
+                  "value": "disabled"
+                },
+                {
+                  "label": "Simulated",
+                  "value": "simulated"
+                },
+                {
+                  "label": "RPCN",
+                  "value": "rpcn"
+                }
+              ],
+              "needs_restart": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "settings_rpcs3_tab_controls",
+      "sections": [
+        {
+          "title": "settings_rpcs3_section_controller",
+          "options": [
+            {
+              "key": "rpcs3_stick_deadzone",
+              "label": "settings_rpcs3_deadzone",
+              "type": "enum",
+              "default": "25",
+              "choices": [
+                {
+                  "label": "0%",
+                  "value": "0"
+                },
+                {
+                  "label": "5%",
+                  "value": "5"
+                },
+                {
+                  "label": "10%",
+                  "value": "10"
+                },
+                {
+                  "label": "15%",
+                  "value": "15"
+                },
+                {
+                  "label": "20%",
+                  "value": "20"
+                },
+                {
+                  "label": "25%",
+                  "value": "25"
+                },
+                {
+                  "label": "30%",
+                  "value": "30"
+                },
+                {
+                  "label": "35%",
+                  "value": "35"
+                },
+                {
+                  "label": "40%",
+                  "value": "40"
+                }
+              ]
+            },
+            {
+              "key": "rpcs3_trigger_threshold",
+              "label": "settings_rpcs3_trigger_threshold",
+              "type": "enum",
+              "default": "12",
+              "choices": [
+                {
+                  "label": "0%",
+                  "value": "0"
+                },
+                {
+                  "label": "5%",
+                  "value": "5"
+                },
+                {
+                  "label": "10%",
+                  "value": "10"
+                },
+                {
+                  "label": "12%",
+                  "value": "12"
+                },
+                {
+                  "label": "15%",
+                  "value": "15"
+                },
+                {
+                  "label": "20%",
+                  "value": "20"
+                },
+                {
+                  "label": "25%",
+                  "value": "25"
+                },
+                {
+                  "label": "30%",
+                  "value": "30"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

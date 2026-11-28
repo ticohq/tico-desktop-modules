@@ -1,0 +1,352 @@
+{
+  "core_id": "xenia_edge",
+  "display_name": "Xenia Edge",
+  "config_file": "xenia_edge.jsonc",
+  "slugs": [
+    "xbox360"
+  ],
+  "bool_true_value": "enabled",
+  "bool_false_value": "disabled",
+  "tabs": [
+    {
+      "name": "settings_xenia_tab_video",
+      "sections": [
+        {
+          "title": "settings_xenia_section_renderer",
+          "options": [
+            {
+              "key": "xenia_draw_resolution_scale",
+              "label": "settings_xenia_resolution",
+              "type": "enum",
+              "default": "1",
+              "choices": [
+                {
+                  "label": "1x (720p)",
+                  "value": "1"
+                },
+                {
+                  "label": "2x (1440p)",
+                  "value": "2"
+                },
+                {
+                  "label": "3x (2160p)",
+                  "value": "3"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "xenia_render_target_path",
+              "label": "settings_xenia_render_target_path",
+              "type": "enum",
+              "default": "performance",
+              "choices": [
+                {
+                  "label": "Performance",
+                  "value": "performance"
+                },
+                {
+                  "label": "Accuracy",
+                  "value": "accuracy"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "xenia_anisotropic_filtering",
+              "label": "settings_xenia_anisotropic",
+              "type": "enum",
+              "default": "-1",
+              "choices": [
+                {
+                  "label": "Game default",
+                  "value": "-1"
+                },
+                {
+                  "label": "Off",
+                  "value": "0"
+                },
+                {
+                  "label": "2x",
+                  "value": "1"
+                },
+                {
+                  "label": "4x",
+                  "value": "2"
+                },
+                {
+                  "label": "8x",
+                  "value": "3"
+                },
+                {
+                  "label": "16x",
+                  "value": "4"
+                }
+              ]
+            },
+            {
+              "key": "xenia_async_shader_compilation",
+              "label": "settings_xenia_async_shaders",
+              "type": "bool",
+              "default": "enabled"
+            },
+            {
+              "key": "xenia_readback_resolve",
+              "label": "settings_xenia_readback_resolve",
+              "type": "bool",
+              "default": "enabled"
+            },
+            {
+              "key": "xenia_occlusion_query",
+              "label": "settings_xenia_occlusion_query",
+              "type": "enum",
+              "default": "fast",
+              "choices": [
+                {
+                  "label": "Fast",
+                  "value": "fast"
+                },
+                {
+                  "label": "Fast (alternative)",
+                  "value": "fast-alt"
+                },
+                {
+                  "label": "Fake",
+                  "value": "fake"
+                },
+                {
+                  "label": "Strict",
+                  "value": "strict"
+                }
+              ],
+              "needs_restart": true
+            }
+          ]
+        },
+        {
+          "title": "settings_xenia_section_display",
+          "options": [
+            {
+              "key": "xenia_widescreen",
+              "label": "settings_xenia_aspect_ratio",
+              "type": "enum",
+              "default": "enabled",
+              "choices": [
+                {
+                  "label": "16:9",
+                  "value": "enabled"
+                },
+                {
+                  "label": "4:3",
+                  "value": "disabled"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "xenia_unlock_framerate",
+              "label": "settings_xenia_unlock_framerate",
+              "type": "enum",
+              "default": "disabled",
+              "choices": [
+                {
+                  "label": "Off",
+                  "value": "disabled"
+                },
+                {
+                  "label": "Listed games",
+                  "value": "enabled"
+                },
+                {
+                  "label": "30 FPS games at 60",
+                  "value": "30to60"
+                },
+                {
+                  "label": "Uncapped",
+                  "value": "uncapped"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "settings_xenia_tab_system",
+      "sections": [
+        {
+          "title": "settings_xenia_section_console",
+          "options": [
+            {
+              "key": "xenia_user_language",
+              "label": "settings_xenia_language",
+              "type": "enum",
+              "default": "English",
+              "choices": [
+                {
+                  "label": "English",
+                  "value": "English"
+                },
+                {
+                  "label": "Português",
+                  "value": "Portuguese"
+                },
+                {
+                  "label": "Español",
+                  "value": "Spanish"
+                },
+                {
+                  "label": "Français",
+                  "value": "French"
+                },
+                {
+                  "label": "Deutsch",
+                  "value": "German"
+                },
+                {
+                  "label": "Italiano",
+                  "value": "Italian"
+                },
+                {
+                  "label": "Polski",
+                  "value": "Polish"
+                },
+                {
+                  "label": "Русский",
+                  "value": "Russian"
+                },
+                {
+                  "label": "日本語",
+                  "value": "Japanese"
+                },
+                {
+                  "label": "한국어",
+                  "value": "Korean"
+                },
+                {
+                  "label": "中文 (繁體)",
+                  "value": "TChinese"
+                },
+                {
+                  "label": "中文 (简体)",
+                  "value": "SChinese"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "xenia_video_standard",
+              "label": "settings_xenia_video_standard",
+              "type": "enum",
+              "default": "1",
+              "choices": [
+                {
+                  "label": "NTSC",
+                  "value": "1"
+                },
+                {
+                  "label": "NTSC-J",
+                  "value": "2"
+                },
+                {
+                  "label": "PAL",
+                  "value": "3"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "xenia_license_mask",
+              "label": "settings_xenia_license_mask",
+              "type": "enum",
+              "default": "1",
+              "choices": [
+                {
+                  "label": "Full game",
+                  "value": "1"
+                },
+                {
+                  "label": "Trial",
+                  "value": "0"
+                },
+                {
+                  "label": "All licenses",
+                  "value": "-1"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "xenia_title_updates",
+              "label": "settings_xenia_title_updates",
+              "type": "bool",
+              "default": "enabled",
+              "needs_restart": true
+            },
+            {
+              "key": "xenia_apply_patches",
+              "label": "settings_xenia_apply_patches",
+              "type": "bool",
+              "default": "enabled",
+              "needs_restart": true
+            }
+          ]
+        },
+        {
+          "title": "settings_xenia_section_audio",
+          "options": [
+            {
+              "key": "xenia_audio_channels",
+              "label": "settings_xenia_audio_channels",
+              "type": "enum",
+              "default": "stereo",
+              "choices": [
+                {
+                  "label": "Stereo",
+                  "value": "stereo"
+                },
+                {
+                  "label": "Surround 5.1",
+                  "value": "5.1"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "xenia_xma_decoder",
+              "label": "settings_xenia_xma_decoder",
+              "type": "enum",
+              "default": "new",
+              "choices": [
+                {
+                  "label": "New",
+                  "value": "new"
+                },
+                {
+                  "label": "Old",
+                  "value": "old"
+                },
+                {
+                  "label": "Master",
+                  "value": "master"
+                },
+                {
+                  "label": "Silent",
+                  "value": "fake"
+                }
+              ],
+              "needs_restart": true
+            },
+            {
+              "key": "xenia_dedicated_xma_thread",
+              "label": "settings_xenia_xma_thread",
+              "type": "bool",
+              "default": "disabled",
+              "needs_restart": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
