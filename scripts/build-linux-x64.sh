@@ -82,9 +82,11 @@ def download_buildbot_so(buildbot_name, work):
         so_path = candidates[0]
     return so_path, last_modified
 
-def verify_so_runtime(work, so_name, docker_image):
+def verify_so_runtime(work, so_name, docker_image, extra_packages=()):
     if docker_image:
         print(f"[verify] Running verify_core for {so_name} in {docker_image}", flush=True)
+        packages = ["libgl1", "libegl1", "libgomp1", "libusb-1.0-0", "libudev1", "liblzma5",
+                    "libcurl4", "libx11-6", "libxi6", *extra_packages]
         cmd = [
             "docker", "run", "--rm",
             "-v", f"{work}:/work:ro",
@@ -94,7 +96,7 @@ def verify_so_runtime(work, so_name, docker_image):
                 "set -euo pipefail; "
                 "apt-get update -qq && "
                 "apt-get install -y -qq --no-install-recommends "
-                "libgl1 libegl1 libgomp1 libusb-1.0-0 libudev1 liblzma5 libcurl4 libx11-6 libxi6 >/dev/null; "
+                f"{' '.join(packages)} >/dev/null; "
                 f"/work/verify_core /work/built/{so_name}"
             ),
         ]
@@ -364,7 +366,8 @@ for core in cfg["cores"]:
     if unexpected:
         raise RuntimeError(f"Non-system runtime dependency in {cid}: {unexpected}\n{readelf}")
 
-    verify_so_runtime(work, so_name, core.get("verify_docker_image_linux", ""))
+    verify_so_runtime(work, so_name, core.get("verify_docker_image_linux", ""),
+                      core.get("verify_packages_linux", []))
 
     if core.get("module_dir"):
         # A console with no Switch module: the whole module lives in this repo

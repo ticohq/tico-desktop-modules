@@ -59,6 +59,17 @@ its entry in `cores.json` names it with `module_dir` and gives the module's own
 `executables` to `module.json` as it does for templates. These modules carry no
 console art or game lists yet.
 
+## Cores That Need a Newer Linux Than the Build Runner
+
+The build checks each core with `dlopen` and `retro_init`. A core built against
+a newer glibc or libstdc++ than the runner's Ubuntu 22.04 is checked in a
+container instead, and the system libraries it links to must be installed there:
+
+- `verify_docker_image_linux` — the image the check runs in, for example
+  `ubuntu:24.04`.
+- `verify_packages_linux` — Ubuntu packages added to the container's base set,
+  for example `libssl3t64` for Vita3K or `libasound2t64` for RPCS3.
+
 ## Fitting a Switch `settings.json` to the Desktop Core
 
 The desktop core can be a different build or version than the Switch module's,
